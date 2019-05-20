@@ -1,8 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-// import moment from 'moment';
-// import ReactTable from 'react-table';
-// import ReactJson from 'react-json-view';
 
 import ServiceNameBadge from './ServiceNameBadge';
 import { getServiceNameColor } from '../util/color';
@@ -29,8 +26,9 @@ const parseTagsData = (tags) => {
     return parsedTags;
 }
 
-const renderInfo = span => {
-    // console.log("TSD; span: ", span);
+// Render span details info
+const renderInfo = (span, spanDetail) => {
+    console.log("TSD; span: ", span, spanDetail);
 
     return (
         <div className="timeline-span-data__content">
@@ -55,41 +53,6 @@ const renderInfo = span => {
                         : null
                 }
             </div>
-            
-            {/* <ReactTable
-                showPagination={false}
-                minRows={0} // Hide empty rows  
-                data={
-                    span.annotations.map(a => (
-                        {
-                            duration: moment(a.timestamp / 1000).format('MM/DD HH:mm:ss:SSS'),
-                            relativeTime: a.relativeTime,
-                            annotation: a.value,
-                            address: a.endpoint,
-                        }
-                    ))
-                }
-                columns={
-                    [
-                        { Header: 'Date Time', accessor: 'duration' },
-                        { Header: 'Relative Time', accessor: 'relativeTime' },
-                        { Header: 'Annotation', accessor: 'annotation' },
-                        { Header: 'Address', accessor: 'address' },
-                    ]
-                }
-            /> */}
-
-            {/* <ReactTable
-                showPagination={false}
-                minRows={0} // Hide empty rows
-                data={span.tags}
-                columns={
-                    [
-                        { Header: 'Key', accessor: 'key' },
-                        { Header: 'Value', accessor: 'value' },
-                    ]
-                }
-            /> */}
 
             {/* <ReactJson 
                 name={false} 
@@ -97,11 +60,13 @@ const renderInfo = span => {
                 src={parseTagsData(span.tagsObj)} 
             /> */}
 
+            {spanDetail}
+
         </div>
     );
 };
 
-const SpanInfo = ({ span, serviceNameColumnWidth }) => (
+const SpanInfo = ({ span, serviceNameColumnWidth, spanDetail}) => (
     <div className="timeline-span-data">
         <div
             className="timeline-span-data__left-container"
@@ -122,7 +87,7 @@ const SpanInfo = ({ span, serviceNameColumnWidth }) => (
                 width: `${(1 - serviceNameColumnWidth) * 100}%`,
             }}
         >
-            {renderInfo(span)}
+            {renderInfo(span, spanDetail)}
         </div>
     </div>
 

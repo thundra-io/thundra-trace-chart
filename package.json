@@ -28,7 +28,7 @@
   },
   "peerDependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"    
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "node-sass": "^4.12.0",
@@ -36,6 +36,7 @@
     "nwb-sass": "^0.9.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-json-view": "^1.19.1",
     "sass-loader": "^7.1.0",
     "webpack": "^4.31.0"
   },

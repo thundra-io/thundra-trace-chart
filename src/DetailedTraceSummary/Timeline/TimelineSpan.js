@@ -1,10 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-// import {
-//     EuiIcon,
-// } from '@elastic/eui';
-
 import TimelineSpanData from './TimelineSpanData';
 import { getErrorTypeColor, getServiceNameColor } from '../util/color';
 import { detailedSpanPropTypes } from '../prop-types';
@@ -286,6 +282,8 @@ class TimelineSpan extends React.Component {
     }
 
     render() {
+        console.log("TimelineSpan; props: ", this.props);
+
         const {
             span,
             serviceNameColumnWidth,
@@ -329,6 +327,8 @@ class TimelineSpan extends React.Component {
                             <TimelineSpanData
                                 span={span}
                                 serviceNameColumnWidth={serviceNameColumnWidth}
+
+                                spanDetail={this.props.traceDetail}
                             />
                         )
                         : null

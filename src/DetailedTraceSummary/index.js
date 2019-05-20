@@ -1,21 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-// import Timeline from '../Timeline';
 import Timeline from './Timeline';
-// import LoadingOverlay from '../Common/LoadingOverlay';
 import MiniTraceViewer from './MiniTraceViewer';
 
 import { detailedTraceSummaryPropTypes } from './prop-types';
-// import "./style.less";
 import "../scss/main.scss";
 
 const propTypes = {
-    isLoading: PropTypes.bool.isRequired,
     traceId: PropTypes.string.isRequired, /* From url parameter */
-    // traceSummary: PropTypes.shape({}),
     traceSummary: detailedTraceSummaryPropTypes.isRequired,
-    // fetchTrace: PropTypes.func.isRequired,
+    traceDetail: PropTypes.arrayOf(
+		PropTypes.element.isRequired
+	)
 };
 
 const defaultProps = {
@@ -30,13 +27,6 @@ class DetailedTraceSummary extends React.Component {
             endTs: null,
         };
         this.handleStartAndEndTsChange = this.handleStartAndEndTsChange.bind(this);
-    }
-
-    componentDidMount() {
-        // const { fetchTrace, traceId, traceSummary } = this.props;
-        // if (!traceSummary || traceSummary.traceId !== traceId) {
-        //     fetchTrace(traceId);
-        // }
     }
 
     handleStartAndEndTsChange(startTs, endTs) {
@@ -85,14 +75,12 @@ class DetailedTraceSummary extends React.Component {
 
     render() {
         const { startTs, endTs } = this.state;
-        const { isLoading, traceId, traceSummary } = this.props;
+        const { traceId, traceSummary } = this.props;
 
         console.log("DTS; props: ", this.props);
 
         return (
             <div>
-
-                {/* <LoadingOverlay active={isLoading} /> */}
 
                 <div className="detailed-trace-summary">
 
@@ -119,6 +107,8 @@ class DetailedTraceSummary extends React.Component {
                                             startTs={startTs || 0}
                                             endTs={endTs || traceSummary.duration}
                                             traceSummary={traceSummary}
+
+                                            traceDetail={this.props.traceDetail}
                                         />
                                     </div>
 

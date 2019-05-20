@@ -1,28 +1,76 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react'
 import DetailedTraceSummary from "./DetailedTraceSummary";
 import { treeCorrectedForClockSkew, detailedTraceSummary } from "./zipkin";
+import { detailedTraceSummaryPropTypes,spanTagsPropTypes } from "./DetailedTraceSummary/prop-types";
 
-export default class extends Component {
+const tracePropTypes = PropTypes.shape({
+	traceId: PropTypes.string.isRequired,
+	parentId: PropTypes.string,
+	id: PropTypes.string.isRequired,
+	serviceName: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
+	timestamp: PropTypes.number.isRequired,
+	duration: PropTypes.number.isRequired, // in microseconds
+});
+
+const tracesPropTypes = PropTypes.arrayOf(
+	tracePropTypes,
+);
+
+const propTypes = {
+	traceId: PropTypes.string.isRequired, /* From url parameter */
+	traceSummary: tracesPropTypes.isRequired,
+	traceDetails: PropTypes.arrayOf(
+		PropTypes.element.isRequired
+	),
+};
+
+const defaultProps = {
+	traceSummary: null,
+	traceDetails: []
+};
+class ReactTraceChart extends Component {
+
+	addLocalEndpointFromServiceName = (traceSummary) => {
+		return traceSummary.map(trace => {
+			const { serviceName, ...rawTrace } = trace;
+			return {
+				...rawTrace,
+				localEndpoint: {
+					serviceName,
+					ipv4: "0.0.0.0"
+				}
+			};
+		});
+	}
 
 	render() {
 		console.log("RTC; props: ", this.props);
 
-		// const correctedMockTraceSummary = treeCorrectedForClockSkew(rawMockTraceSummary);
-		const correctedMockTraceSummary = treeCorrectedForClockSkew(this.props.traceSummary);
+		const modifiedTraceSummary = this.addLocalEndpointFromServiceName(this.props.traceSummary);
+		console.log("ITCC, modifiedTraceSummary: ", modifiedTraceSummary);
+
+		const correctedMockTraceSummary = treeCorrectedForClockSkew(modifiedTraceSummary);
 		console.log("ITCC; correctedMockTraceSummary: ", correctedMockTraceSummary);
-		
+
 		const mockTraceSummary = detailedTraceSummary(correctedMockTraceSummary);
 		console.log("ITCC; mockTraceSummary: ", mockTraceSummary);
 
-		return <div>
-			<h2>Welcome to React trace chart components..</h2>
-			<DetailedTraceSummary
-				isLoading={false} // remove this
-				// traceId={transactionId}
-				traceId={this.props.traceId}
-				traceSummary={mockTraceSummary}
-				// traceSummary={this.props.traceSummary}
-			/>
-		</div>
+
+		return (
+			<div>
+				<DetailedTraceSummary
+					traceId={this.props.traceId}
+					traceSummary={mockTraceSummary}
+					traceDetail={this.props.traceDetails}
+				/>
+			</div>
+		);
 	}
 }
+
+ReactTraceChart.propTypes = propTypes;
+ReactTraceChart.defaultProps = defaultProps;
+
+export default ReactTraceChart;
