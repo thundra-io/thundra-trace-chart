@@ -10,7 +10,8 @@ const propTypes = {
 	endTs: PropTypes.number.isRequired,
 	traceSummary: detailedTraceSummaryPropTypes.isRequired,
 	showTraceChartHeader: PropTypes.bool.isRequired,
-	showSpanDetail: PropTypes.bool.isRequired
+	showSpanDetail: PropTypes.bool.isRequired,
+	onSpanClicked: PropTypes.func.isRequired
 };
 
 const defaultServiceNameColumnWidth = 0.2;
@@ -25,6 +26,7 @@ class Timeline extends React.Component {
 			spanNameColumnWidth: defaultSpanNameColumnWidth,
 			childrenClosedSpans: {},
 			dataOpenedSpans: {},
+			selectedSpanId: null
 		};
 		this.handleServiceNameColumnWidthChange = this.handleServiceNameColumnWidthChange.bind(this);
 		this.handleSpanNameColumnWidthChange = this.handleSpanNameColumnWidthChange.bind(this);
@@ -62,6 +64,11 @@ class Timeline extends React.Component {
 
 	handleDataOpenToggle(spanId) {
 		console.log("Timeline, handleDataOpenToggle; spanId, props: ", spanId, this.props);
+
+		// Here we left a sign on latest selected span, and 
+		// bubble up the selected spanId to the user via onSpanClicked prop.
+		this.props.onSpanClicked(spanId);
+		this.setState({selectedSpanId: spanId});
 
 		const { dataOpenedSpans: prevDataOpenedSpans } = this.state;
 
@@ -147,10 +154,13 @@ class Timeline extends React.Component {
 									hasChildren={hasChildren}
 									areChildrenOpened={!childrenClosedSpans[span.spanId]}
 									areDataOpened={!!dataOpenedSpans[span.spanId]}
+									selectedSpanId={this.state.selectedSpanId}
 									onChildrenOpenToggle={this.handleChildrenOpenToggle}
 									onDataOpenToggle={this.handleDataOpenToggle}
-
+									// TODO: instead of index, access traceDetail via span.spanId?
 									traceDetail={this.props.traceDetail[index]}
+									spanHighlights={this.props.spanHighlights}
+									showSpanDetail={this.props.showSpanDetail}
 								/>
 							);
 						},

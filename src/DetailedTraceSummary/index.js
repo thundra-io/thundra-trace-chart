@@ -12,12 +12,17 @@ const propTypes = {
     traceSummary: detailedTraceSummaryPropTypes.isRequired,
     traceDetail: PropTypes.arrayOf(
 		PropTypes.element.isRequired
-    ),
+    ).isRequired,
+    spanHighlights: PropTypes.arrayOf(
+        PropTypes.string.isRequired
+    ).isRequired,
 
     showHeader: PropTypes.bool.isRequired,
 	showMiniTrace: PropTypes.bool.isRequired,
 	showTraceChartHeader: PropTypes.bool.isRequired,
-	showSpanDetail: PropTypes.bool.isRequired
+    showSpanDetail: PropTypes.bool.isRequired,
+    
+    onSpanClicked: PropTypes.func.isRequired
 };
 
 const defaultProps = {
@@ -82,7 +87,7 @@ class DetailedTraceSummary extends React.Component {
         const { startTs, endTs } = this.state;
         const { 
             traceId, traceSummary, traceDetail,
-            showHeader, showMiniTrace, showTraceChartHeader, showSpanDetail
+            showHeader, showMiniTrace, showTraceChartHeader, showSpanDetail, spanHighlights
         } = this.props;
 
         console.log("DTS; props: ", this.props);
@@ -118,8 +123,11 @@ class DetailedTraceSummary extends React.Component {
                                             traceSummary={traceSummary}
 
                                             traceDetail={traceDetail}
+                                            spanHighlights={spanHighlights}
                                             showTraceChartHeader={showTraceChartHeader}
                                             showSpanDetail={showSpanDetail}
+
+                                            onSpanClicked={this.props.onSpanClicked}
                                         />
                                     </div>
 

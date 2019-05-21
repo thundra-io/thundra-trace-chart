@@ -364,7 +364,8 @@ class Demo extends Component {
 				name: 'user-get-lambda-java-es',
 				timestamp: 1557761782905000,
 				duration: 281000,
-				serviceName: 'AWS-Lambda'
+				serviceName: 'AWS-Lambda',
+				color: "#ff0000" // TODO: not used currently
 			},
 			{
 				traceId: '4e81414c-2bff-439f-9e5c-9e6699b4e24b',
@@ -373,7 +374,8 @@ class Demo extends Component {
 				name: 'io.thundra.lambda.demo.service.UserService.get',
 				timestamp: 1557761782907000,
 				duration: 279000,
-				serviceName: 'Method'
+				serviceName: 'Method',
+				color: "#ff0000"
 			},
 			{
 				traceId: '4e81414c-2bff-439f-9e5c-9e6699b4e24b',
@@ -382,7 +384,8 @@ class Demo extends Component {
 				name: 'io.thundra.lambda.demo.service.UserService.validateId',
 				timestamp: 1557761782908000,
 				duration: 4000,
-				serviceName: 'Method'
+				serviceName: 'Method',
+				color: "#ff0000"
 			},
 			{
 				traceId: '4e81414c-2bff-439f-9e5c-9e6699b4e24b',
@@ -391,7 +394,8 @@ class Demo extends Component {
 				name: 'io.thundra.lambda.demo.service.UserService.validateNotEmptyString',
 				timestamp: 1557761782911000,
 				duration: 1000,
-				serviceName: 'Method'
+				serviceName: 'Methods',
+				color: "#ff0000"
 			},
 			{
 				traceId: '4e81414c-2bff-439f-9e5c-9e6699b4e24b',
@@ -400,7 +404,8 @@ class Demo extends Component {
 				name: 'io.thundra.lambda.demo.service.UserService.getFromCache',
 				timestamp: 1557761782912000,
 				duration: 12000,
-				serviceName: 'Method'
+				serviceName: 'Method',
+				color: "#ff0000"
 			},
 			{
 				traceId: '4e81414c-2bff-439f-9e5c-9e6699b4e24b',
@@ -409,7 +414,8 @@ class Demo extends Component {
 				name: 'io.thundra.lambda.demo.cache.CacheManager.get',
 				timestamp: 1557761782912000,
 				duration: 12000,
-				serviceName: 'Method'
+				serviceName: 'Methods',
+				color: "#ff0000"
 			},
 			{
 				traceId: '4e81414c-2bff-439f-9e5c-9e6699b4e24b',
@@ -418,7 +424,8 @@ class Demo extends Component {
 				name: 'localhost',
 				timestamp: 1557761782913000,
 				duration: 1,
-				serviceName: 'Redis'
+				serviceName: 'Redis',
+				color: "#ff0000"
 			},
 			{
 				traceId: '4e81414c-2bff-439f-9e5c-9e6699b4e24b',
@@ -427,7 +434,8 @@ class Demo extends Component {
 				name: 'io.thundra.lambda.demo.repository.UserRepository.get',
 				timestamp: 1557761782924000,
 				duration: 261000,
-				serviceName: 'Method'
+				serviceName: 'Method',
+				color: "#ff0000"
 			},
 			{
 				traceId: '4e81414c-2bff-439f-9e5c-9e6699b4e24b',
@@ -436,7 +444,8 @@ class Demo extends Component {
 				name: 'thundra_demo',
 				timestamp: 1557761782925000,
 				duration: 130000,
-				serviceName: 'POSTGRESQL'
+				serviceName: 'POSTGRESQL',
+				color: "#ff0000"
 			},
 			{
 				traceId: '4e81414c-2bff-439f-9e5c-9e6699b4e24b',
@@ -445,17 +454,25 @@ class Demo extends Component {
 				name: 'thundra_demo',
 				timestamp: 1557761783056000,
 				duration: 129000,
-				serviceName: 'POSTGRESQL'
+				serviceName: 'POSTGRESQL',
+				color: "#ff0000"
 			}
 		]
 
 		return trace;
 	}
 
+	// TODO: add spanId as key to the trace details.
 	sampleTraceDetail = () => {
 		const tracesArr = this.sampleTrace();
 
-		return tracesArr.map(trace => {
+		return tracesArr.map( (trace, index) => {
+
+			// TODO: remove
+			// if (index % 2 === 0) {
+			// 	return null;
+			// }
+
 			return (
 				<div>
 					<div>this is span details:</div>
@@ -469,6 +486,12 @@ class Demo extends Component {
 		})
 	}
 
+	sampleTraceHighlights = () => {
+		const tracesArr = this.sampleTrace();
+
+		return [tracesArr[0].id, tracesArr[1].id];
+	}
+
 	render() {
 		return (
 			<div>
@@ -478,11 +501,15 @@ class Demo extends Component {
 					traceId="4e81414c-2bff-439f-9e5c-9e6699b4e24b" // TODO: remove traceId from props
 					traceSummary={this.sampleTrace()}
 					spanDetails={this.sampleTraceDetail()}
+					spanHighlights={this.sampleTraceHighlights()}
+
 
 					showHeader={false}
 					showMiniTrace={false}
-					showTraceChartHeader={false}
-					// showSpanDetail: true
+					// showTraceChartHeader={false}
+					// showSpanDetail={false}
+
+					// onSpanClicked={(spanId) => console.log("span clicked; spanId: ", spanId)}
 				/>
 			</div>
 		);

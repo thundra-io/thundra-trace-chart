@@ -12,6 +12,7 @@ const tracePropTypes = PropTypes.shape({
 	name: PropTypes.string.isRequired,
 	timestamp: PropTypes.number.isRequired,
 	duration: PropTypes.number.isRequired, // in microseconds
+	color: PropTypes.string // optional color string for span
 });
 
 const tracesPropTypes = PropTypes.arrayOf(
@@ -21,23 +22,32 @@ const tracesPropTypes = PropTypes.arrayOf(
 const propTypes = {
 	traceId: PropTypes.string.isRequired, /* From url parameter */
 	traceSummary: tracesPropTypes.isRequired,
+	// Optional span details to be shown below each span when clicked.
 	spanDetails: PropTypes.arrayOf(
 		PropTypes.element.isRequired
+	),
+	// If provided an array of span ids, then these ids will be highlighted
+	spanHighlights: PropTypes.arrayOf(
+		PropTypes.string.isRequired
 	),
 	showHeader: PropTypes.bool,
 	showMiniTrace: PropTypes.bool,
 	showTraceChartHeader: PropTypes.bool,
-	showSpanDetail: PropTypes.bool
+	showSpanDetail: PropTypes.bool,
+
+	onSpanClicked: PropTypes.func,
 };
 
 const defaultProps = {
 	traceSummary: null,
 	spanDetails: [],
+	spanHighlights: [],
 
 	showHeader: true,
 	showMiniTrace: true,
 	showTraceChartHeader: true,
-	showSpanDetail: true
+	showSpanDetail: true,
+	onSpanClicked: () => null,
 };
 class ReactTraceChart extends Component {
 
@@ -73,11 +83,14 @@ class ReactTraceChart extends Component {
 					traceId={this.props.traceId}
 					traceSummary={mockTraceSummary}
 					traceDetail={this.props.spanDetails}
+					spanHighlights={this.props.spanHighlights}
 
 					showHeader={this.props.showHeader}
 					showMiniTrace={this.props.showMiniTrace}
 					showTraceChartHeader={this.props.showTraceChartHeader}
 					showSpanDetail={this.props.showSpanDetail}
+
+					onSpanClicked={this.props.onSpanClicked}
 				/>
 			</div>
 		);

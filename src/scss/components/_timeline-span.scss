@@ -11,6 +11,14 @@
   }
 }
 
+.selected-span {
+  background: $gray-10;
+}
+
+.insignificant-span {
+  opacity: 0.3;
+}
+
 .timeline-span__service-name-column-wrapper {
   border-right: 1px $gray-8 solid;
   box-sizing: border-box;

@@ -84,13 +84,16 @@ class TimelineSpan extends React.Component {
         return (startTs - traceTimestamp) / traceDuration * 100;
     }
 
+    // 
     handleChildrenOpenToggle(e) {
         const { span, onChildrenOpenToggle } = this.props;
         onChildrenOpenToggle(span.spanId);
-        e.stopPropagation(); /* Stop event bubbling */
+        e.stopPropagation(); /* Stop event bubbling, TODO: does it needed? */
     }
 
+    // 
     handleDataOpenToggle() {
+        // console.log("TimelineSpan, handleDataOpenToggle; props: ", this.props);
         const { span, onDataOpenToggle } = this.props;
         onDataOpenToggle(span.spanId);
     }
@@ -135,13 +138,23 @@ class TimelineSpan extends React.Component {
                                 {
                                     areChildrenOpened ?
                                         (
-                                            <span className="fas fa-minus-square" />
+                                            <span className="timeline-span__open-toggle-button--minus">
+                                                -
+                                            </span>
+
+                                            // <span className="fas fa-minus-square" />
+
                                             // <EuiIcon
                                             //     type={"minusInCircle"}
                                             // />
                                         ) :
                                         (
-                                            <span className="fas fa-plus-square" />
+                                            <span className="timeline-span__open-toggle-button--plus">
+                                                +
+                                            </span>
+
+                                            // <span className="fas fa-plus-square" />
+
                                             // <EuiIcon
                                             //     type={"plusInCircle"}
                                             // />
@@ -215,56 +228,6 @@ class TimelineSpan extends React.Component {
     renderSpanBar() {
         const { span } = this.props;
 
-        const { annotations } = span;
-        const clientStart = annotations.find(annotation => annotation.value === 'Client Start');
-        const serverStart = annotations.find(annotation => annotation.value === 'Server Start');
-        const clientFinish = annotations.find(annotation => annotation.value === 'Client Finish');
-        const serverFinish = annotations.find(annotation => annotation.value === 'Server Finish');
-
-        if (clientStart && serverStart && clientFinish && serverFinish) {
-            const clientBaseWidth = this.calculateBaseWidth(
-                clientFinish.timestamp,
-                clientStart.timestamp,
-            );
-            const serverBaseWidth = this.calculateBaseWidth(
-                serverFinish.timestamp,
-                serverStart.timestamp,
-            );
-            const clientBaseLeft = this.calculateBaseLeft(clientStart.timestamp);
-            const serverBaseLeft = this.calculateBaseLeft(serverStart.timestamp);
-
-            const {
-                left: clientLeft,
-                width: clientWidth,
-            } = this.calculateLeftAndWidth(clientBaseLeft, clientBaseWidth);
-
-            const {
-                left: serverLeft,
-                width: serverWidth,
-            } = this.calculateLeftAndWidth(serverBaseLeft, serverBaseWidth);
-
-            return (
-                <div className="timeline-span__bar-container">
-                    <span
-                        className="timeline-span__bar timeline-span__bar--client"
-                        style={{
-                            left: `${clientLeft}%`,
-                            width: `${clientWidth}%`,
-                        }}
-                    />
-                    <span
-                        className="timeline-span__bar timeline-span__bar--server"
-                        style={{
-                            left: `${serverLeft}%`,
-                            width: `${serverWidth}%`,
-                            background: `${getErrorTypeColor(span.errorType)}`,
-                        }}
-                    />
-                    {this.renderSpanDuration(clientLeft, clientWidth)}
-                </div>
-            );
-        }
-
         const { left, width } = this.calculateLeftAndWidth(span.left, span.width);
         return (
             <div className="timeline-span__bar-container">
@@ -273,7 +236,9 @@ class TimelineSpan extends React.Component {
                     style={{
                         left: `${left}%`,
                         width: `${width}%`,
-                        background: `${getErrorTypeColor(span.errorType)}`,
+                        // TODO: review here considering error cases.
+                        // background: `${getErrorTypeColor(span.errorType)}`,
+                        background: `${getServiceNameColor(span.serviceName)}`,
                     }}
                 />
                 {this.renderSpanDuration(left, width)}
@@ -289,12 +254,26 @@ class TimelineSpan extends React.Component {
             serviceNameColumnWidth,
             spanNameColumnWidth,
             areDataOpened,
+            showSpanDetail,
+            spanHighlights
         } = this.props;
+
+        // This is to set exta class to highlight bgcolor of selected span.
+        let timelineSpanClass = "timeline-span";
+        if (this.props.selectedSpanId === span.spanId) {
+            timelineSpanClass = `${timelineSpanClass} selected-span`;
+        }
+
+
+        if (spanHighlights.length > 0 && !spanHighlights.includes(span.spanId)) {
+            timelineSpanClass = `${timelineSpanClass} insignificant-span`;
+        }
+
         return (
             <div>
                 <div
                     role="presentation"
-                    className="timeline-span"
+                    className={timelineSpanClass}
                     onClick={this.handleDataOpenToggle}
                 >
                     <div
@@ -321,8 +300,9 @@ class TimelineSpan extends React.Component {
                         {this.renderSpanBar()}
                     </div>
                 </div>
+
                 {
-                    areDataOpened
+                    showSpanDetail && areDataOpened
                         ? (
                             <TimelineSpanData
                                 span={span}
