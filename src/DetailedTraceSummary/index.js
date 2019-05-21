@@ -12,7 +12,12 @@ const propTypes = {
     traceSummary: detailedTraceSummaryPropTypes.isRequired,
     traceDetail: PropTypes.arrayOf(
 		PropTypes.element.isRequired
-	)
+    ),
+
+    showHeader: PropTypes.bool.isRequired,
+	showMiniTrace: PropTypes.bool.isRequired,
+	showTraceChartHeader: PropTypes.bool.isRequired,
+	showSpanDetail: PropTypes.bool.isRequired
 };
 
 const defaultProps = {
@@ -75,7 +80,10 @@ class DetailedTraceSummary extends React.Component {
 
     render() {
         const { startTs, endTs } = this.state;
-        const { traceId, traceSummary } = this.props;
+        const { 
+            traceId, traceSummary, traceDetail,
+            showHeader, showMiniTrace, showTraceChartHeader, showSpanDetail
+        } = this.props;
 
         console.log("DTS; props: ", this.props);
 
@@ -90,17 +98,18 @@ class DetailedTraceSummary extends React.Component {
                             : (
                                 <div>
 
-                                    {this.renderHeader()}
+                                    {showHeader && this.renderHeader()}
 
-                                    <div className="detailed-trace-summary__mini-trace-viewer-wrapper">
-
-                                        <MiniTraceViewer
-                                            startTs={startTs || 0}
-                                            endTs={endTs || traceSummary.duration}
-                                            traceSummary={traceSummary}
-                                            onStartAndEndTsChange={this.handleStartAndEndTsChange}
-                                        />
-                                    </div>
+                                    {showMiniTrace &&
+                                        <div className="detailed-trace-summary__mini-trace-viewer-wrapper">
+                                            <MiniTraceViewer
+                                                startTs={startTs || 0}
+                                                endTs={endTs || traceSummary.duration}
+                                                traceSummary={traceSummary}
+                                                onStartAndEndTsChange={this.handleStartAndEndTsChange}
+                                            />
+                                        </div>
+                                    }
 
                                     <div className="detailed-trace-summary__timeline-wrapper">
                                         <Timeline
@@ -108,7 +117,9 @@ class DetailedTraceSummary extends React.Component {
                                             endTs={endTs || traceSummary.duration}
                                             traceSummary={traceSummary}
 
-                                            traceDetail={this.props.traceDetail}
+                                            traceDetail={traceDetail}
+                                            showTraceChartHeader={showTraceChartHeader}
+                                            showSpanDetail={showSpanDetail}
                                         />
                                     </div>
 

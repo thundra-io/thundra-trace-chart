@@ -9,6 +9,8 @@ const propTypes = {
 	startTs: PropTypes.number.isRequired,
 	endTs: PropTypes.number.isRequired,
 	traceSummary: detailedTraceSummaryPropTypes.isRequired,
+	showTraceChartHeader: PropTypes.bool.isRequired,
+	showSpanDetail: PropTypes.bool.isRequired
 };
 
 const defaultServiceNameColumnWidth = 0.2;
@@ -39,6 +41,8 @@ class Timeline extends React.Component {
 	}
 
 	handleChildrenOpenToggle(spanId) {
+		console.log("Timeline, handleChildrenOpenToggle; props, spanId: ", spanId, this.props);
+
 		const { childrenClosedSpans: prevChildrenClosedSpans } = this.state;
 
 		let childrenClosedSpans = {};
@@ -57,6 +61,8 @@ class Timeline extends React.Component {
 	}
 
 	handleDataOpenToggle(spanId) {
+		console.log("Timeline, handleDataOpenToggle; spanId, props: ", spanId, this.props);
+
 		const { dataOpenedSpans: prevDataOpenedSpans } = this.state;
 
 		let dataOpenedSpans = {};
@@ -77,7 +83,10 @@ class Timeline extends React.Component {
 	render() {
 		console.log("Timeline; props: ", this.props);
 
-		const { startTs, endTs, traceSummary } = this.props;
+		const { 
+			startTs, endTs, traceSummary,
+			showTraceChartHeader
+		} = this.props;
 		const {
 			serviceNameColumnWidth,
 			spanNameColumnWidth,
@@ -94,15 +103,18 @@ class Timeline extends React.Component {
 
 		return (
 			<div className="timeline">
-				<TimelineHeader
-					startTs={startTs}
-					endTs={endTs}
-					serviceNameColumnWidth={serviceNameColumnWidth}
-					spanNameColumnWidth={spanNameColumnWidth}
-					numTimeMarkers={defaultNumTimeMarkers}
-					onServiceNameColumnWidthChange={this.handleServiceNameColumnWidthChange}
-					onSpanNameColumnWidthChange={this.handleSpanNameColumnWidthChange}
-				/>
+				{showTraceChartHeader &&
+					<TimelineHeader
+						startTs={startTs}
+						endTs={endTs}
+						serviceNameColumnWidth={serviceNameColumnWidth}
+						spanNameColumnWidth={spanNameColumnWidth}
+						numTimeMarkers={defaultNumTimeMarkers}
+						onServiceNameColumnWidthChange={this.handleServiceNameColumnWidthChange}
+						onSpanNameColumnWidthChange={this.handleSpanNameColumnWidthChange}
+					/>
+				}
+
 				{
 					traceSummary.spans.map(
 						(span, index, spans) => {

@@ -461,9 +461,9 @@ class Demo extends Component {
 					<div>this is span details:</div>
 					<div>{trace.serviceName} - {trace.name}</div>
 
-					{/* <ReactJson 
+					<ReactJson 
 						src={trace}
-					/> */}
+					/>
 				</div>
 			)
 		})
@@ -475,9 +475,14 @@ class Demo extends Component {
 				<h1>react-trace-chart Demo</h1>
 
 				<ReactTraceChart
+					traceId="4e81414c-2bff-439f-9e5c-9e6699b4e24b" // TODO: remove traceId from props
 					traceSummary={this.sampleTrace()}
-					traceId="4e81414c-2bff-439f-9e5c-9e6699b4e24b"
-					traceDetails={this.sampleTraceDetail()}
+					spanDetails={this.sampleTraceDetail()}
+
+					showHeader={false}
+					showMiniTrace={false}
+					showTraceChartHeader={false}
+					// showSpanDetail: true
 				/>
 			</div>
 		);

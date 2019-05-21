@@ -21,14 +21,23 @@ const tracesPropTypes = PropTypes.arrayOf(
 const propTypes = {
 	traceId: PropTypes.string.isRequired, /* From url parameter */
 	traceSummary: tracesPropTypes.isRequired,
-	traceDetails: PropTypes.arrayOf(
+	spanDetails: PropTypes.arrayOf(
 		PropTypes.element.isRequired
 	),
+	showHeader: PropTypes.bool,
+	showMiniTrace: PropTypes.bool,
+	showTraceChartHeader: PropTypes.bool,
+	showSpanDetail: PropTypes.bool
 };
 
 const defaultProps = {
 	traceSummary: null,
-	traceDetails: []
+	spanDetails: [],
+
+	showHeader: true,
+	showMiniTrace: true,
+	showTraceChartHeader: true,
+	showSpanDetail: true
 };
 class ReactTraceChart extends Component {
 
@@ -63,7 +72,12 @@ class ReactTraceChart extends Component {
 				<DetailedTraceSummary
 					traceId={this.props.traceId}
 					traceSummary={mockTraceSummary}
-					traceDetail={this.props.traceDetails}
+					traceDetail={this.props.spanDetails}
+
+					showHeader={this.props.showHeader}
+					showMiniTrace={this.props.showMiniTrace}
+					showTraceChartHeader={this.props.showTraceChartHeader}
+					showSpanDetail={this.props.showSpanDetail}
 				/>
 			</div>
 		);

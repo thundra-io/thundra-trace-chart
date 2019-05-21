@@ -282,7 +282,7 @@ class TimelineSpan extends React.Component {
     }
 
     render() {
-        console.log("TimelineSpan; props: ", this.props);
+        // console.log("TimelineSpan; props: ", this.props);
 
         const {
             span,
