@@ -19,6 +19,10 @@
   opacity: 0.3;
 }
 
+.erroneous-span {
+  background: rgba(255, 0, 0, 0.2);
+}
+
 .timeline-span__service-name-column-wrapper {
   border-right: 1px $gray-8 solid;
   box-sizing: border-box;

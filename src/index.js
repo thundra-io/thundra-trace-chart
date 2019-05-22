@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react'
 import DetailedTraceSummary from "./DetailedTraceSummary";
 import { treeCorrectedForClockSkew, detailedTraceSummary } from "./zipkin";
-import { detailedTraceSummaryPropTypes,spanTagsPropTypes } from "./DetailedTraceSummary/prop-types";
+import { spanTagsPropTypes } from "./DetailedTraceSummary/prop-types";
 
 const tracePropTypes = PropTypes.shape({
 	traceId: PropTypes.string.isRequired,
@@ -12,6 +12,7 @@ const tracePropTypes = PropTypes.shape({
 	name: PropTypes.string.isRequired,
 	timestamp: PropTypes.number.isRequired,
 	duration: PropTypes.number.isRequired, // in microseconds
+	tags: PropTypes.object, // optional tags, erroneous span info is carried through tags!
 	color: PropTypes.string // optional color string for span
 });
 

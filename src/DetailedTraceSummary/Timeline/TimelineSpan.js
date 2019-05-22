@@ -5,6 +5,10 @@ import TimelineSpanData from './TimelineSpanData';
 import { getErrorTypeColor, getServiceNameColor } from '../util/color';
 import { detailedSpanPropTypes } from '../prop-types';
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationTriangle, faPlusSquare, faMinusSquare } from '@fortawesome/free-solid-svg-icons';
+
+
 const propTypes = {
     startTs: PropTypes.number.isRequired,
     endTs: PropTypes.number.isRequired,
@@ -108,12 +112,10 @@ class TimelineSpan extends React.Component {
         } else {
             return (
                 <span>
-                    {/* <EuiIcon
-                        type="alert"
-                        color="danger"
-                        size="s"
-                    /> */}
-                    {"!!! "}
+                    <span style={{ marginRight: "6px" }}>
+                        <FontAwesomeIcon icon={faExclamationTriangle} style={{ color: 'red' }} />
+                    </span>
+
                     {span.serviceName}
                 </span>
             )
@@ -139,25 +141,13 @@ class TimelineSpan extends React.Component {
                                     areChildrenOpened ?
                                         (
                                             <span className="timeline-span__open-toggle-button--minus">
-                                                -
+                                                <FontAwesomeIcon icon={faMinusSquare}/>
                                             </span>
-
-                                            // <span className="fas fa-minus-square" />
-
-                                            // <EuiIcon
-                                            //     type={"minusInCircle"}
-                                            // />
                                         ) :
                                         (
                                             <span className="timeline-span__open-toggle-button--plus">
-                                                +
+                                                <FontAwesomeIcon icon={faPlusSquare}/>
                                             </span>
-
-                                            // <span className="fas fa-plus-square" />
-
-                                            // <EuiIcon
-                                            //     type={"plusInCircle"}
-                                            // />
                                         )
                                 }
                             </div>
@@ -236,7 +226,6 @@ class TimelineSpan extends React.Component {
                     style={{
                         left: `${left}%`,
                         width: `${width}%`,
-                        // TODO: review here considering error cases.
                         // background: `${getErrorTypeColor(span.errorType)}`,
                         background: `${getServiceNameColor(span.serviceName)}`,
                     }}
@@ -264,9 +253,14 @@ class TimelineSpan extends React.Component {
             timelineSpanClass = `${timelineSpanClass} selected-span`;
         }
 
-
+        // Lower opacity values for not highlighted spans.
         if (spanHighlights.length > 0 && !spanHighlights.includes(span.spanId)) {
             timelineSpanClass = `${timelineSpanClass} insignificant-span`;
+        }
+
+        // Add reddish background color to erroneous span.
+        if (span.errorType !== "none") {
+            timelineSpanClass = `${timelineSpanClass} erroneous-span`;
         }
 
         return (

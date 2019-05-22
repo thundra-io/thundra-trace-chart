@@ -1,6 +1,6 @@
 {
   "name": "react-trace-chart",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "react-trace-chart React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -21,10 +21,13 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.18",
+    "@fortawesome/free-solid-svg-icons": "^5.8.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "lodash": "^4.17.4",
     "moment": "^2.22.2",
-    "prop-types": "^15.6.1",
-    "node-sass": "^4.12.0"
+    "node-sass": "^4.12.0",
+    "prop-types": "^15.6.1"
   },
   "peerDependencies": {
     "react": "^16.8.6",
