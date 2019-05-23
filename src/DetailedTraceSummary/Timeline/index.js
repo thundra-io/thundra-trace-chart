@@ -34,48 +34,19 @@ class Timeline extends React.Component {
 		this.handleDataOpenToggle = this.handleDataOpenToggle.bind(this);
 	}
 
-	// static getDerivedStateFromProps(props, state) {
-	// 	// This is to open/select first highlighted span if span highlights array is not empty.
-	// 	// if (props.spanHighlights.length > 0 && state.selectedSpanId === null) {
-	// 	if (props.spanHighlights.length > 0 && state.selectedSpanId !== props.spanHighlights[0]) {
-	// 		// console.log("Timeline, getDerivedState; props, state: ", props, state);
-	// 		this.handleDataOpenToggle(props.spanHighlights[0]);
-	// 		return null;
-			
-	// 		// return {
-	// 		// 	dataOpenedSpans: {
-	// 		// 		[`${props.spanHighlights[0]}`]: true
-	// 		// 	},
-	// 		// 	selectedSpanId: props.spanHighlights[0]
-	// 		// };
-	// 	}
-
-	// 	return null;
-	// }
-
-	// componentWillMount() {
-	// 	console.log("CWM, Timeline; props: ", this.props);
-	// }
-
+	// This is to autoselect first highlighted span if any highlights are provided.
 	componentDidMount() {
-		console.log("CDM, Timeline; props: ", this.props);
 		if (this.props.spanHighlights.length > 0 && this.state.selectedSpanId !== this.props.spanHighlights[0]) {
-			console.log("CDM, Timeline-if; state, props: ", this.state, this.props);
 			this.handleDataOpenToggle(this.props.spanHighlights[0]);
 		}
 	}
 
-	// componentWillReceiveProps(nextProps) {
-	// 	console.log("CWRP, Timeline; nextProps: ", nextProps);
-	// 	if (nextProps.spanHighlights.length > 0 && state.selectedSpanId !== nextProps.spanHighlights[0]) {
-	// 		console.log("CWRP, Timeline-if; state, nextProps: ", state, nextProps);
-	// 		this.handleDataOpenToggle(props.spanHighlights[0]);
-	// 	}
-	// }
-
-	// componentDidUpdate(prevProps) {
-	// 	console.log("CDU, Timeline; prevProps, props: ", prevProps, this.props);
-	// }
+	// Thi is to update selected spans if highlighted spans array is changed.
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.spanHighlights.length > 0 && this.state.selectedSpanId !== nextProps.spanHighlights[0]) {
+			this.handleDataOpenToggle(nextProps.spanHighlights[0]);
+		}
+	}
 
 	handleServiceNameColumnWidthChange(serviceNameColumnWidth) {
 		this.setState({ serviceNameColumnWidth });

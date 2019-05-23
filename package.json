@@ -1,6 +1,6 @@
 {
   "name": "react-trace-chart",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "react-trace-chart React component",
   "main": "lib/index.js",
   "module": "es/index.js",
