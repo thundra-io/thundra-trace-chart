@@ -9,7 +9,7 @@ const tracePropTypes = PropTypes.shape({
 	parentId: PropTypes.string,
 	id: PropTypes.string.isRequired,
 	serviceName: PropTypes.string.isRequired,
-	name: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired, // entitled Span Info
 	timestamp: PropTypes.number.isRequired,
 	duration: PropTypes.number.isRequired, // in microseconds
 	tags: PropTypes.object, // optional tags, erroneous span info is carried through tags!
@@ -48,6 +48,7 @@ const defaultProps = {
 	showMiniTrace: true,
 	showTraceChartHeader: true,
 	showSpanDetail: true,
+	
 	onSpanClicked: () => null,
 };
 class ReactTraceChart extends Component {
@@ -69,13 +70,13 @@ class ReactTraceChart extends Component {
 		console.log("RTC; props: ", this.props);
 
 		const modifiedTraceSummary = this.addLocalEndpointFromServiceName(this.props.traceSummary);
-		console.log("ITCC, modifiedTraceSummary: ", modifiedTraceSummary);
+		// console.log("ITCC, modifiedTraceSummary: ", modifiedTraceSummary);
 
 		const correctedMockTraceSummary = treeCorrectedForClockSkew(modifiedTraceSummary);
-		console.log("ITCC; correctedMockTraceSummary: ", correctedMockTraceSummary);
+		// console.log("ITCC; correctedMockTraceSummary: ", correctedMockTraceSummary);
 
 		const mockTraceSummary = detailedTraceSummary(correctedMockTraceSummary);
-		console.log("ITCC; mockTraceSummary: ", mockTraceSummary);
+		// console.log("ITCC; mockTraceSummary: ", mockTraceSummary);
 
 
 		return (
