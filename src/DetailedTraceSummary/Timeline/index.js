@@ -41,9 +41,11 @@ class Timeline extends React.Component {
 		}
 	}
 
-	// Thi is to update selected spans if highlighted spans array is changed.
+	// This is to update selected spans if highlighted spans array is changed.
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.spanHighlights.length > 0 && this.state.selectedSpanId !== nextProps.spanHighlights[0]) {
+		if (nextProps.spanHighlights.length > 0 && 
+			JSON.stringify(nextProps.spanHighlights) !== JSON.stringify(this.props.spanHighlights)
+		) {
 			this.handleDataOpenToggle(nextProps.spanHighlights[0]);
 		}
 	}
@@ -57,7 +59,7 @@ class Timeline extends React.Component {
 	}
 
 	handleChildrenOpenToggle(spanId) {
-		console.log("Timeline, handleChildrenOpenToggle; props, spanId: ", spanId, this.props);
+		// console.log("Timeline, handleChildrenOpenToggle; props, spanId: ", spanId, this.props);
 
 		const { childrenClosedSpans: prevChildrenClosedSpans } = this.state;
 
@@ -77,9 +79,9 @@ class Timeline extends React.Component {
 	}
 
 	handleDataOpenToggle(spanId) {
-		console.log("Timeline, handleDataOpenToggle; spanId, props: ", spanId, this.props);
+		// console.log("Timeline, handleDataOpenToggle; spanId, props: ", spanId, this.props);
 
-		// Here we left a sign on latest selected span, and 
+		// Here we put a sign(by giving bg. color) on latest selected span, and 
 		// bubble up the selected spanId to the user via onSpanClicked prop.
 		this.props.onSpanClicked(spanId);
 		this.setState({selectedSpanId: spanId});
@@ -102,7 +104,7 @@ class Timeline extends React.Component {
 	}
 
 	render() {
-		console.log("Timeline; props, state: ", this.props, this.state);
+		// console.log("Timeline; props, state: ", this.props, this.state);
 
 		const { 
 			startTs, endTs, traceSummary,

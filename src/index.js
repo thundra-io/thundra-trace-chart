@@ -67,7 +67,7 @@ class ReactTraceChart extends Component {
 	}
 
 	render() {
-		console.log("RTC; props: ", this.props);
+		// console.log("RTC; props: ", this.props);
 
 		const modifiedTraceSummary = this.addLocalEndpointFromServiceName(this.props.traceSummary);
 		// console.log("ITCC, modifiedTraceSummary: ", modifiedTraceSummary);

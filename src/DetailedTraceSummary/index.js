@@ -90,7 +90,7 @@ class DetailedTraceSummary extends React.Component {
             showHeader, showMiniTrace, showTraceChartHeader, showSpanDetail, spanHighlights
         } = this.props;
 
-        console.log("DTS; props: ", this.props);
+        // console.log("DTS; props: ", this.props);
 
         return (
             <div>

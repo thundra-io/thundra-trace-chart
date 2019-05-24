@@ -516,7 +516,7 @@ class Demo extends Component {
 					showHeader={false}
 					showMiniTrace={false}
 					// showTraceChartHeader={false}
-					showSpanDetail={false}
+					// showSpanDetail={false}
 
 					onSpanClicked={(spanId) => console.log("span clicked; spanId: ", spanId)}
 				/>
