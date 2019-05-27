@@ -472,17 +472,44 @@ class Demo extends Component {
 	}
 
 	// TODO: add spanId as key to the trace details.
+	// sampleTraceDetailArr = () => {
+	// 	const tracesArr = this.sampleTrace();
+
+	// 	return tracesArr.map( (trace, index) => {
+	// 		// console.log("sampleTraceDetailArr; trace: ", trace);
+
+	// 		// TODO: remove
+	// 		// if (index % 2 === 0) {
+	// 		// 	return null;
+	// 		// }
+
+	// 		return (
+	// 			<div>
+	// 				<div>this is span details:</div>
+	// 				<div>{trace.serviceName} - {trace.name}</div>
+
+	// 				<ReactJson 
+	// 					src={trace}
+	// 				/>
+	// 			</div>
+	// 		)
+	// 	})
+	// }
+
 	sampleTraceDetail = () => {
 		const tracesArr = this.sampleTrace();
 
-		return tracesArr.map( (trace, index) => {
+		const traceDetailObj = {}
+		tracesArr.map( (trace, index) => {
 
 			// TODO: remove
 			// if (index % 2 === 0) {
 			// 	return null;
 			// }
 
-			return (
+
+			// traceDetailObj[`${trace.id}`] = trace;
+			traceDetailObj[`${trace.id}`] = (
 				<div>
 					<div>this is span details:</div>
 					<div>{trace.serviceName} - {trace.name}</div>
@@ -491,8 +518,10 @@ class Demo extends Component {
 						src={trace}
 					/>
 				</div>
-			)
-		})
+			);
+		});
+
+		return traceDetailObj;
 	}
 
 	sampleTraceHighlights = () => {

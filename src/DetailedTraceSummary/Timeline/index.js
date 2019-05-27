@@ -175,7 +175,8 @@ class Timeline extends React.Component {
 									onChildrenOpenToggle={this.handleChildrenOpenToggle}
 									onDataOpenToggle={this.handleDataOpenToggle}
 									// TODO: instead of index, access traceDetail via span.spanId?
-									traceDetail={this.props.traceDetail[index]}
+									// traceDetail={this.props.traceDetail[index]}
+									traceDetail={this.props.traceDetail[`${span.spanId}`]}
 									spanHighlights={this.props.spanHighlights}
 									showSpanDetail={this.props.showSpanDetail}
 								/>

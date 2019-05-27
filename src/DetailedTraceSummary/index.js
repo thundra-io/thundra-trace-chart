@@ -10,9 +10,7 @@ import "../scss/main.scss";
 const propTypes = {
     traceId: PropTypes.string.isRequired, /* From url parameter */
     traceSummary: detailedTraceSummaryPropTypes.isRequired,
-    traceDetail: PropTypes.arrayOf(
-		PropTypes.element.isRequired
-    ).isRequired,
+    traceDetail: PropTypes.object.isRequired,
     spanHighlights: PropTypes.arrayOf(
         PropTypes.string.isRequired
     ).isRequired,

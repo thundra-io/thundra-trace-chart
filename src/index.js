@@ -24,9 +24,7 @@ const propTypes = {
 	traceId: PropTypes.string.isRequired, /* From url parameter */
 	traceSummary: tracesPropTypes.isRequired,
 	// Optional span details to be shown below each span when clicked.
-	spanDetails: PropTypes.arrayOf(
-		PropTypes.element.isRequired
-	),
+	spanDetails: PropTypes.object,
 	// If provided an array of span ids, then these ids will be highlighted
 	spanHighlights: PropTypes.arrayOf(
 		PropTypes.string.isRequired
@@ -41,7 +39,7 @@ const propTypes = {
 
 const defaultProps = {
 	traceSummary: null,
-	spanDetails: [],
+	spanDetails: {},
 	spanHighlights: [],
 
 	showHeader: true,
