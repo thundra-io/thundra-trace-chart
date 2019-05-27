@@ -10,6 +10,13 @@ module.exports = {
     }
   },
   webpack: {
+    terser: {
+      sourceMap: false,
+      terserOptions: {
+        mangle: false,
+        beautify: true
+      }
+    },
     rules: {
       babel: {
         test: /\.jsx?/,
