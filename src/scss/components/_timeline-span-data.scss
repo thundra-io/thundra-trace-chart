@@ -9,7 +9,7 @@
 .timeline-span-data__left-container {
   position: absolute;
   height: 100%;
-  background: $gray-10;
+  background: $white;
   display: flex;
   align-items: center;
   border-right: 1px solid $gray-7;
@@ -26,7 +26,7 @@
 
 .timeline-span-data__right-container {
   position: relative;
-  background: $gray-11;
+  background: $white;
 }
 
 .timeline-span-data__content {
@@ -37,15 +37,16 @@
   font-size: 26px;
   font-weight: bold;
   border-bottom: 3px solid;
+  margin-bottom: 10px;
 }
 
-.timeline-span-data__aka-badges {
-  display: flex;
-  align-items: center;
-  padding: 3px;
-}
+// .timeline-span-data__aka-badges {
+//   display: flex;
+//   align-items: center;
+//   padding: 3px;
+// }
 
-.timeline-span-data__aka-badge {
-  font-size: 12px;
-  margin: 1px 3px;
-}
+// .timeline-span-data__aka-badge {
+//   font-size: 12px;
+//   margin: 1px 3px;
+// }

@@ -510,7 +510,7 @@ class Demo extends Component {
 					traceId="4e81414c-2bff-439f-9e5c-9e6699b4e24b" // TODO: remove traceId from props
 					traceSummary={this.sampleTrace()}
 					spanDetails={this.sampleTraceDetail()}
-					spanHighlights={this.sampleTraceHighlights()}
+					// spanHighlights={this.sampleTraceHighlights()}
 
 
 					showHeader={false}

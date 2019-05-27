@@ -40,7 +40,7 @@ const renderInfo = (span, spanDetail) => {
             >
                 {`${span.serviceName}: ${span.spanName}`}
             </div>
-            <div className="timeline-span-data__aka-badges">
+            {/* <div className="timeline-span-data__aka-badges">
                 {
                     span.serviceNames
                         ? span.serviceNames.map(serviceName => (
@@ -52,13 +52,7 @@ const renderInfo = (span, spanDetail) => {
                         ))
                         : null
                 }
-            </div>
-
-            {/* <ReactJson 
-                name={false} 
-                displayDataTypes={false}
-                src={parseTagsData(span.tagsObj)} 
-            /> */}
+            </div> */}
 
             {spanDetail}
 
