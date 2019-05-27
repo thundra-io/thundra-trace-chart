@@ -10,13 +10,6 @@ module.exports = {
     }
   },
   webpack: {
-    terser: {
-      sourceMap: false,
-      terserOptions: {
-        mangle: false,
-        beautify: true
-      }
-    },
     rules: {
       babel: {
         test: /\.jsx?/,
@@ -32,10 +25,17 @@ module.exports = {
           sass: {
             modules: true,
             localIdentName: '[hash:base64:5]',
-            sourceMap: true,
+            sourceMap: false,
           },
         },
       ],
+    },
+    uglify: {
+      uglifyOptions: {
+        // mangle: false,
+        // beautify: true,
+        sourceMap: false
+      },
     },
     extra: {
       resolve: {
@@ -43,7 +43,7 @@ module.exports = {
       },
       node: {
         process: false,
-      },
+      }      
     },
   },
 }
