@@ -1,10 +1,10 @@
-# react-trace-chart
+# thundra-trace-chart
 
 [![Travis][build-badge]][build]
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
 
-Describe react-trace-chart here.
+Describe thundra-trace-chart here.
 
 [build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
 [build]: https://travis-ci.org/user/repo
