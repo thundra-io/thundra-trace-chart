@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-import ReactTraceChart from '../../src';
+import ThundraTraceChart from '../../src';
 import ReactJson from 'react-json-view';
 
 class Demo extends Component {
@@ -533,9 +533,9 @@ class Demo extends Component {
 	render() {
 		return (
 			<div>
-				<h1>react-trace-chart Demo</h1>
+				<h1>thundra-trace-chart Demo</h1>
 
-				<ReactTraceChart
+				<ThundraTraceChart
 					traceId="4e81414c-2bff-439f-9e5c-9e6699b4e24b" // TODO: remove traceId from props
 					traceSummary={this.sampleTrace()}
 					spanDetails={this.sampleTraceDetail()}

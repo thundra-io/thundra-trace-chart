@@ -49,8 +49,9 @@ const defaultProps = {
 	
 	onSpanClicked: () => null,
 };
-class ReactTraceChart extends Component {
+class ThundraTraceChart extends Component {
 
+	// This is to add serviceName as a property of localEndpoint key which is needed for compatibility.
 	addLocalEndpointFromServiceName = (traceSummary) => {
 		return traceSummary.map(trace => {
 			const { serviceName, ...rawTrace } = trace;
@@ -97,7 +98,7 @@ class ReactTraceChart extends Component {
 	}
 }
 
-ReactTraceChart.propTypes = propTypes;
-ReactTraceChart.defaultProps = defaultProps;
+ThundraTraceChart.propTypes = propTypes;
+ThundraTraceChart.defaultProps = defaultProps;
 
-export default ReactTraceChart;
+export default ThundraTraceChart;

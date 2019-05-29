@@ -1,7 +1,7 @@
 {
-  "name": "react-trace-chart",
-  "version": "1.0.21",
-  "description": "react-trace-chart React component",
+  "name": "thundra-trace-chart",
+  "version": "0.0.1",
+  "description": "thundra-trace-chart react component",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -44,11 +44,15 @@
     "uglifyjs-webpack-plugin": "^2.1.3",
     "webpack": "^4.31.0"
   },
-  "author": "",
-  "homepage": "",
+  "author": "milkers",
+  "homepage": "https://github.com/thundra-io/thundra-trace-chart",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/thundra-io/thundra-trace-chart",
   "keywords": [
-    "react-component"
+    "react-component",
+    "trace chart",
+    "open tracing",
+    "zipkin",
+    "thundra"
   ]
 }
