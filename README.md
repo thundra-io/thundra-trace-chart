@@ -85,7 +85,7 @@ class MyApp extends Component {
 
 #### Trace Object 
 
-Each of the trace [object](https://github.com/thundra-io/thundra-trace-chart/blob/master/demo/src/sampleTrace.js) provided to `traceSummary` array has its own special type.
+Each of the trace [object](https://github.com/thundra-io/thundra-trace-chart/blob/master/demo/src/sampleTrace.js) provided to `traceSummary` array has its own special structure.
 
 |Key name|Type|Description|
 |----|----|----|
