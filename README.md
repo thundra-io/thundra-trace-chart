@@ -88,6 +88,20 @@ class MyApp extends Component {
 |showSpanDetail|boolean|true|Opens spans towards the below to show more detailed info about that span.|
 |onSpanClicked|function(*spanId*)|()|When implemented, this function is called with the recently clicked span's id.|
 
+#### Trace Object 
+
+Each of the trace [object](https://github.com/thundra-io/thundra-trace-chart/blob/master/demo/src/sampleTrace.js) provided to `traceSummary` array has its own special type.
+
+|Key name|Type|Description|
+|----|----|----|
+|traceId|string|Common trace id to all spans.|
+|parentId|string|Parent span id of the span.|
+|id|string|Unique id of the span.|
+|serviceName|string|Name to be showed under Service Name column.|
+|name|string|Info to be showed under Span Info column.|
+|timestamp|number|Time info in microseconds to show when span is started.|
+|duration|number|Duration of the span.|
+|tags|object|Any extra info to provided to the span, i.e: error|
 
 ## License
 
