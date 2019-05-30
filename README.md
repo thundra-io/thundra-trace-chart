@@ -1,17 +1,9 @@
 # Thundra-Trace-Chart
 
-[![Travis][build-badge]][build]
 [![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
-
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
 
 [npm-badge]: https://img.shields.io/npm/v/thundra-trace-chart.png?style=flat-square
 [npm]: https://www.npmjs.org/package/thundra-trace-chart
-
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
 
 `thundra-trace-chart` is a React component to render open-tracing compatible traces and spans in a similar way to popular tools like Jeager and Zipkin. This component is using the project [`zipkin-lens`](https://github.com/apache/incubator-zipkin/tree/master/zipkin-lens) in its roots.
 
