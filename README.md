@@ -7,6 +7,8 @@
 
 `thundra-trace-chart` is a React component to render open-tracing compatible traces and spans in a similar way to popular tools like Jeager and Zipkin. This component is using the project [`zipkin-lens`](https://github.com/apache/incubator-zipkin/tree/master/zipkin-lens) in its roots.
 
+![Alt thundra trace chart](misc/sample-trace-chart.png?raw=true "Sample Trace Chart")
+
 > This component is under development and may not be the best solution for a custom use case. So you may want to fork it, or we would be happy to accept your PR's.
 
 ## tl;dr
