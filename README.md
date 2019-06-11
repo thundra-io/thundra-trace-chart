@@ -102,4 +102,4 @@ Each of the trace [object](https://github.com/thundra-io/thundra-trace-chart/blo
 
 ## License
 
-The MIT License.
+[ASL 2.0](LICENSE).
