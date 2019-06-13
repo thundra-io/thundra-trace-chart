@@ -127,7 +127,8 @@ export function mkDurationStr(duration) {
     return '';
   }
   if (duration < 1000) {
-    return `${duration.toFixed(0)}μs`;
+    // return `${duration.toFixed(0)}μs`;
+    return `<1ms`;
   }
   if (duration < 1000000) {
     if (duration % 1000 === 0) { // Sometimes spans are in milliseconds resolution
