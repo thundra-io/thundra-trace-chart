@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import ServiceNameBadge from './ServiceNameBadge';
-import { getServiceNameColor } from '../util/color';
+import { getServiceNameColor, getColorFromSpan } from '../util/color';
 import { detailedSpanPropTypes } from '../prop-types';
 
 const propTypes = {
@@ -35,7 +35,8 @@ const renderInfo = (span, spanDetail) => {
             <div
                 className="timeline-span-data__title"
                 style={{
-                    borderColor: getServiceNameColor(span.serviceName),
+                    // borderColor: getServiceNameColor(span.serviceName),
+                    borderColor: getColorFromSpan(span),
                 }}
             >
                 {`${span.serviceName}: ${span.spanName}`}
@@ -70,7 +71,8 @@ const SpanInfo = ({ span, serviceNameColumnWidth, spanDetail}) => (
                 className="timeline-span-data__depth-marker"
                 style={{
                     left: `${span.depth * 14}px`,
-                    background: `${getServiceNameColor(span.serviceName)}`,
+                    // background: `${getServiceNameColor(span.serviceName)}`,
+                    background: `${getColorFromSpan(span)}`,
                 }}
             />
         </div>
