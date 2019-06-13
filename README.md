@@ -83,6 +83,8 @@ class MyApp extends Component {
 |showMiniTrace|boolean|true|Shows a mini trace chart on top. Useful to see if you have many spans.|
 |showTraceChartHeader|boolean|true|Shows a header over the spans. Useful to set width of Service Name or Span Info columns.|
 |showSpanDetail|boolean|true|Opens spans towards the below to show more detailed info about that span.|
+|serviceNameColumnTitle|string|Service Name|Sets custom title for Service Name column.|
+|spanInfoColumnTitle|string|Span Info|Sets custom title for Span Info column.|
 |onSpanClicked|function(*spanId*)|()|When implemented, this function is called with the recently clicked span's id.|
 
 #### Trace Object 
