@@ -8,7 +8,7 @@ export function sampleTrace() {
             timestamp: 1557761782905000,
             duration: 281000,
             serviceName: 'AWS-Lambda',
-            color: "#ff0000", // TODO: not used currently
+            color: "#ff0000",
             tags: {
                 error: true
             }
@@ -21,7 +21,7 @@ export function sampleTrace() {
             timestamp: 1557761782907000,
             duration: 279000,
             serviceName: 'Method',
-            color: "#ff0000",
+            color: "#ff00ff",
             tags: {
                 error: true
             }
@@ -34,7 +34,7 @@ export function sampleTrace() {
             timestamp: 1557761782908000,
             duration: 4000,
             serviceName: 'Method',
-            color: "#ff0000"
+            color: "#0000ff"
         },
         {
             traceId: '4e81414c-2bff-439f-9e5c-9e6699b4e24b',
@@ -44,7 +44,7 @@ export function sampleTrace() {
             timestamp: 1557761782911000,
             duration: 1000,
             serviceName: 'Methods',
-            color: "#ff0000"
+            color: "#00ffff"
         },
         {
             traceId: '4e81414c-2bff-439f-9e5c-9e6699b4e24b',

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import TimelineSpanData from './TimelineSpanData';
-import { getErrorTypeColor, getServiceNameColor } from '../util/color';
+import { getErrorTypeColor, getServiceNameColor, getColorFromSpan } from '../util/color';
 import { detailedSpanPropTypes } from '../prop-types';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -158,7 +158,8 @@ class TimelineSpan extends React.Component {
                     className="timeline-span__depth-marker"
                     style={{
                         left: `${span.depth * 14}px`,
-                        background: `${getServiceNameColor(span.serviceName)}`,
+                        // background: `${getServiceNameColor(span.serviceName)}`,
+                        background: `${getColorFromSpan(span)}`,
                     }}
                 />
                 <div
@@ -166,7 +167,6 @@ class TimelineSpan extends React.Component {
                     style={{ left: `${(span.depth + 1) * 14}px` }}
                 >
                     <div className="timeline-span__service-name">
-                        {/* {span.serviceName} */}
                         {this.renderServiceName()}
                     </div>
                 </div>
@@ -227,7 +227,7 @@ class TimelineSpan extends React.Component {
                         left: `${left}%`,
                         width: `${width}%`,
                         // background: `${getErrorTypeColor(span.errorType)}`,
-                        background: `${getServiceNameColor(span.serviceName)}`,
+                        background: `${getColorFromSpan(span)}`,
                     }}
                 />
                 {this.renderSpanDuration(left, width)}

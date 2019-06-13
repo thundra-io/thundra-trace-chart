@@ -100,6 +100,7 @@ Each of the trace [object](https://github.com/thundra-io/thundra-trace-chart/blo
 |name|string|Info to be showed under Span Info column.|
 |timestamp|number|Time info in microseconds to show when span is started.|
 |duration|number|Duration of the span.|
+|color|string|Color string as a valid hexcode.|
 |tags|object|Any extra info to provided to the span, i.e: error|
 
 ## License

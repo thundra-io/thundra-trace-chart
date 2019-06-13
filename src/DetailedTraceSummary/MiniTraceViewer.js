@@ -4,7 +4,7 @@ import React from 'react';
 // import { formatDuration } from '../../util/timestamp';
 import { formatDuration } from './util/timestamp';
 // import { getServiceNameColor } from '../../util/color';
-import { getServiceNameColor } from './util/color';
+import { getServiceNameColor, getColorFromSpan } from './util/color';
 
 const propTypes = {
     startTs: PropTypes.number.isRequired,
@@ -214,7 +214,8 @@ class MiniTraceViewer extends React.Component {
                                     height={lineHeight}
                                     x={`${span.left}%`}
                                     y={i * lineHeight}
-                                    fill={getServiceNameColor(span.serviceName)}
+                                    // fill={getServiceNameColor(span.serviceName)}
+                                    fill={getColorFromSpan(span)}
                                 />
                             ))
                         }

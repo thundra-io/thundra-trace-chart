@@ -110,6 +110,7 @@ class Timeline extends React.Component {
 			startTs, endTs, traceSummary,
 			showTraceChartHeader
 		} = this.props;
+
 		const {
 			serviceNameColumnWidth,
 			spanNameColumnWidth,
@@ -118,6 +119,7 @@ class Timeline extends React.Component {
 		} = this.state;
 
 		const closed = {};
+		
 		for (let i = 0; i < traceSummary.spans.length; i += 1) {
 			if (childrenClosedSpans[traceSummary.spans[i].parentId]) {
 				closed[traceSummary.spans[i].spanId] = true;

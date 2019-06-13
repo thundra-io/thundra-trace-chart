@@ -60,12 +60,16 @@ class ThundraTraceChart extends Component {
 	// This is to add serviceName as a property of localEndpoint key which is needed for compatibility.
 	addLocalEndpointFromServiceName = (traceSummary) => {
 		return traceSummary.map(trace => {
-			const { serviceName, ...rawTrace } = trace;
+			const { serviceName, color, tags, ...rawTrace } = trace;
 			return {
 				...rawTrace,
 				localEndpoint: {
 					serviceName,
 					ipv4: "0.0.0.0"
+				},
+				tags: {
+					...tags,
+					ttc_color: color
 				}
 			};
 		});
