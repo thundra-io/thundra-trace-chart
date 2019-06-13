@@ -74,11 +74,12 @@ class TimelineHeader extends React.Component {
     let label = '';
     let columnWidth = 0;
     if (columnName === serviceNameColumn) {
-      label = 'Service Name';
+      // Service Name;
+      label = this.props.serviceNameColumnTitle;
       columnWidth = serviceNameColumnWidth;
     } else if (columnName === spanNameColumn) {
-      // label = 'Span Name';
-      label = 'Span Info';
+      // Span Info;
+      label = this.props.spanInfoColumnTitle;
       columnWidth = spanNameColumnWidth;
     }
 

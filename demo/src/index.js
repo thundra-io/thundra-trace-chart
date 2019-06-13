@@ -58,6 +58,9 @@ class Demo extends Component {
 					// showTraceChartHeader={false}
 					// showSpanDetail={false}
 
+					serviceNameColumnTitle="Service Name"
+					spanInfoColumnTitle="Operation Name"
+
 					// onSpanClicked={(spanId) => console.log("span clicked; spanId: ", spanId)}
 				/>
 			</div>

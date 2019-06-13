@@ -135,6 +135,9 @@ class Timeline extends React.Component {
 						numTimeMarkers={defaultNumTimeMarkers}
 						onServiceNameColumnWidthChange={this.handleServiceNameColumnWidthChange}
 						onSpanNameColumnWidthChange={this.handleSpanNameColumnWidthChange}
+						
+						serviceNameColumnTitle={this.props.serviceNameColumnTitle}
+						spanInfoColumnTitle={this.props.spanInfoColumnTitle}
 					/>
 				}
 

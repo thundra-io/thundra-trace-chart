@@ -125,6 +125,9 @@ class DetailedTraceSummary extends React.Component {
                                             showTraceChartHeader={showTraceChartHeader}
                                             showSpanDetail={showSpanDetail}
 
+                                            serviceNameColumnTitle={this.props.serviceNameColumnTitle}
+					                        spanInfoColumnTitle={this.props.spanInfoColumnTitle}
+
                                             onSpanClicked={this.props.onSpanClicked}
                                         />
                                     </div>
