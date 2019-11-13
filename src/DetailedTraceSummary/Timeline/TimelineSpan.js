@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import TimelineSpanData from './TimelineSpanData';
-import { getErrorTypeColor, getServiceNameColor, getColorFromSpan } from '../util/color';
+import { getColorFromSpan } from '../util/color';
 import { detailedSpanPropTypes } from '../prop-types';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationTriangle, faPlusSquare, faMinusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle, faBan, faPlusSquare, faMinusSquare } from '@fortawesome/free-solid-svg-icons';
 
 
 const propTypes = {
@@ -103,17 +103,25 @@ class TimelineSpan extends React.Component {
     }
 
     renderServiceName = () => {
-        const { span } = this.props;
+        const {span} = this.props;
 
         if (span.errorType === "none") {
             return (
                 <span>{span.serviceName}</span>
             );
         } else {
+
+            let iconVDOM = <FontAwesomeIcon icon={faExclamationTriangle} style={{color: 'red'}}/>
+            if (span.tagsObj['security.blocked']) {
+                iconVDOM = <FontAwesomeIcon icon={faBan} style={{color: 'red'}}/>
+            } else if (span.tagsObj['security.violated']) {
+                iconVDOM = <FontAwesomeIcon icon={faBan} style={{color: 'yellow'}}/>
+            }
+
             return (
                 <span>
-                    <span style={{ marginRight: "6px" }}>
-                        <FontAwesomeIcon icon={faExclamationTriangle} style={{ color: 'red' }} />
+                    <span style={{marginRight: "6px"}}>
+                        {iconVDOM}
                     </span>
 
                     {span.serviceName}
