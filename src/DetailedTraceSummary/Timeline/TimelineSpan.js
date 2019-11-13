@@ -111,14 +111,12 @@ class TimelineSpan extends React.Component {
             );
         } else {
 
-            debugger;
             let iconVDOM = <FontAwesomeIcon icon={faExclamationTriangle} style={{color: 'red'}}/>
             if (span.tagsObj['security.blocked']) {
                 iconVDOM = <FontAwesomeIcon icon={faBan} style={{color: 'red'}}/>
             } else if (span.tagsObj['security.violated']) {
                 iconVDOM = <FontAwesomeIcon icon={faBan} style={{color: 'yellow'}}/>
             }
-
 
             return (
                 <span>
