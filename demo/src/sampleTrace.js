@@ -23,7 +23,8 @@ export function sampleTrace() {
             serviceName: 'Method',
             color: "#ff00ff",
             tags: {
-                error: true
+                error: true,
+                'security.blocked': true
             }
         },
         {
@@ -34,7 +35,11 @@ export function sampleTrace() {
             timestamp: 1557761782908000,
             duration: 4000,
             serviceName: 'Method',
-            color: "#0000ff"
+            color: "#0000ff",
+            tags: {
+                error: true,
+                'security.violated': true
+            }
         },
         {
             traceId: '4e81414c-2bff-439f-9e5c-9e6699b4e24b',
