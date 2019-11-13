@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import TimelineSpanData from './TimelineSpanData';
-import { getErrorTypeColor, getServiceNameColor, getColorFromSpan } from '../util/color';
+import { getColorFromSpan } from '../util/color';
 import { detailedSpanPropTypes } from '../prop-types';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationTriangle, faPlusSquare, faMinusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle, faBan, faPlusSquare, faMinusSquare } from '@fortawesome/free-solid-svg-icons';
 
 
 const propTypes = {
