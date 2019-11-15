@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import TimelineSpanData from './TimelineSpanData';
-import {getColorFromSpan} from '../util/color';
-import {detailedSpanPropTypes} from '../prop-types';
+import { getColorFromSpan } from '../util/color';
+import { detailedSpanPropTypes } from '../prop-types';
 
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faExclamationTriangle, faBan, faPlusSquare, faMinusSquare} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationTriangle, faBan, faPlusSquare, faMinusSquare } from '@fortawesome/free-solid-svg-icons';
 
 
 const propTypes = {
@@ -33,7 +33,7 @@ class TimelineSpan extends React.Component {
     }
 
     calculateLeftAndWidth(baseLeft, baseWidth) {
-        const {startTs, endTs, traceDuration} = this.props;
+        const { startTs, endTs, traceDuration } = this.props;
         const spanStartTs = baseLeft * traceDuration / 100;
         const spanEndTs = spanStartTs + (baseWidth * traceDuration / 100);
         const newDuration = endTs - startTs;
@@ -75,31 +75,30 @@ class TimelineSpan extends React.Component {
             left = 0;
             width = 0;
         }
-        return {left, width};
+        return { left, width };
     }
 
     calculateBaseWidth(finishTs, startTs) {
-        const {traceDuration} = this.props;
+        const { traceDuration } = this.props;
         return (finishTs - startTs) / traceDuration * 100;
     }
 
     calculateBaseLeft(startTs) {
-        const {traceDuration, traceTimestamp} = this.props;
+        const { traceDuration, traceTimestamp } = this.props;
         return (startTs - traceTimestamp) / traceDuration * 100;
     }
 
     // 
     handleChildrenOpenToggle(e) {
-        const {span, onChildrenOpenToggle} = this.props;
+        const { span, onChildrenOpenToggle } = this.props;
         onChildrenOpenToggle(span.spanId);
-        e.stopPropagation();
-        /* Stop event bubbling, TODO: does it needed? */
+        e.stopPropagation(); /* Stop event bubbling, TODO: does it needed? */
     }
 
     // 
     handleDataOpenToggle() {
         // console.log("TimelineSpan, handleDataOpenToggle; props: ", this.props);
-        const {span, onDataOpenToggle} = this.props;
+        const { span, onDataOpenToggle } = this.props;
         onDataOpenToggle(span.spanId);
     }
 
@@ -144,7 +143,7 @@ class TimelineSpan extends React.Component {
     }
 
     renderServiceNameColumn() {
-        const {span, hasChildren, areChildrenOpened} = this.props;
+        const { span, hasChildren, areChildrenOpened } = this.props;
         // console.log("TimelineSpan, renderServiceNameColumn; span: ", span);
 
         return (
@@ -154,7 +153,7 @@ class TimelineSpan extends React.Component {
                         ? (
                             <div
                                 className="timeline-span__open-toggle-button"
-                                style={{left: `${(span.depth - 1) * 14}px`}}
+                                style={{ left: `${(span.depth - 1) * 14}px` }}
                                 onClick={this.handleChildrenOpenToggle}
                                 role="presentation"
                             >
@@ -185,7 +184,7 @@ class TimelineSpan extends React.Component {
                 />
                 <div
                     className="timeline-span__service-name-wrapper"
-                    style={{left: `${(span.depth + 1) * 14}px`}}
+                    style={{ left: `${(span.depth + 1) * 14}px` }}
                 >
                     <div className="timeline-span__service-name">
                         {this.renderServiceName()}
@@ -196,7 +195,7 @@ class TimelineSpan extends React.Component {
     }
 
     renderTimeMarkers() {
-        const {numTimeMarkers} = this.props;
+        const { numTimeMarkers } = this.props;
 
         const timeMarkers = [];
         for (let i = 1; i < numTimeMarkers - 1; i += 1) {
@@ -205,7 +204,7 @@ class TimelineSpan extends React.Component {
                 <span
                     key={portion}
                     className="timeline-span__time-marker"
-                    style={{left: `${portion * 100}%`}}
+                    style={{ left: `${portion * 100}%` }}
                 />,
             );
         }
@@ -213,13 +212,13 @@ class TimelineSpan extends React.Component {
     }
 
     renderSpanDuration(left, width) {
-        const {span} = this.props;
+        const { span } = this.props;
 
         if (parseInt(left, 10) > 50) {
             return (
                 <span
                     className="timeline-span__duration timeline-span__duration--right"
-                    style={{right: `${100 - (left + width)}%`}}
+                    style={{ right: `${100 - (left + width)}%` }}
                 >
                     {span.durationStr}
                 </span>
@@ -229,7 +228,7 @@ class TimelineSpan extends React.Component {
         return (
             <span
                 className="timeline-span__duration timeline-span__duration--left"
-                style={{left: `${left}%`}}
+                style={{ left: `${left}%` }}
             >
                 {span.durationStr}
             </span>
@@ -237,9 +236,9 @@ class TimelineSpan extends React.Component {
     }
 
     renderSpanBar() {
-        const {span} = this.props;
+        const { span } = this.props;
 
-        const {left, width} = this.calculateLeftAndWidth(span.left, span.width);
+        const { left, width } = this.calculateLeftAndWidth(span.left, span.width);
         return (
             <div className="timeline-span__bar-container">
                 <span
@@ -293,13 +292,13 @@ class TimelineSpan extends React.Component {
                 >
                     <div
                         className="timeline-span__service-name-column-wrapper"
-                        style={{width: `${serviceNameColumnWidth * 100}%`}}
+                        style={{ width: `${serviceNameColumnWidth * 100}%` }}
                     >
                         {this.renderServiceNameColumn()}
                     </div>
                     <div
                         className="timeline-span__span-name-column-wrapper"
-                        style={{width: `${spanNameColumnWidth * 100}%`}}
+                        style={{ width: `${spanNameColumnWidth * 100}%` }}
                     >
                         <div className="timeline-span__span-name-column">
                             {span.spanName}
