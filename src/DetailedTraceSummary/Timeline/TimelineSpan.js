@@ -105,28 +105,40 @@ class TimelineSpan extends React.Component {
     renderServiceName = () => {
         const {span} = this.props;
 
-        if (span.errorType === "none") {
-            return (
-                <span>{span.serviceName}</span>
-            );
-        } else {
 
-            let iconVDOM = <FontAwesomeIcon icon={faExclamationTriangle} style={{color: 'red'}}/>
-            if (span.tagsObj['security.blocked']) {
-                iconVDOM = <FontAwesomeIcon icon={faBan} style={{color: 'red'}}/>
-            } else if (span.tagsObj['security.violated']) {
-                iconVDOM = <FontAwesomeIcon icon={faBan} style={{color: 'yellow'}}/>
-            }
-
+        //Order Of Importance for Icons Blocked, Violated, Error, None
+        if (span && span.tagsObj && span.tagsObj['security.blocked']) {  //Blocked
             return (
                 <span>
                     <span style={{marginRight: "6px"}}>
-                        {iconVDOM}
+                        <FontAwesomeIcon icon={faBan} style={{color: 'red'}}/>
                     </span>
-
                     {span.serviceName}
                 </span>
             )
+        } else if (span && span.tagsObj && span.tagsObj['security.violated']) { //Violated
+            return (
+                <span>
+                    <span style={{marginRight: "6px"}}>
+                        <FontAwesomeIcon icon={faBan} style={{color: 'yellow'}}/>
+                    </span>
+                    {span.serviceName}
+                </span>
+            )
+        } else if (span.errorType !== "none") { //Error
+            return (
+                <span>
+                    <span style={{marginRight: "6px"}}>
+                        <FontAwesomeIcon icon={faExclamationTriangle} style={{color: 'red'}}/>
+                    </span>
+                    {span.serviceName}
+                </span>
+            )
+        } else {  //None
+            return (
+                <span>{span.serviceName}</span>
+            );
+
         }
     }
 
