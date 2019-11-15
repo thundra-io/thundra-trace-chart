@@ -48,7 +48,11 @@ export function sampleTrace() {
             timestamp: 1557761782911000,
             duration: 1000,
             serviceName: 'Methods',
-            color: "#00ffff"
+            color: "#00ffff",
+            tags: {
+                error: true,
+                'security.violated': true
+            }
         },
         {
             traceId: '4e81414c-2bff-439f-9e5c-9e6699b4e24b',
