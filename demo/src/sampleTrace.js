@@ -37,7 +37,6 @@ export function sampleTrace() {
             serviceName: 'Method',
             color: "#0000ff",
             tags: {
-                error: true,
                 'security.violated': true
             }
         },
