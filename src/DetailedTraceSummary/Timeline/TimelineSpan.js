@@ -120,7 +120,7 @@ class TimelineSpan extends React.Component {
             return (
                 <span>
                     <span style={{marginRight: "6px"}}>
-                        <FontAwesomeIcon icon={faBan} style={{color: 'yellow'}}/>
+                        <FontAwesomeIcon icon={faBan} style={{color: '#FFCC00'}}/>
                     </span>
                     {span.serviceName}
                 </span>
