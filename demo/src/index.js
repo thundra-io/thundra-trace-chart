@@ -57,6 +57,8 @@ class Demo extends Component {
 					// showMiniTrace={false}
 					// showTraceChartHeader={false}
 					// showSpanDetail={false}
+					// showSpanDetailTitle={false}
+					
 
 					serviceNameColumnTitle="Service Name"
 					spanInfoColumnTitle="Operation Name"

@@ -85,7 +85,8 @@ class DetailedTraceSummary extends React.Component {
         const { startTs, endTs } = this.state;
         const { 
             traceId, traceSummary, traceDetail,
-            showHeader, showMiniTrace, showTraceChartHeader, showSpanDetail, spanHighlights
+            showHeader, showMiniTrace, showTraceChartHeader, 
+            showSpanDetail, showSpanDetailTitle, spanHighlights
         } = this.props;
 
         // console.log("DTS; props: ", this.props);
@@ -124,6 +125,7 @@ class DetailedTraceSummary extends React.Component {
                                             spanHighlights={spanHighlights}
                                             showTraceChartHeader={showTraceChartHeader}
                                             showSpanDetail={showSpanDetail}
+                                            showSpanDetailTitle={showSpanDetailTitle}
 
                                             serviceNameColumnTitle={this.props.serviceNameColumnTitle}
 					                        spanInfoColumnTitle={this.props.spanInfoColumnTitle}

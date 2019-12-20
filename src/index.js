@@ -33,6 +33,7 @@ const propTypes = {
 	showMiniTrace: PropTypes.bool,
 	showTraceChartHeader: PropTypes.bool,
 	showSpanDetail: PropTypes.bool,
+	showSpanDetailTitle: PropTypes.bool,
 
 	serviceNameColumnTitle: PropTypes.string,
 	spanInfoColumnTitle: PropTypes.string,
@@ -49,6 +50,7 @@ const defaultProps = {
 	showMiniTrace: true,
 	showTraceChartHeader: true,
 	showSpanDetail: true,
+	showSpanDetailTitle: true,
 
 	serviceNameColumnTitle: "Service Name",
 	spanInfoColumnTitle: "Span Info",
@@ -100,6 +102,7 @@ class ThundraTraceChart extends Component {
 					showMiniTrace={this.props.showMiniTrace}
 					showTraceChartHeader={this.props.showTraceChartHeader}
 					showSpanDetail={this.props.showSpanDetail}
+					showSpanDetailTitle={this.props.showSpanDetailTitle}
 
 					serviceNameColumnTitle={this.props.serviceNameColumnTitle}
 					spanInfoColumnTitle={this.props.spanInfoColumnTitle}

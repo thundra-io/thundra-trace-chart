@@ -184,6 +184,7 @@ class Timeline extends React.Component {
 									traceDetail={this.props.traceDetail[`${span.spanId}`]}
 									spanHighlights={this.props.spanHighlights}
 									showSpanDetail={this.props.showSpanDetail}
+									showSpanDetailTitle={this.props.showSpanDetailTitle}
 								/>
 							);
 						},

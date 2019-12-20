@@ -27,33 +27,21 @@ const parseTagsData = (tags) => {
 }
 
 // Render span details info
-const renderInfo = (span, spanDetail) => {
-    // console.log("TSD; span: ", span, spanDetail);
+const renderInfo = (span, showSpanDetailTitle, spanDetail) => {
+    console.log("TSD; span: ", span, spanDetail);
 
     return (
         <div className="timeline-span-data__content">
-            <div
-                className="timeline-span-data__title"
-                style={{
-                    // borderColor: getServiceNameColor(span.serviceName),
-                    borderColor: getColorFromSpan(span),
-                }}
-            >
-                {`${span.serviceName}: ${span.spanName}`}
-            </div>
-            {/* <div className="timeline-span-data__aka-badges">
-                {
-                    span.serviceNames
-                        ? span.serviceNames.map(serviceName => (
-                            <ServiceNameBadge
-                                key={serviceName}
-                                serviceName={serviceName}
-                                className="timeline-span-data__aka-badge"
-                            />
-                        ))
-                        : null
-                }
-            </div> */}
+            {showSpanDetailTitle &&
+                <div
+                    className="timeline-span-data__title"
+                    style={{
+                        borderColor: getColorFromSpan(span),
+                    }}
+                >
+                    {`${span.serviceName}: ${span.spanName}`}
+                </div>
+            }            
 
             {spanDetail}
 
@@ -61,7 +49,7 @@ const renderInfo = (span, spanDetail) => {
     );
 };
 
-const SpanInfo = ({ span, serviceNameColumnWidth, spanDetail}) => (
+const SpanInfo = ({ span, serviceNameColumnWidth, showSpanDetailTitle, spanDetail}) => (
     <div className="timeline-span-data">
         <div
             className="timeline-span-data__left-container"
@@ -83,7 +71,7 @@ const SpanInfo = ({ span, serviceNameColumnWidth, spanDetail}) => (
                 width: `${(1 - serviceNameColumnWidth) * 100}%`,
             }}
         >
-            {renderInfo(span, spanDetail)}
+            {renderInfo(span, showSpanDetailTitle, spanDetail)}
         </div>
     </div>
 

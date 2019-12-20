@@ -264,6 +264,7 @@ class TimelineSpan extends React.Component {
             spanNameColumnWidth,
             areDataOpened,
             showSpanDetail,
+            showSpanDetailTitle,
             spanHighlights
         } = this.props;
 
@@ -321,7 +322,7 @@ class TimelineSpan extends React.Component {
                             <TimelineSpanData
                                 span={span}
                                 serviceNameColumnWidth={serviceNameColumnWidth}
-
+                                showSpanDetailTitle={showSpanDetailTitle}
                                 spanDetail={this.props.traceDetail}
                             />
                         )
