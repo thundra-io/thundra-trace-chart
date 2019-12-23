@@ -7,6 +7,17 @@ import {sampleTrace} from "./sampleTrace";
 
 class Demo extends Component {
 
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			spanHighlightsArrIndex: 0,
+			spanHighlightsArr: ["9400a8a9-9650-4312-9514-d4bbc1114a97", "da8c5131-f081-4db4-8045-88bd51ba76ae"],
+			activeSpanIndex: 0,
+			activeSpanIdsArr: ["9400a8a9-9650-4312-9514-d4bbc1114a97"]
+		};
+	}
+
 	sampleTraceDetail = () => {
 		const tracesArr = sampleTrace();
 
@@ -35,10 +46,40 @@ class Demo extends Component {
 		return traceDetailObj;
 	}
 
-	sampleTraceHighlights = () => {
+	sampleTraceHighlights = (index) => {
 		const tracesArr = sampleTrace();
 
-		return [tracesArr[3].id, tracesArr[4].id];
+		if (index >= tracesArr.length - 1) {
+			this.setState({
+				spanHighlightsArr: [tracesArr[0].id, tracesArr[1].id],
+				spanHighlightsArrIndex: 0
+			});
+			return;
+		}
+
+		this.setState({
+			spanHighlightsArr: [tracesArr[index].id, tracesArr[index + 1].id],
+			spanHighlightsArrIndex: index
+		});
+	}
+
+	sampleActiveSpanIds = (index) => {
+		console.log("sampleActiveSpanIds; index: ", index, this.state);
+
+		const tracesArr = sampleTrace();
+
+		if (index >= tracesArr.length - 1) {
+			this.setState({
+				activeSpanIdsArr: [tracesArr[0].id],
+				activeSpanIndex: 0
+			});
+			return;
+		}
+
+		this.setState({
+			activeSpanIdsArr: [tracesArr[index].id, tracesArr[index + 1].id],
+			activeSpanIndex: index
+		});
 	}
 
 	render() {
@@ -46,11 +87,24 @@ class Demo extends Component {
 			<div>
 				<h1>thundra-trace-chart Demos</h1>
 
+				<button onClick={() => {
+					this.sampleTraceHighlights(this.state.spanHighlightsArrIndex + 1);
+				}}>
+					toggle span highlights
+				</button>
+
+				<button onClick={() => {
+					this.sampleActiveSpanIds(this.state.activeSpanIndex + 1);
+				}}>
+					next span
+				</button>
+
 				<ThundraTraceChart
 					traceId="4e81414c-2bff-439f-9e5c-9e6699b4e24b" // TODO: remove traceId from props
 					traceSummary={sampleTrace()}
 					spanDetails={this.sampleTraceDetail()}
-					// spanHighlights={this.sampleTraceHighlights()}
+					// spanHighlights={this.state.spanHighlightsArr}
+					activeSpanIds={this.state.activeSpanIdsArr}
 
 
 					// showHeader={false}
@@ -63,7 +117,7 @@ class Demo extends Component {
 					serviceNameColumnTitle="Service Name"
 					spanInfoColumnTitle="Operation Name"
 
-					// onSpanClicked={(spanId) => console.log("span clicked; spanId: ", spanId)}
+					onSpanClicked={(spanId) => console.log("span clicked; spanId: ", spanId)}
 				/>
 			</div>
 		);

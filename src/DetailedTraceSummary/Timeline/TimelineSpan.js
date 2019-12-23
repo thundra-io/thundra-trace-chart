@@ -323,7 +323,7 @@ class TimelineSpan extends React.Component {
                                 span={span}
                                 serviceNameColumnWidth={serviceNameColumnWidth}
                                 showSpanDetailTitle={showSpanDetailTitle}
-                                spanDetail={this.props.traceDetail}
+                                spanDetail={this.props.spanDetail}
                             />
                         )
                         : null

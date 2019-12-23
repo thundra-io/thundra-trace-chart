@@ -77,8 +77,9 @@ class MyApp extends Component {
 |----|----|----|----|
 |traceId|string|*required*|Common trace id to all spans.|
 |traceSummary|array of objects|*required*|Array of objects, that each object contains vital information to render a single span.|
-|spanDetails|object|{}|Set of key value pairs. Keys are id values of each object in the traceSummary array. Values are the React elements to render when spans clicked and span details are shown.|
-|spanHiglights|array of string|[]|Array of trace ids from trace summary array. When provided, these traces will rendered to be more distinctive than other spans.|
+|spanDetails|object|{ }|Set of key value pairs. Keys are id values of each object in the traceSummary array. Values are the React elements to render when spans clicked and span details are shown.|
+|spanHighlights|array of string|[ ]|Array of span ids from trace summary array. When provided, these traces will rendered to be more distinctive than other spans.|
+|activeSpanIds|array of string|[ ]|Array of span ids from trace summary array. When provided, details of these spans will be rendered as open. You can not use this prop with `spanHighlights` together.|
 |showHeader|boolean|true|Shows a header to top of the chart showing traceId, duration etc.|
 |showMiniTrace|boolean|true|Shows a mini trace chart on top. Useful to see if you have many spans.|
 |showTraceChartHeader|boolean|true|Shows a header over the spans. Useful to set width of Service Name or Span Info columns.|
@@ -86,7 +87,7 @@ class MyApp extends Component {
 |showSpanDetailTitle|boolean|true|Render a title when span details is shown.|
 |serviceNameColumnTitle|string|Service Name|Sets custom title for Service Name column.|
 |spanInfoColumnTitle|string|Span Info|Sets custom title for Span Info column.|
-|onSpanClicked|function(*spanId*)|()|When implemented, this function is called with the recently clicked span's id.|
+|onSpanClicked|function(*spanId*)|( )|When implemented, this function is called with the recently clicked span's id.|
 
 #### Trace Object 
 

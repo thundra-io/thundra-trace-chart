@@ -34,20 +34,52 @@ class Timeline extends React.Component {
 		this.handleDataOpenToggle = this.handleDataOpenToggle.bind(this);
 	}
 
-	// This is to autoselect first highlighted span if any highlights are provided.
 	componentDidMount() {
+		// console.log("CDM, Timeline; props: ", this.props);
+
+		// This is to autoselect first highlighted span if any highlights are provided.
 		if (this.props.spanHighlights.length > 0 && this.state.selectedSpanId !== this.props.spanHighlights[0]) {
 			this.handleDataOpenToggle(this.props.spanHighlights[0]);
 		}
+
+		// This is to set initial active spans which are showing their span details.
+		if (this.props.spanHighlights.length === 0 && this.props.activeSpanIds.length > 0) {
+			this.setDataOpenedSpans(this.props.activeSpanIds);
+		}
 	}
 
-	// This is to update selected spans if highlighted spans array is changed.
 	componentWillReceiveProps(nextProps) {
+		// console.log("CWRP, TImeline; props, nextProps: ", this.props, nextProps);
+
+		// This is to update selected spans if highlighted spans array is changed.
 		if (nextProps.spanHighlights.length > 0 && 
 			JSON.stringify(nextProps.spanHighlights) !== JSON.stringify(this.props.spanHighlights)
 		) {
 			this.handleDataOpenToggle(nextProps.spanHighlights[0]);
 		}
+
+		// This is to update initial active spans if array is updated.
+		if (nextProps.spanHighlights.length === 0 && 
+			JSON.stringify(nextProps.activeSpanIds) !== JSON.stringify(this.props.activeSpanIds)
+		) {
+			this.setDataOpenedSpans(nextProps.activeSpanIds);
+		}
+	}
+
+	// This method recreates dataOpenedSpans obj to set which spans to be opened.
+	// If there is spanHighlights already filled, this method do not get called.
+	setDataOpenedSpans = (spanIdArr) => {
+		// console.log("setDataOpenedSpans; spanIdArr: ", spanIdArr);
+
+		let dataOpenedSpans = {};
+		spanIdArr.map(spanId => {
+			dataOpenedSpans = {
+				...dataOpenedSpans,
+				[spanId]: true
+			}
+		});
+
+		this.setState({dataOpenedSpans});
 	}
 
 	handleServiceNameColumnWidthChange(serviceNameColumnWidth) {
@@ -179,9 +211,7 @@ class Timeline extends React.Component {
 									selectedSpanId={this.state.selectedSpanId}
 									onChildrenOpenToggle={this.handleChildrenOpenToggle}
 									onDataOpenToggle={this.handleDataOpenToggle}
-									// TODO: instead of index, access traceDetail via span.spanId?
-									// traceDetail={this.props.traceDetail[index]}
-									traceDetail={this.props.traceDetail[`${span.spanId}`]}
+									spanDetail={this.props.traceDetail[`${span.spanId}`]}
 									spanHighlights={this.props.spanHighlights}
 									showSpanDetail={this.props.showSpanDetail}
 									showSpanDetailTitle={this.props.showSpanDetailTitle}

@@ -28,7 +28,7 @@ const parseTagsData = (tags) => {
 
 // Render span details info
 const renderInfo = (span, showSpanDetailTitle, spanDetail) => {
-    console.log("TSD; span: ", span, spanDetail);
+    // console.log("TSD; span: ", span, spanDetail);
 
     return (
         <div className="timeline-span-data__content">

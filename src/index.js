@@ -29,6 +29,10 @@ const propTypes = {
 	spanHighlights: PropTypes.arrayOf(
 		PropTypes.string.isRequired
 	),
+	// List of spans that are initially opened to show their details.
+	activeSpanIds: PropTypes.arrayOf(
+		PropTypes.string.isRequired
+	),
 	showHeader: PropTypes.bool,
 	showMiniTrace: PropTypes.bool,
 	showTraceChartHeader: PropTypes.bool,
@@ -45,6 +49,7 @@ const defaultProps = {
 	traceSummary: null,
 	spanDetails: {},
 	spanHighlights: [],
+	activeSpanIds: [],
 
 	showHeader: true,
 	showMiniTrace: true,
@@ -97,6 +102,7 @@ class ThundraTraceChart extends Component {
 					traceSummary={mockTraceSummary}
 					traceDetail={this.props.spanDetails}
 					spanHighlights={this.props.spanHighlights}
+					activeSpanIds={this.props.activeSpanIds}
 
 					showHeader={this.props.showHeader}
 					showMiniTrace={this.props.showMiniTrace}
