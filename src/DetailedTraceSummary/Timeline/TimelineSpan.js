@@ -285,7 +285,7 @@ class TimelineSpan extends React.Component {
         }
 
         return (
-            <div>
+            <div id={span.spanId} >
                 <div
                     role="presentation"
                     className={timelineSpanClass}

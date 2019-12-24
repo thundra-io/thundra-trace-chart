@@ -5,6 +5,8 @@ import ThundraTraceChart from '../../src';
 import ReactJson from 'react-json-view';
 import {sampleTrace} from "./sampleTrace";
 
+import "./main.scss"
+
 class Demo extends Component {
 
 	constructor(props) {
@@ -15,6 +17,7 @@ class Demo extends Component {
 			spanHighlightsArr: ["9400a8a9-9650-4312-9514-d4bbc1114a97", "da8c5131-f081-4db4-8045-88bd51ba76ae"],
 			activeSpanIndex: 0,
 			activeSpanIdsArr: ["9400a8a9-9650-4312-9514-d4bbc1114a97"]
+			// activeSpanIdsArr: ["da8c5131-f081-4db4-8045-88bd51ba76ae"]
 		};
 	}
 
@@ -68,7 +71,7 @@ class Demo extends Component {
 
 		const tracesArr = sampleTrace();
 
-		if (index >= tracesArr.length - 1) {
+		if (index >= tracesArr.length) {
 			this.setState({
 				activeSpanIdsArr: [tracesArr[0].id],
 				activeSpanIndex: 0
@@ -77,7 +80,7 @@ class Demo extends Component {
 		}
 
 		this.setState({
-			activeSpanIdsArr: [tracesArr[index].id, tracesArr[index + 1].id],
+			activeSpanIdsArr: [tracesArr[index].id],
 			activeSpanIndex: index
 		});
 	}
@@ -99,26 +102,29 @@ class Demo extends Component {
 					next span
 				</button>
 
-				<ThundraTraceChart
-					traceId="4e81414c-2bff-439f-9e5c-9e6699b4e24b" // TODO: remove traceId from props
-					traceSummary={sampleTrace()}
-					spanDetails={this.sampleTraceDetail()}
-					// spanHighlights={this.state.spanHighlightsArr}
-					activeSpanIds={this.state.activeSpanIdsArr}
+
+				<div className="ttc-wrapper">
+					<ThundraTraceChart
+						traceId="4e81414c-2bff-439f-9e5c-9e6699b4e24b" // TODO: remove traceId from props
+						traceSummary={sampleTrace()}
+						spanDetails={this.sampleTraceDetail()}
+						// spanHighlights={this.state.spanHighlightsArr}
+						activeSpanIds={this.state.activeSpanIdsArr}
 
 
-					// showHeader={false}
-					// showMiniTrace={false}
-					// showTraceChartHeader={false}
-					// showSpanDetail={false}
-					// showSpanDetailTitle={false}
-					
+						// showHeader={false}
+						// showMiniTrace={false}
+						// showTraceChartHeader={false}
+						// showSpanDetail={false}
+						// showSpanDetailTitle={false}
+						
 
-					serviceNameColumnTitle="Service Name"
-					spanInfoColumnTitle="Operation Name"
+						serviceNameColumnTitle="Service Name"
+						spanInfoColumnTitle="Operation Name"
 
-					onSpanClicked={(spanId) => console.log("span clicked; spanId: ", spanId)}
-				/>
+						onSpanClicked={(spanId) => console.log("span clicked; spanId: ", spanId)}
+					/>
+				</div>
 			</div>
 		);
 	}

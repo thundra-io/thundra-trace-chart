@@ -66,6 +66,18 @@ class Timeline extends React.Component {
 		}
 	}
 
+	// This is to scroll to the first active span when the DOM is ready after state updates.
+	// Scroll is triggered with updates to the state of dataOpenedSpans' states.
+	// If activeSpanIds array is updated auto scoll happens but if user clicks spans manually to open details,
+	// then handleDataOpenToggle called and scroll did not happen.
+	componentDidUpdate(prevProps, prevState) {
+		if (JSON.stringify(prevProps.activeSpanIds) !== JSON.stringify(this.props.activeSpanIds) &&
+			JSON.stringify(this.state.dataOpenedSpans) !== JSON.stringify(prevState.dataOpenedSpans)
+		) {
+			this.scrollToOpenedSpanDetail(this.props.activeSpanIds[0]);
+		}
+	}
+
 	// This method recreates dataOpenedSpans obj to set which spans to be opened.
 	// If there is spanHighlights already filled, this method do not get called.
 	setDataOpenedSpans = (spanIdArr) => {
@@ -80,6 +92,12 @@ class Timeline extends React.Component {
 		});
 
 		this.setState({dataOpenedSpans});
+	}
+
+	scrollToOpenedSpanDetail = (spanId) => {
+		// console.log("scrollToOpenedSpanDetail; spanId: ", spanId);
+		const firstSpanElement = document.getElementById(spanId);
+		firstSpanElement.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 	}
 
 	handleServiceNameColumnWidthChange(serviceNameColumnWidth) {
