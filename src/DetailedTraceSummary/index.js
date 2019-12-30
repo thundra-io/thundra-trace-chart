@@ -26,6 +26,7 @@ const propTypes = {
     onSpanClicked: PropTypes.func.isRequired
 };
 
+// is this needed.
 const defaultProps = {
     traceSummary: null,
 };

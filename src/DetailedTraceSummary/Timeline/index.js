@@ -32,6 +32,13 @@ class Timeline extends React.Component {
 		this.handleSpanNameColumnWidthChange = this.handleSpanNameColumnWidthChange.bind(this);
 		this.handleChildrenOpenToggle = this.handleChildrenOpenToggle.bind(this);
 		this.handleDataOpenToggle = this.handleDataOpenToggle.bind(this);
+
+		// console.log("Timeline, constructor; props: ", this.props);
+		const {spans} = this.props.traceSummary;
+		this.spanRefs = {};
+		spans.map(span => {
+			this.spanRefs[span.spanId] = React.createRef();
+		})
 	}
 
 	componentDidMount() {
@@ -43,13 +50,16 @@ class Timeline extends React.Component {
 		}
 
 		// This is to set initial active spans which are showing their span details.
-		if (this.props.spanHighlights.length === 0 && this.props.activeSpanIds.length > 0) {
+		if (this.props.spanHighlights.length === 0 && 
+			this.props.activeSpanIds.length > 0
+		) {
+			// console.log("active>> ", this.props.activeSpanIds);
 			this.setDataOpenedSpans(this.props.activeSpanIds);
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		// console.log("CWRP, TImeline; props, nextProps: ", this.props, nextProps);
+		// console.log("CWRP, Timeline; props, nextProps: ", this.props, nextProps);
 
 		// This is to update selected spans if highlighted spans array is changed.
 		if (nextProps.spanHighlights.length > 0 && 
@@ -74,7 +84,16 @@ class Timeline extends React.Component {
 		if (JSON.stringify(prevProps.activeSpanIds) !== JSON.stringify(this.props.activeSpanIds) &&
 			JSON.stringify(this.state.dataOpenedSpans) !== JSON.stringify(prevState.dataOpenedSpans)
 		) {
+			// console.log("CDU, scroll");
 			this.scrollToOpenedSpanDetail(this.props.activeSpanIds[0]);
+		}
+
+		// If dataOpenedSpans and activeSpanIds arrays are same, then apply auto scroll to first active span.
+		const dataOpenedSpansKeysArray = Object.keys(this.state.dataOpenedSpans);
+		if (JSON.stringify(dataOpenedSpansKeysArray) === JSON.stringify(this.props.activeSpanIds)) {
+			// console.log("SCROLL to first item on INIT; dataOpenedSpansKeysArray, state, props: ", dataOpenedSpansKeysArray, this.state, this.props);
+			// Wee need to give some time after render finished to scroll properly.
+			setTimeout(() => this.scrollToOpenedSpanDetail(this.props.activeSpanIds[0]), 1000);
 		}
 	}
 
@@ -95,8 +114,8 @@ class Timeline extends React.Component {
 	}
 
 	scrollToOpenedSpanDetail = (spanId) => {
-		// console.log("scrollToOpenedSpanDetail; spanId: ", spanId);
-		const firstSpanElement = document.getElementById(spanId);
+		// console.log("scrollToOpenedSpanDetail; spanId, spanRefs: ", spanId, this.spanRefs);
+		const firstSpanElement = this.spanRefs[spanId].current;
 		firstSpanElement.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 	}
 
@@ -108,6 +127,7 @@ class Timeline extends React.Component {
 		this.setState({ spanNameColumnWidth });
 	}
 
+	// This is to manage open/close of child spans from the left checkboxes.
 	handleChildrenOpenToggle(spanId) {
 		// console.log("Timeline, handleChildrenOpenToggle; props, spanId: ", spanId, this.props);
 
@@ -213,27 +233,31 @@ class Timeline extends React.Component {
 							}
 
 							return (
-								<TimelineSpan
+								<div className="timeline-span-ref-wrapper"
 									key={span.spanId}
-									startTs={startTs}
-									endTs={endTs}
-									traceDuration={traceSummary.duration}
-									traceTimestamp={traceSummary.spans[0].timestamp}
-									numTimeMarkers={defaultNumTimeMarkers}
-									serviceNameColumnWidth={serviceNameColumnWidth}
-									spanNameColumnWidth={spanNameColumnWidth}
-									span={span}
-									hasChildren={hasChildren}
-									areChildrenOpened={!childrenClosedSpans[span.spanId]}
-									areDataOpened={!!dataOpenedSpans[span.spanId]}
-									selectedSpanId={this.state.selectedSpanId}
-									onChildrenOpenToggle={this.handleChildrenOpenToggle}
-									onDataOpenToggle={this.handleDataOpenToggle}
-									spanDetail={this.props.traceDetail[`${span.spanId}`]}
-									spanHighlights={this.props.spanHighlights}
-									showSpanDetail={this.props.showSpanDetail}
-									showSpanDetailTitle={this.props.showSpanDetailTitle}
-								/>
+									ref={this.spanRefs[span.spanId]}									
+								>
+									<TimelineSpan
+										startTs={startTs}
+										endTs={endTs}
+										traceDuration={traceSummary.duration}
+										traceTimestamp={traceSummary.spans[0].timestamp}
+										numTimeMarkers={defaultNumTimeMarkers}
+										serviceNameColumnWidth={serviceNameColumnWidth}
+										spanNameColumnWidth={spanNameColumnWidth}
+										span={span}
+										hasChildren={hasChildren}
+										areChildrenOpened={!childrenClosedSpans[span.spanId]}
+										areDataOpened={!!dataOpenedSpans[span.spanId]}
+										selectedSpanId={this.state.selectedSpanId}
+										onChildrenOpenToggle={this.handleChildrenOpenToggle}
+										onDataOpenToggle={this.handleDataOpenToggle}
+										spanDetail={this.props.traceDetail[`${span.spanId}`]}
+										spanHighlights={this.props.spanHighlights}
+										showSpanDetail={this.props.showSpanDetail}
+										showSpanDetailTitle={this.props.showSpanDetailTitle}
+									/>
+								</div>
 							);
 						},
 					)
