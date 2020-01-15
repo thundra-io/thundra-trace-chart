@@ -88,20 +88,22 @@ class Demo extends Component {
 
 	render() {
 		return (
-			<div>
-				<h1>thundra-trace-chart Demos</h1>
+			<div className="demo-wrapper">
+				<div className="top-part">
+					<h1>thundra-trace-chart Demos</h1>
 
-				<button onClick={() => {
-					this.sampleTraceHighlights(this.state.spanHighlightsArrIndex + 1);
-				}}>
-					toggle span highlights
-				</button>
+					<button onClick={() => {
+						this.sampleTraceHighlights(this.state.spanHighlightsArrIndex + 1);
+					}}>
+						toggle span highlights
+					</button>
 
-				<button onClick={() => {
-					this.sampleActiveSpanIds(this.state.activeSpanIndex + 1);
-				}}>
-					next span
-				</button>
+					<button onClick={() => {
+						this.sampleActiveSpanIds(this.state.activeSpanIndex + 1);
+					}}>
+						next span
+					</button>
+				</div>
 
 				{/* <button onClick={() => {
 					const spanId = "9400a8a9-9650-4312-9514-d4bbc1114a97";

@@ -1,4 +1,30 @@
+.demo-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    // overflow: unset;
+
+    height: 100vh; // vh is better to use.
+    // height: 100%;
+}
+
+.top-part {
+    // flex: 1 1;
+    
+    // overflow: auto;
+
+    // height: 20vh;
+    // height: 20%;
+    // height: 100%;
+}
+
 .ttc-wrapper {
+    // flex: 1 1;
+
     overflow: auto;
-    height: 350px;
+
+    // height: 80vh;
+    // height: 80%;
+    // height: 350px;
+    // height: 100%;
 }
