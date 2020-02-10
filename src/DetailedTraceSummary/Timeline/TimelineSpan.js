@@ -6,7 +6,7 @@ import {getColorFromSpan} from '../util/color';
 import {detailedSpanPropTypes} from '../prop-types';
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBan, faCode, faPlusSquare, faMinusSquare} from '@fortawesome/free-solid-svg-icons';
+import {faBan, faBug, faPlusSquare, faMinusSquare} from '@fortawesome/free-solid-svg-icons';
 
 
 const propTypes = {
@@ -131,7 +131,7 @@ class TimelineSpan extends React.Component {
             return (
                 <span>
                     <span style={{marginRight: "6px"}}>
-                        <FontAwesomeIcon icon={faCode} style={{color: '#172B4D'}}/>
+                        <FontAwesomeIcon icon={faBug} style={{color: '#172B4D'}}/>
                     </span>
                     {span.serviceName}
                 </span>
