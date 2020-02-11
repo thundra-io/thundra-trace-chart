@@ -71,7 +71,7 @@ export function sampleTrace() {
             color: "#ff0000",
             tags: {
                 error: true,
-                'method.startLine': 158,
+                'method.startLine': "..", 
                 'method.lines': [".."],
                 "method.source": [".."]
 
@@ -97,7 +97,7 @@ export function sampleTrace() {
             serviceName: 'Method',
             color: "#ff0000",
             tags: {
-                'method.startLine': 158,
+                'method.startLine': "..",
                 'method.lines': [".."],
                 "method.source": [".."]
 
