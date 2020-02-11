@@ -70,7 +70,11 @@ export function sampleTrace() {
             serviceName: 'Methods',
             color: "#ff0000",
             tags: {
-                error: true
+                error: true,
+                'method.startLine': "..", 
+                'method.lines': [".."],
+                "method.source": [".."]
+
             }
         },
         {
@@ -91,7 +95,13 @@ export function sampleTrace() {
             timestamp: 1557761782924000,
             duration: 261000,
             serviceName: 'Method',
-            color: "#ff0000"
+            color: "#ff0000",
+            tags: {
+                'method.startLine': "..",
+                'method.lines': [".."],
+                "method.source": [".."]
+
+            }
         },
         {
             traceId: '4e81414c-2bff-439f-9e5c-9e6699b4e24b',
