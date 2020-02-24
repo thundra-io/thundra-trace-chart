@@ -81,8 +81,9 @@ class Timeline extends React.Component {
 	// If activeSpanIds array is updated auto scoll happens but if user clicks spans manually to open details,
 	// then handleDataOpenToggle called and scroll did not happen.
 	componentDidUpdate(prevProps, prevState) {
-		if (JSON.stringify(prevProps.activeSpanIds) !== JSON.stringify(this.props.activeSpanIds) &&
-			JSON.stringify(this.state.dataOpenedSpans) !== JSON.stringify(prevState.dataOpenedSpans)
+		if (JSON.stringify(prevProps.activeSpanIds) !== JSON.stringify(this.props.activeSpanIds) 
+			// && JSON.stringify(this.state.dataOpenedSpans) !== JSON.stringify(prevState.dataOpenedSpans)
+			//dataOpenedSpans will become same after same spans selected again
 		) {
 			// console.log("CDU, scroll");
 			this.scrollToOpenedSpanDetail(this.props.activeSpanIds[0]);
