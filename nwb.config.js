@@ -30,11 +30,11 @@ module.exports = {
         },
       ],
     },
-    uglify: {
-      uglifyOptions: {
-        // mangle: false,
-        // beautify: true,
-        sourceMap: false
+    terser: {
+      terserOptions: {
+        mangle: true,
+        beautify: false,
+        // sourceMap: false
       },
     },
     extra: {
@@ -43,7 +43,7 @@ module.exports = {
       },
       node: {
         process: false,
-      }      
+      }
     },
   },
 }
