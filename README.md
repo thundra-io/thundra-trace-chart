@@ -11,6 +11,8 @@
 
 > This component is under development and may not be the best solution for a custom use case. So you may want to fork it, or we would be happy to accept your PR's.
 
+> For npm audit logs to save use this command; `npm audit --no-unicode --no-color > "npm-audit-log-$(date +%s).txt"`
+
 ## tl;dr
 
 * Install by executing `npm install --save thundra-trace-chart` or `yarn add thundra-trace-chart`.
