@@ -41,7 +41,7 @@
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "nwb": "^0.25.2",
     "nwb-sass": "^0.9.0",
     "react": "^16.0.0",
