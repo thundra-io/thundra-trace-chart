@@ -18,7 +18,15 @@
     "start": "nwb serve-react-demo",
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server"
+    "test:watch": "nwb test-react --server",
+    "lint": "prettier --config .prettierrc.json --write ./src/*.js",
+    "release-patch": "release-it --ci --git.commit --git.push --git.tag --git.tagName='v${version}' --github.release --no-git.requireCleanWorkingDir --no-git.requireUpstream --npm.publish --npm.skipChecks",
+    "release-minor": "release-it minor --ci --git.commit --git.push --git.tag --git.tagName='v${version}' --github.release --no-git.requireCleanWorkingDir --no-git.requireUpstream --npm.publish --npm.skipChecks",
+    "release-major": "release-it major --ci --git.commit --git.push --git.tag --git.tagName='v${version}' --github.release --no-git.requireCleanWorkingDir --no-git.requireUpstream --npm.publish --npm.skipChecks",
+    "release-patch-without-tag": "release-it --ci --no-git.commit --no-git.push --no-git.tag --no-git.tagName='v${version}' --no-github.release --no-git.requireCleanWorkingDir --no-git.requireUpstream --npm.publish --npm.skipChecks",
+    "release-minor-without-tag": "release-it minor --ci --no-git.commit --no-git.push --no-git.tag --no-git.tagName='v${version}' --no-github.release --no-git.requireCleanWorkingDir --no-git.requireUpstream --npm.publish --npm.skipChecks",
+    "release-major-without-tag": "release-it major --ci --no-git.commit --no-git.push --no-git.tag --no-git.tagName='v${version}' --no-github.release --no-git.requireCleanWorkingDir --no-git.requireUpstream --npm.publish --npm.skipChecks",
+    "release-dry-run": "release-it --dry-run --ci --no-git.commit --no-git.push --no-git.tag --no-git.tagName='v${version}' --no-github.release --no-git.requireCleanWorkingDir --no-git.requireUpstream --no-npm.publish"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
