@@ -14,10 +14,10 @@ class Demo extends Component {
 
     this.state = {
       spanHighlightsArrIndex: 0,
-      spanHighlightsArr: ["9400a8a9-9650-4312-9514-d4bbc1114a97", "da8c5131-f081-4db4-8045-88bd51ba76ae"],
+      spanHighlightsArr: ["164ed884-fd81-36cf-9d1b-36e76883b730"],
       // spanHighlightsArr: ["da8c5131-f081-4db4-8045-88bd51ba76ae"],
       activeSpanIndex: 0,
-      activeSpanIdsArr: ["9400a8a9-9650-4312-9514-d4bbc1114a97"],
+      activeSpanIdsArr: ["164ed884-fd81-36cf-9d1b-36e76883b730"],
       // activeSpanIdsArr: ["da8c5131-f081-4db4-8045-88bd51ba76ae"],
     };
   }
@@ -116,7 +116,7 @@ class Demo extends Component {
 
         <div className="ttc-wrapper">
           <ThundraTraceChart
-            traceId="4e81414c-2bff-439f-9e5c-9e6699b4e24b" // TODO: remove traceId from props
+            traceId="382d12cc-b846-3837-ba10-7b9f79796929" // TODO: remove traceId from props
             traceSummary={sampleTrace()}
             spanDetails={this.sampleTraceDetail()}
 
