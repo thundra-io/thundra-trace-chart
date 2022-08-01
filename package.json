@@ -1,6 +1,6 @@
 {
   "name": "thundra-trace-chart-forked",
-  "version": "0.0.2",
+  "version": "0.0.14",
   "description": "thundra-trace-chart react component",
   "main": "lib/index.js",
   "module": "es/index.js",

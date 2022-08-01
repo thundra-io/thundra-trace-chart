@@ -1,43 +1,42 @@
 .timeline-span-data {
-  position: relative;
-  width: 100%;
-  display: flex;
-  border-top: 1px solid $gray-9;
-  border-bottom: 1px solid $gray-9;
+    position: relative;
+    width: 100%;
+    display: flex;
+    border-top: 1px solid $gray-9;
+    border-bottom: 1px solid $gray-9;
+    background: $gray-8;
 }
 
 .timeline-span-data__left-container {
-  position: absolute;
-  height: 100%;
-  background: $white;
-  display: flex;
-  align-items: center;
-  border-right: 1px solid $gray-7;
-  box-sizing: border-box;
+    position: absolute;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid $gray-8;
+    box-sizing: border-box;
 }
 
 .timeline-span-data__depth-marker {
-  position: absolute;
-  margin: 0 8px;
-  width: 3px;
-  height: 99%;
-  border-radius: 1px;
+    position: absolute;
+    margin: 0 8px;
+    width: 3px;
+    height: 99%;
+    border-radius: 1px;
 }
 
 .timeline-span-data__right-container {
-  position: relative;
-  background: $white;
+    position: relative;
 }
 
 .timeline-span-data__content {
-  padding: 10px;
+    padding: 10px;
 }
 
 .timeline-span-data__title {
-  font-size: 26px;
-  font-weight: bold;
-  border-bottom: 3px solid;
-  margin-bottom: 10px;
+    font-size: 26px;
+    font-weight: bold;
+    border-bottom: 3px solid;
+    margin-bottom: 10px;
 }
 
 // .timeline-span-data__aka-badges {

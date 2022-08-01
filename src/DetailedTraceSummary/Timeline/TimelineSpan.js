@@ -42,9 +42,7 @@ class TimelineSpan extends React.Component {
         let width
         const { startTs, endTs, traceDuration, span } = this.props
 
-        span.measures.forEach((measure, index) => {
-            console.log('measure', { index, measure })
-
+        span.measures.forEach((measure) => {
             const spanStartTs = (measure.left * traceDuration) / 100
             const spanEndTs =
                 spanStartTs + (measure.width * traceDuration) / 100
@@ -276,6 +274,10 @@ class TimelineSpan extends React.Component {
 
     renderSpanBar() {
         const measures = this.calculateLeftAndWidthArr()
+        const {
+            spanBackgroundColor = 'yellow',
+            spanCriticalPathColor = 'green',
+        } = this.props
 
         return (
             <div className="timeline-span__bar-container">
@@ -289,11 +291,13 @@ class TimelineSpan extends React.Component {
                                     width: `${width}%`,
                                     backgroundColor: '#e5e5f7',
                                     background: isBelongToChild
-                                        ? 'yellow'
-                                        : 'linear-gradient(135deg, #444cf755 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(225deg, #444cf7 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(315deg, #444cf755 25%, transparent 25%) 0px 0/ 20px 20px, linear-gradient(45deg, #444cf7 25%, #e5e5f7 25%) 0px 0/ 20px 20px',
+                                        ? spanBackgroundColor
+                                        : spanCriticalPathColor,
+                                    // : 'linear-gradient(135deg, #444cf755 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(225deg, #444cf7 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(315deg, #444cf755 25%, transparent 25%) 0px 0/ 20px 20px, linear-gradient(45deg, #444cf7 25%, #e5e5f7 25%) 0px 0/ 20px 20px',
                                 }}
                             />
-                            {this.renderSpanDuration(left, width)}
+                            {!isBelongToChild &&
+                                this.renderSpanDuration(left, width)}
                         </>
                     )
                 })}

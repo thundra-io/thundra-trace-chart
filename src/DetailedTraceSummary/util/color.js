@@ -12,25 +12,25 @@ export const getErrorTypeColor = (errorType) => {
 export const getServiceNameColor = (serviceName) => {
   switch (serviceName.length % 10) {
     case 0:
-      return '#00ACED';
+      return '#FD9983';
     case 1:
       return '#5AE628';
     case 2:
-      return '#CD201F';
+      return '#D56F0F';
     case 3:
-      return '#D1AD59';
+      return '#EB2F71';
     case 4:
-      return '#FF5A60';
+      return '#84B00C';
     case 5:
-      return '#563D7C';
+      return '#B553C2';
     case 6:
-      return '#00B489';
+      return '#54A9FF';
     case 7:
-      return '#F8630E';
+      return '#FFAE43';
     case 8:
-      return '#FF5700';
+      return '#0EB3A1';
     default:
-      return '#111111';
+      return '#8865D4';
   }
 };
 

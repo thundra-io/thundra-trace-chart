@@ -231,8 +231,14 @@ class Timeline extends React.Component {
     render() {
         // console.log("Timeline; props, state: ", this.props, this.state);
 
-        const { startTs, endTs, traceSummary, showTraceChartHeader } =
-            this.props
+        const {
+            startTs,
+            endTs,
+            traceSummary,
+            showTraceChartHeader,
+            spanBackgroundColor,
+            spanCriticalPathColor,
+        } = this.props
 
         const {
             serviceNameColumnWidth,
@@ -324,6 +330,8 @@ class Timeline extends React.Component {
                                 showSpanDetailTitle={
                                     this.props.showSpanDetailTitle
                                 }
+                                spanBackgroundColor={spanBackgroundColor}
+                                spanCriticalPathColor={spanCriticalPathColor}
                             />
                         </div>
                     )

@@ -106,6 +106,8 @@ class ThundraTraceChart extends Component {
                     serviceNameColumnTitle={this.props.serviceNameColumnTitle}
                     spanInfoColumnTitle={this.props.spanInfoColumnTitle}
                     onSpanClicked={this.props.onSpanClicked}
+                    spanBackgroundColor={this.props.spanBackgroundColor}
+                    spanCriticalPathColor={this.props.spanCriticalPathColor}
                 />
             </div>
         )
