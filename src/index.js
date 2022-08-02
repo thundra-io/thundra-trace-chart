@@ -60,7 +60,7 @@ class ThundraTraceChart extends Component {
     // This is to add serviceName as a property of localEndpoint key which is needed for compatibility.
     addLocalEndpointFromServiceName = (traceSummary) => {
         return traceSummary.map((trace) => {
-            const { serviceName, color, tags, ...rawTrace } = trace
+            const { serviceName, errorCode, color, tags, ...rawTrace } = trace
             return {
                 ...rawTrace,
                 localEndpoint: {
@@ -71,6 +71,7 @@ class ThundraTraceChart extends Component {
                     ...tags,
                     ttc_color: color,
                 },
+                errorCode,
             }
         })
     }
