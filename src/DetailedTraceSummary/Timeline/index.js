@@ -258,6 +258,8 @@ class Timeline extends React.Component {
 
         const spans = traceSummary.spans
 
+        console.log('asdsadsadasdasdasdadsads', spans)
+
         return (
             <div className="timeline">
                 {showTraceChartHeader && (
@@ -305,6 +307,7 @@ class Timeline extends React.Component {
                             ref={this.spanRefs[span.spanId]}
                         >
                             <TimelineSpan
+                                errorCode={span.errorCode}
                                 isTrueFalseMode={isTrueFalseMode}
                                 startTs={startTs}
                                 endTs={endTs}
