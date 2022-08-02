@@ -57,6 +57,7 @@ export function traceSummary(root) {
     let traceId
     let spanCount = 0
     let errorType = 'none'
+    let errorCode = 0
 
     root.traverse((span) => {
         spanCount += 1
@@ -76,6 +77,7 @@ export function traceSummary(root) {
         duration: getMaxDuration(timestamps),
         groupedTimestamps,
         errorType,
+        errorCode,
         spanCount,
     }
 }
