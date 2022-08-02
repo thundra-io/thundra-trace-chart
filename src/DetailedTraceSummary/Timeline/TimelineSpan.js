@@ -188,7 +188,8 @@ class TimelineSpan extends React.Component {
     }
 
     renderServiceNameColumn() {
-        const { span, hasChildren, areChildrenOpened } = this.props
+        const { span, hasChildren, areChildrenOpened, isTrueFalseMode } =
+            this.props
         // console.log("TimelineSpan, renderServiceNameColumn; span: ", span);
 
         return (
@@ -215,8 +216,10 @@ class TimelineSpan extends React.Component {
                     className="timeline-span__depth-marker"
                     style={{
                         left: `${span.depth * 14}px`,
-                        // background: `${getServiceNameColor(span.serviceName)}`,
-                        background: `${getColorFromSpan(span)}`,
+                        background: `${getColorFromSpan(
+                            span,
+                            isTrueFalseMode
+                        )}`,
                     }}
                 />
                 <div
@@ -274,10 +277,7 @@ class TimelineSpan extends React.Component {
 
     renderSpanBar() {
         const measures = this.calculateLeftAndWidthArr()
-        const {
-            spanBackgroundColor = 'yellow',
-            spanCriticalPathColor = 'green',
-        } = this.props
+        const { spanBackgroundColor, spanCriticalPathColor } = this.props
 
         return (
             <div className="timeline-span__bar-container">
@@ -289,13 +289,20 @@ class TimelineSpan extends React.Component {
                                 style={{
                                     left: `${left}%`,
                                     width: `${width}%`,
-                                    backgroundColor: '#e5e5f7',
-                                    background: isBelongToChild
-                                        ? spanBackgroundColor
-                                        : spanCriticalPathColor,
-                                    // : 'linear-gradient(135deg, #444cf755 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(225deg, #444cf7 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(315deg, #444cf755 25%, transparent 25%) 0px 0/ 20px 20px, linear-gradient(45deg, #444cf7 25%, #e5e5f7 25%) 0px 0/ 20px 20px',
+                                    background: spanBackgroundColor,
                                 }}
                             />
+                            {isBelongToChild && (
+                                <span
+                                    className="timeline-span__bar critical"
+                                    style={{
+                                        left: `${left}%`,
+                                        width: `${width}%`,
+                                        background: spanCriticalPathColor,
+                                    }}
+                                ></span>
+                            )}
+
                             {!isBelongToChild &&
                                 this.renderSpanDuration(left, width)}
                         </>

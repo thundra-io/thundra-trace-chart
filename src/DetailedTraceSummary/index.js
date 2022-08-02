@@ -94,6 +94,7 @@ class DetailedTraceSummary extends React.Component {
             activeSpanIds,
             spanCriticalPathColor,
             spanBackgroundColor,
+            isTrueFalseMode,
         } = this.props
 
         // console.log("DTS; props: ", this.props);
@@ -141,6 +142,7 @@ class DetailedTraceSummary extends React.Component {
                                     spanCriticalPathColor={
                                         spanCriticalPathColor
                                     }
+                                    isTrueFalseMode={isTrueFalseMode}
                                 />
                             </div>
                         </div>

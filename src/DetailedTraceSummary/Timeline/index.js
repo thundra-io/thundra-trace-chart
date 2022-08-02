@@ -238,6 +238,7 @@ class Timeline extends React.Component {
             showTraceChartHeader,
             spanBackgroundColor,
             spanCriticalPathColor,
+            isTrueFalseMode,
         } = this.props
 
         const {
@@ -304,6 +305,7 @@ class Timeline extends React.Component {
                             ref={this.spanRefs[span.spanId]}
                         >
                             <TimelineSpan
+                                isTrueFalseMode={isTrueFalseMode}
                                 startTs={startTs}
                                 endTs={endTs}
                                 traceDuration={traceSummary.duration}

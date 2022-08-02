@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import DetailedTraceSummary from './DetailedTraceSummary'
 import { treeCorrectedForClockSkew, detailedTraceSummary } from './zipkin'
-import { spanTagsPropTypes } from './DetailedTraceSummary/prop-types'
 
 const tracePropTypes = PropTypes.shape({
     traceId: PropTypes.string.isRequired,
@@ -53,6 +52,7 @@ const defaultProps = {
 
     serviceNameColumnTitle: 'Service Name',
     spanInfoColumnTitle: 'Span Info',
+    isTrueFalseMode: false,
 
     onSpanClicked: () => null,
 }
@@ -108,6 +108,7 @@ class ThundraTraceChart extends Component {
                     onSpanClicked={this.props.onSpanClicked}
                     spanBackgroundColor={this.props.spanBackgroundColor}
                     spanCriticalPathColor={this.props.spanCriticalPathColor}
+                    isTrueFalseMode={this.props.isTrueFalseMode}
                 />
             </div>
         )

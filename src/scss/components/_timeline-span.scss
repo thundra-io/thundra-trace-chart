@@ -67,6 +67,11 @@
     }
     &--server {
     }
+
+    &.critical {
+        height: 2px;
+        z-index: 9999;
+    }
 }
 
 .timeline-span__duration {
