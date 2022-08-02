@@ -190,7 +190,7 @@ class TimelineSpan extends React.Component {
     renderServiceNameColumn() {
         const { span, hasChildren, areChildrenOpened, isTrueFalseMode } =
             this.props
-        // console.log("TimelineSpan, renderServiceNameColumn; span: ", span);
+        console.log('TimelineSpan, renderServiceNameColumn; span: ', span)
 
         return (
             <div className="timeline-span__service-name-column">

@@ -41,9 +41,9 @@ export const getColorFromSpan = (span, isTrueFalseMode = false) => {
 
     if (isTrueFalseMode) {
         if (span.errorCode === 0) {
-            return '#F85149'
-        } else {
             return '#238636'
+        } else {
+            return '#F85149'
         }
     }
 
