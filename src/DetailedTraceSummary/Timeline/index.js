@@ -44,7 +44,15 @@ class Timeline extends React.Component {
     }
 
     componentDidMount() {
-        // console.log("CDM, Timeline; props: ", this.props);
+        // Close all spans at fist
+        const spanIds = {}
+        this.props.traceSummary.spans.forEach((span) => {
+            spanIds[span.spanId] = true
+        })
+
+        this.setState({
+            childrenClosedSpans: spanIds,
+        })
 
         // This is to autoselect first highlighted span if any highlights are provided.
         if (
@@ -239,6 +247,7 @@ class Timeline extends React.Component {
             spanBackgroundColor,
             spanCriticalPathColor,
             isTrueFalseMode,
+            showDuration,
         } = this.props
 
         const {
@@ -257,8 +266,6 @@ class Timeline extends React.Component {
         }
 
         const spans = traceSummary.spans
-
-        console.log('asdsadsadasdasdasdadsads', spans)
 
         return (
             <div className="timeline">
@@ -307,6 +314,7 @@ class Timeline extends React.Component {
                             ref={this.spanRefs[span.spanId]}
                         >
                             <TimelineSpan
+                                showDuration={showDuration}
                                 errorCode={span.errorCode}
                                 isTrueFalseMode={isTrueFalseMode}
                                 startTs={startTs}

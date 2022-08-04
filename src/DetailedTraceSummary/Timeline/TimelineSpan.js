@@ -190,7 +190,6 @@ class TimelineSpan extends React.Component {
     renderServiceNameColumn() {
         const { span, hasChildren, areChildrenOpened, isTrueFalseMode } =
             this.props
-        console.log('TimelineSpan, renderServiceNameColumn; span: ', span)
 
         return (
             <div className="timeline-span__service-name-column">
@@ -277,7 +276,11 @@ class TimelineSpan extends React.Component {
 
     renderSpanBar() {
         const measures = this.calculateLeftAndWidthArr()
-        const { spanBackgroundColor, spanCriticalPathColor } = this.props
+        const {
+            spanBackgroundColor,
+            spanCriticalPathColor,
+            showDuration = true,
+        } = this.props
 
         return (
             <div className="timeline-span__bar-container">
@@ -304,6 +307,7 @@ class TimelineSpan extends React.Component {
                             )}
 
                             {!isBelongToChild &&
+                                showDuration &&
                                 this.renderSpanDuration(left, width)}
                         </>
                     )
@@ -353,25 +357,29 @@ class TimelineSpan extends React.Component {
                 >
                     <div
                         className="timeline-span__service-name-column-wrapper"
-                        style={{ width: `${serviceNameColumnWidth * 100}%` }}
+                        style={{ minWidth: `${serviceNameColumnWidth * 100}%` }}
                     >
                         {this.renderServiceNameColumn()}
                     </div>
-                    <div
-                        className="timeline-span__span-name-column-wrapper"
-                        style={{ width: `${spanNameColumnWidth * 100}%` }}
-                    >
-                        <div className="timeline-span__span-name-column">
-                            {span.spanName}
+                    {showSpanDetailTitle && (
+                        <div
+                            className="timeline-span__span-name-column-wrapper"
+                            style={{ width: `${spanNameColumnWidth * 100}%` }}
+                        >
+                            <div className="timeline-span__span-name-column">
+                                {span.spanName}
+                            </div>
                         </div>
-                    </div>
+                    )}
                     <div
                         className="timeline-span__bar-wrapper"
                         style={{
                             width: `${
                                 (1 -
                                     (serviceNameColumnWidth +
-                                        spanNameColumnWidth)) *
+                                    showSpanDetailTitle
+                                        ? spanNameColumnWidth
+                                        : 0)) *
                                 100
                             }%`,
                         }}

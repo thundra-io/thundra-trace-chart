@@ -40,7 +40,7 @@ export const getColorFromSpan = (span, isTrueFalseMode = false) => {
     }
 
     if (isTrueFalseMode) {
-        if (span.errorCode === 0) {
+        if (span.tags.find((item) => item.key === 'errorCode')?.value === 0) {
             return '#238636'
         } else {
             return '#F85149'

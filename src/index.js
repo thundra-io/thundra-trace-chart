@@ -70,8 +70,8 @@ class ThundraTraceChart extends Component {
                 tags: {
                     ...tags,
                     ttc_color: color,
+                    errorCode,
                 },
-                errorCode,
             }
         })
     }
@@ -82,6 +82,7 @@ class ThundraTraceChart extends Component {
         const modifiedTraceSummary = this.addLocalEndpointFromServiceName(
             this.props.traceSummary
         )
+
         // console.log("ITCC, modifiedTraceSummary: ", modifiedTraceSummary);
 
         const correctedMockTraceSummary =
@@ -94,6 +95,7 @@ class ThundraTraceChart extends Component {
         return (
             <div>
                 <DetailedTraceSummary
+                    showDuration={this.props.showDuration}
                     traceId={this.props.traceId}
                     traceSummary={mockTraceSummary}
                     traceDetail={this.props.spanDetails}

@@ -65,8 +65,6 @@ class Demo extends Component {
     }
 
     sampleActiveSpanIds = (index) => {
-        console.log('sampleActiveSpanIds; index: ', index, this.state)
-
         const tracesArr = sampleTrace()
 
         if (index >= tracesArr.length) {
@@ -125,6 +123,7 @@ class Demo extends Component {
                         spanDetails={this.sampleTraceDetail()}
                         // spanHighlights={this.state.spanHighlightsArr}
                         activeSpanIds={this.state.activeSpanIdsArr}
+                        showSpanDetailTitle={false}
                         // activeSpanIds={[""]}
 
                         // autoScrollOnMount={true} // do we need to add a new prop like this for autoScroll?

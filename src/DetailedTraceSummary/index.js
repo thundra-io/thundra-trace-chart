@@ -95,6 +95,7 @@ class DetailedTraceSummary extends React.Component {
             spanCriticalPathColor,
             spanBackgroundColor,
             isTrueFalseMode,
+            showDuration,
         } = this.props
 
         // console.log("DTS; props: ", this.props);
@@ -122,6 +123,7 @@ class DetailedTraceSummary extends React.Component {
 
                             <div className="detailed-trace-summary__timeline-wrapper">
                                 <Timeline
+                                    showDuration={showDuration}
                                     startTs={startTs || 0}
                                     endTs={endTs || traceSummary.duration}
                                     traceSummary={traceSummary}
