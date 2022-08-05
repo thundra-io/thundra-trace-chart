@@ -295,15 +295,23 @@ class TimelineSpan extends React.Component {
                                     background: spanBackgroundColor,
                                 }}
                             />
+                            <span
+                                className="timeline-span__bar line"
+                                style={{
+                                    left: `${left}%`,
+                                    width: `${width}%`,
+                                    background: spanCriticalPathColor,
+                                }}
+                            />
                             {isBelongToChild && (
                                 <span
-                                    className="timeline-span__bar critical"
+                                    className="timeline-span__bar line"
                                     style={{
                                         left: `${left}%`,
                                         width: `${width}%`,
-                                        background: spanCriticalPathColor,
+                                        background: spanBackgroundColor,
                                     }}
-                                ></span>
+                                />
                             )}
 
                             {!isBelongToChild &&
