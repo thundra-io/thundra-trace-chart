@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import DetailedTraceSummary from './DetailedTraceSummary'
 import { treeCorrectedForClockSkew, detailedTraceSummary } from './zipkin'
-import { spanTagsPropTypes } from './DetailedTraceSummary/prop-types'
 
 const tracePropTypes = PropTypes.shape({
     traceId: PropTypes.string.isRequired,
@@ -53,6 +52,7 @@ const defaultProps = {
 
     serviceNameColumnTitle: 'Service Name',
     spanInfoColumnTitle: 'Span Info',
+    isTrueFalseMode: false,
 
     onSpanClicked: () => null,
 }
@@ -60,7 +60,7 @@ class ThundraTraceChart extends Component {
     // This is to add serviceName as a property of localEndpoint key which is needed for compatibility.
     addLocalEndpointFromServiceName = (traceSummary) => {
         return traceSummary.map((trace) => {
-            const { serviceName, color, tags, ...rawTrace } = trace
+            const { serviceName, errorCode, color, tags, ...rawTrace } = trace
             return {
                 ...rawTrace,
                 localEndpoint: {
@@ -70,6 +70,7 @@ class ThundraTraceChart extends Component {
                 tags: {
                     ...tags,
                     ttc_color: color,
+                    errorCode,
                 },
             }
         })
@@ -81,6 +82,7 @@ class ThundraTraceChart extends Component {
         const modifiedTraceSummary = this.addLocalEndpointFromServiceName(
             this.props.traceSummary
         )
+
         // console.log("ITCC, modifiedTraceSummary: ", modifiedTraceSummary);
 
         const correctedMockTraceSummary =
@@ -93,6 +95,7 @@ class ThundraTraceChart extends Component {
         return (
             <div>
                 <DetailedTraceSummary
+                    showDuration={this.props.showDuration}
                     traceId={this.props.traceId}
                     traceSummary={mockTraceSummary}
                     traceDetail={this.props.spanDetails}
@@ -106,6 +109,9 @@ class ThundraTraceChart extends Component {
                     serviceNameColumnTitle={this.props.serviceNameColumnTitle}
                     spanInfoColumnTitle={this.props.spanInfoColumnTitle}
                     onSpanClicked={this.props.onSpanClicked}
+                    spanBackgroundColor={this.props.spanBackgroundColor}
+                    spanCriticalPathColor={this.props.spanCriticalPathColor}
+                    isTrueFalseMode={this.props.isTrueFalseMode}
                 />
             </div>
         )
