@@ -36,76 +36,66 @@ class TimelineSpan extends React.Component {
         this.handleDataOpenToggle = this.handleDataOpenToggle.bind(this)
     }
 
-    calculateLeftAndWidthArr() {
-        let measuremetArr = []
+    calculateLeftAndWidth(baseLeft, baseWidth) {
+        const { startTs, endTs, traceDuration } = this.props
+        const spanStartTs = (baseLeft * traceDuration) / 100
+        const spanEndTs = spanStartTs + (baseWidth * traceDuration) / 100
+        const newDuration = endTs - startTs
+
         let left
         let width
-        const { startTs, endTs, traceDuration, span } = this.props
 
-        span.measures.forEach((measure) => {
-            const spanStartTs = (measure.left * traceDuration) / 100
-            const spanEndTs =
-                spanStartTs + (measure.width * traceDuration) / 100
-            const newDuration = endTs - startTs
-
-            if (spanStartTs < startTs && spanEndTs < startTs) {
-                //  SPAN   |------------------------------|
-                //  DRAG                                    |-------|
-                left = 0
-                width = 0
-            } else if (spanStartTs >= endTs) {
-                // SPAN              |------------------------------|
-                // DRAG |----------|
-                left = 100
-                width = 0
-            } else if (
-                spanStartTs < startTs &&
-                spanEndTs > startTs &&
-                spanEndTs < endTs
-            ) {
-                // SPAN |--------------------------------------|
-                // DRAG                                   |---------|
-                left = 0
-                width = ((spanEndTs - startTs) / newDuration) * 100
-            } else if (
-                spanStartTs < startTs &&
-                spanEndTs > startTs &&
-                spanEndTs > endTs
-            ) {
-                // SPAN |-------------------------------------------|
-                // DRAG                 |------|
-                left = 0
-                width = 100
-            } else if (
-                spanStartTs >= startTs &&
-                spanStartTs < endTs &&
-                spanEndTs <= endTs
-            ) {
-                // SPAN         |---------------------------|
-                // DRAG |-------------------------------------------|
-                left = ((spanStartTs - startTs) / newDuration) * 100
-                width = ((spanEndTs - spanStartTs) / newDuration) * 100
-            } else if (
-                spanStartTs >= startTs &&
-                spanStartTs < endTs &&
-                spanEndTs > endTs
-            ) {
-                // SPAN       |-------------------------------------|
-                // DRAG |------------------------------------|
-                left = ((spanStartTs - startTs) / newDuration) * 100
-                width = ((endTs - spanStartTs) / newDuration) * 100
-            } else {
-                left = 0
-                width = 0
-            }
-            measuremetArr.push({
-                left,
-                width,
-                isBelongToChild: measure.isBelongToChild,
-            })
-        })
-
-        return measuremetArr
+        if (spanStartTs < startTs && spanEndTs < startTs) {
+            //  SPAN   |------------------------------|
+            //  DRAG                                    |-------|
+            left = 0
+            width = 0
+        } else if (spanStartTs >= endTs) {
+            // SPAN              |------------------------------|
+            // DRAG |----------|
+            left = 100
+            width = 0
+        } else if (
+            spanStartTs < startTs &&
+            spanEndTs > startTs &&
+            spanEndTs < endTs
+        ) {
+            // SPAN |--------------------------------------|
+            // DRAG                                   |---------|
+            left = 0
+            width = ((spanEndTs - startTs) / newDuration) * 100
+        } else if (
+            spanStartTs < startTs &&
+            spanEndTs > startTs &&
+            spanEndTs > endTs
+        ) {
+            // SPAN |-------------------------------------------|
+            // DRAG                 |------|
+            left = 0
+            width = 100
+        } else if (
+            spanStartTs >= startTs &&
+            spanStartTs < endTs &&
+            spanEndTs <= endTs
+        ) {
+            // SPAN         |---------------------------|
+            // DRAG |-------------------------------------------|
+            left = ((spanStartTs - startTs) / newDuration) * 100
+            width = ((spanEndTs - spanStartTs) / newDuration) * 100
+        } else if (
+            spanStartTs >= startTs &&
+            spanStartTs < endTs &&
+            spanEndTs > endTs
+        ) {
+            // SPAN       |-------------------------------------|
+            // DRAG |------------------------------------|
+            left = ((spanStartTs - startTs) / newDuration) * 100
+            width = ((endTs - spanStartTs) / newDuration) * 100
+        } else {
+            left = 0
+            width = 0
+        }
+        return { left, width }
     }
 
     calculateBaseWidth(finishTs, startTs) {
@@ -188,8 +178,8 @@ class TimelineSpan extends React.Component {
     }
 
     renderServiceNameColumn() {
-        const { span, hasChildren, areChildrenOpened, isTrueFalseMode } =
-            this.props
+        const { span, hasChildren, areChildrenOpened } = this.props
+        // console.log("TimelineSpan, renderServiceNameColumn; span: ", span);
 
         return (
             <div className="timeline-span__service-name-column">
@@ -215,10 +205,8 @@ class TimelineSpan extends React.Component {
                     className="timeline-span__depth-marker"
                     style={{
                         left: `${span.depth * 14}px`,
-                        background: `${getColorFromSpan(
-                            span,
-                            isTrueFalseMode
-                        )}`,
+                        // background: `${getServiceNameColor(span.serviceName)}`,
+                        background: `${getColorFromSpan(span)}`,
                     }}
                 />
                 <div
@@ -275,51 +263,24 @@ class TimelineSpan extends React.Component {
     }
 
     renderSpanBar() {
-        const measures = this.calculateLeftAndWidthArr()
-        const {
-            spanBackgroundColor,
-            spanCriticalPathColor,
-            showDuration = true,
-        } = this.props
+        const { span } = this.props
 
+        const { left, width } = this.calculateLeftAndWidth(
+            span.left,
+            span.width
+        )
         return (
             <div className="timeline-span__bar-container">
-                {measures.map(({ width, left, isBelongToChild }) => {
-                    return (
-                        <>
-                            <span
-                                className="timeline-span__bar"
-                                style={{
-                                    left: `${left}%`,
-                                    width: `${width}%`,
-                                    background: `${getColorFromSpan(span)}`,
-                                }}
-                            />
-                            <span
-                                className="timeline-span__bar line"
-                                style={{
-                                    left: `${left}%`,
-                                    width: `${width}%`,
-                                    background: spanCriticalPathColor,
-                                }}
-                            />
-                            {isBelongToChild && (
-                                <span
-                                    className="timeline-span__bar line"
-                                    style={{
-                                        left: `${left}%`,
-                                        width: `${width}%`,
-                                        background: `${getColorFromSpan(span)}`,
-                                    }}
-                                />
-                            )}
-
-                            {!isBelongToChild &&
-                                showDuration &&
-                                this.renderSpanDuration(left, width)}
-                        </>
-                    )
-                })}
+                <span
+                    className="timeline-span__bar"
+                    style={{
+                        left: `${left}%`,
+                        width: `${width}%`,
+                        // background: `${getErrorTypeColor(span.errorType)}`,
+                        background: `${getColorFromSpan(span)}`,
+                    }}
+                />
+                {this.renderSpanDuration(left, width)}
             </div>
         )
     }
@@ -365,29 +326,25 @@ class TimelineSpan extends React.Component {
                 >
                     <div
                         className="timeline-span__service-name-column-wrapper"
-                        style={{ minWidth: `${serviceNameColumnWidth * 100}%` }}
+                        style={{ width: `${serviceNameColumnWidth * 100}%` }}
                     >
                         {this.renderServiceNameColumn()}
                     </div>
-                    {showSpanDetailTitle && (
-                        <div
-                            className="timeline-span__span-name-column-wrapper"
-                            style={{ width: `${spanNameColumnWidth * 100}%` }}
-                        >
-                            <div className="timeline-span__span-name-column">
-                                {span.spanName}
-                            </div>
+                    <div
+                        className="timeline-span__span-name-column-wrapper"
+                        style={{ width: `${spanNameColumnWidth * 100}%` }}
+                    >
+                        <div className="timeline-span__span-name-column">
+                            {span.spanName}
                         </div>
-                    )}
+                    </div>
                     <div
                         className="timeline-span__bar-wrapper"
                         style={{
                             width: `${
                                 (1 -
                                     (serviceNameColumnWidth +
-                                    showSpanDetailTitle
-                                        ? spanNameColumnWidth
-                                        : 0)) *
+                                        spanNameColumnWidth)) *
                                 100
                             }%`,
                         }}
