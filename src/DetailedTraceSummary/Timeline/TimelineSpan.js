@@ -271,15 +271,38 @@ class TimelineSpan extends React.Component {
         )
         return (
             <div className="timeline-span__bar-container">
-                <span
-                    className="timeline-span__bar"
-                    style={{
-                        left: `${left}%`,
-                        width: `${width}%`,
-                        // background: `${getErrorTypeColor(span.errorType)}`,
-                        background: `${getColorFromSpan(span)}`,
-                    }}
-                />
+                <>
+                    <span
+                        className="timeline-span__bar"
+                        style={{
+                            left: `${left}%`,
+                            width: `${width}%`,
+                            background: getColorFromSpan(span),
+                        }}
+                    />
+                    <span
+                        className="timeline-span__bar line"
+                        style={{
+                            left: `${left}%`,
+                            width: `${width}%`,
+                            background: 'white',
+                        }}
+                    />
+                    {isBelongToChild && (
+                        <span
+                            className="timeline-span__bar line"
+                            style={{
+                                left: `${left}%`,
+                                width: `${width}%`,
+                                background: getColorFromSpan(span),
+                            }}
+                        />
+                    )}
+
+                    {!isBelongToChild &&
+                        showDuration &&
+                        this.renderSpanDuration(left, width)}
+                </>
                 {this.renderSpanDuration(left, width)}
             </div>
         )
