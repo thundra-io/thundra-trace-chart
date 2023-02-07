@@ -292,7 +292,7 @@ class TimelineSpan extends React.Component {
                                 style={{
                                     left: `${left}%`,
                                     width: `${width}%`,
-                                    background: spanBackgroundColor,
+                                    background: `${getColorFromSpan(span)}`,
                                 }}
                             />
                             <span
@@ -309,7 +309,7 @@ class TimelineSpan extends React.Component {
                                     style={{
                                         left: `${left}%`,
                                         width: `${width}%`,
-                                        background: spanBackgroundColor,
+                                        background: `${getColorFromSpan(span)}`,
                                     }}
                                 />
                             )}
