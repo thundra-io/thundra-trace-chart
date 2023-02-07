@@ -1,6 +1,6 @@
 {
     "name": "thundra-trace-chart",
-    "version": "0.2.1",
+    "version": "1.0.0",
     "description": "thundra-trace-chart react component",
     "main": "lib/index.js",
     "module": "es/index.js",
