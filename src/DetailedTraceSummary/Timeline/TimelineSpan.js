@@ -37,6 +37,7 @@ class TimelineSpan extends React.Component {
     }
 
     calculateLeftAndWidth(baseLeft, baseWidth) {
+        let measuremetArr = []
         const { startTs, endTs, traceDuration } = this.props
         const spanStartTs = (baseLeft * traceDuration) / 100
         const spanEndTs = spanStartTs + (baseWidth * traceDuration) / 100
@@ -92,10 +93,13 @@ class TimelineSpan extends React.Component {
             left = ((spanStartTs - startTs) / newDuration) * 100
             width = ((endTs - spanStartTs) / newDuration) * 100
         } else {
-            left = 0
-            width = 0
+            measuremetArr.push({
+                left,
+                width,
+                isBelongToChild: measure.isBelongToChild,
+            })
         }
-        return { left, width }
+        return measuremetArr
     }
 
     calculateBaseWidth(finishTs, startTs) {
@@ -263,9 +267,9 @@ class TimelineSpan extends React.Component {
     }
 
     renderSpanBar() {
-        const { span } = this.props
+        const { span, showDuration = true } = this.props
 
-        const { left, width } = this.calculateLeftAndWidth(
+        const { left, width, isBelongToChild } = this.calculateLeftAndWidth(
             span.left,
             span.width
         )
