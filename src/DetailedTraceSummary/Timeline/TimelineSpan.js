@@ -280,6 +280,7 @@ class TimelineSpan extends React.Component {
             spanBackgroundColor,
             spanCriticalPathColor,
             showDuration = true,
+            span,
         } = this.props
 
         return (
@@ -292,7 +293,7 @@ class TimelineSpan extends React.Component {
                                 style={{
                                     left: `${left}%`,
                                     width: `${width}%`,
-                                    background: spanBackgroundColor,
+                                    background: `${getColorFromSpan(span)}`,
                                 }}
                             />
                             <span

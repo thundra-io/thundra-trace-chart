@@ -1,4 +1,5 @@
-export function sampleTrace() {
+import React from 'react'
+export function getProcessSampleTraceData() {
     let trace = [
         {
             traceId: '382d12cc-b846-3837-ba10-7b9f79796929',
@@ -11,6 +12,7 @@ export function sampleTrace() {
             tags: {
                 error: true,
             },
+            color: '#4367FD',
         },
         {
             traceId: '382d12cc-b846-3837-ba10-7b9f79796929',
@@ -23,6 +25,7 @@ export function sampleTrace() {
             tags: {
                 error: true,
             },
+            color: '#4367FD',
         },
         {
             traceId: '382d12cc-b846-3837-ba10-7b9f79796929',
@@ -35,6 +38,7 @@ export function sampleTrace() {
             tags: {
                 error: true,
             },
+            color: '#4367FD',
         },
         {
             traceId: '382d12cc-b846-3837-ba10-7b9f79796929',
@@ -47,6 +51,7 @@ export function sampleTrace() {
             tags: {
                 error: true,
             },
+            color: '#4367FD',
         },
         {
             traceId: '382d12cc-b846-3837-ba10-7b9f79796929',
@@ -59,6 +64,7 @@ export function sampleTrace() {
             tags: {
                 error: true,
             },
+            color: '#4367FD',
         },
         {
             traceId: '382d12cc-b846-3837-ba10-7b9f79796929',
@@ -71,8 +77,28 @@ export function sampleTrace() {
             tags: {
                 error: true,
             },
+            color: '#4367FD',
         },
     ]
 
     return trace
+}
+
+export function getProcessSampleTraceDataDetails() {
+    const tracesArr = getProcessSampleTraceData()
+
+    const traceDetailObj = {}
+    tracesArr.map((trace, index) => {
+        traceDetailObj[`${trace.id}`] = (
+            <div>
+                <div>this is span details:</div>
+                <div>
+                    {trace.serviceName} - {trace.name} - {index}
+                </div>
+                JSON.stringify(trace);
+            </div>
+        )
+    })
+
+    return traceDetailObj
 }

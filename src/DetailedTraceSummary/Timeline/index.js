@@ -143,12 +143,14 @@ class Timeline extends React.Component {
 
     scrollToOpenedSpanDetail = (spanId) => {
         // console.log("scrollToOpenedSpanDetail; spanId, spanRefs: ", spanId, this.spanRefs);
-        const firstSpanElement = this.spanRefs[spanId].current
-        firstSpanElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-            inline: 'nearest',
-        })
+        const firstSpanElement = this.spanRefs[spanId]?.current
+        if (firstSpanElement) {
+            firstSpanElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'nearest',
+            })
+        }
     }
 
     handleServiceNameColumnWidthChange(serviceNameColumnWidth) {
