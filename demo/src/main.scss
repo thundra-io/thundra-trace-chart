@@ -5,6 +5,10 @@
 
     .top-part {
         height: 150px;
+
+        button.selected {
+            background-color: lightgreen;
+        }
     }
 
     .trace-chart-part {

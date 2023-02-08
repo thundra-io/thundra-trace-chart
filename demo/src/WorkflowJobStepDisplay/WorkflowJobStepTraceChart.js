@@ -1,25 +1,24 @@
 import React, { Component } from 'react'
-import './ProcessTraceChart.scss'
+import './WorkflowJobStepTraceChart.scss'
 import ThundraTraceChart from '../../../src'
+import {} from './WorkflowJobStepTraceChart'
 import {
-    getProcessSampleTraceData,
-    getProcessSampleTraceDataDetails,
-} from './ProcessSampleTrace'
+    getWorkflowJobStepData,
+    getWorkflowJobStepDataDetails,
+} from './WorkflowJobStepSampleTrace'
 
-export class JobProcessTraceChart extends Component {
+export class WorkflowJobStepTraceChart extends Component {
     render() {
         return (
             <div className="ttc-wrapper">
                 <ThundraTraceChart
                     traceId="382d12cc-b846-3837-ba10-7b9f79796929"
-                    traceSummary={getProcessSampleTraceData()}
-                    spanDetails={getProcessSampleTraceDataDetails()}
+                    traceSummary={getWorkflowJobStepData()}
+                    spanDetails={getWorkflowJobStepDataDetails()}
                     showSpanDetailTitle={false}
                     showMiniTrace={false}
                     serviceNameColumnTitle="Service Name"
                     spanInfoColumnTitle="Operation Name"
-                    showDuration={false}
-                    isTrueFalseMode={true}
                     spanCriticalPathColor="#fff"
                     spanBackgroundColor="#4367FD"
                     onSpanClicked={(spanId) =>
