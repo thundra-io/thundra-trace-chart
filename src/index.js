@@ -52,7 +52,6 @@ const defaultProps = {
 
     serviceNameColumnTitle: 'Service Name',
     spanInfoColumnTitle: 'Span Info',
-    isTrueFalseMode: false,
 
     onSpanClicked: () => null,
 }
@@ -60,7 +59,15 @@ class ThundraTraceChart extends Component {
     // This is to add serviceName as a property of localEndpoint key which is needed for compatibility.
     addLocalEndpointFromServiceName = (traceSummary) => {
         return traceSummary.map((trace) => {
-            const { serviceName, errorCode, color, tags, ...rawTrace } = trace
+            const {
+                serviceName,
+                bgColor,
+                color,
+                markerColor,
+                criticalPathColor,
+                tags,
+                ...rawTrace
+            } = trace
             return {
                 ...rawTrace,
                 localEndpoint: {
@@ -69,8 +76,10 @@ class ThundraTraceChart extends Component {
                 },
                 tags: {
                     ...tags,
+                    ttc_bgColor: bgColor,
                     ttc_color: color,
-                    errorCode,
+                    ttc_markerColor: markerColor,
+                    ttc_criticalPathColor: criticalPathColor,
                 },
             }
         })
@@ -109,9 +118,6 @@ class ThundraTraceChart extends Component {
                     serviceNameColumnTitle={this.props.serviceNameColumnTitle}
                     spanInfoColumnTitle={this.props.spanInfoColumnTitle}
                     onSpanClicked={this.props.onSpanClicked}
-                    spanBackgroundColor={this.props.spanBackgroundColor}
-                    spanCriticalPathColor={this.props.spanCriticalPathColor}
-                    isTrueFalseMode={this.props.isTrueFalseMode}
                 />
             </div>
         )

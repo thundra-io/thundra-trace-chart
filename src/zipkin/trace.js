@@ -212,9 +212,6 @@ export function traceSummaries(serviceName, summaries, utc = false) {
                     )
                 }
             }
-
-            if (t.errorType !== 'none')
-                res.infoClass = `trace-error-${t.errorType}`
             return res
         })
         .sort((t1, t2) => {

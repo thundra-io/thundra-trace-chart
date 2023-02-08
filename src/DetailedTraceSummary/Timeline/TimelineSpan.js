@@ -2,7 +2,11 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import TimelineSpanData from './TimelineSpanData'
-import { getColorFromSpan } from '../util/color'
+import {
+    getColorFromSpan,
+    getCriticalPathColor,
+    getMarkerColor,
+} from '../util/color'
 import { detailedSpanPropTypes } from '../prop-types'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -188,8 +192,7 @@ class TimelineSpan extends React.Component {
     }
 
     renderServiceNameColumn() {
-        const { span, hasChildren, areChildrenOpened, isTrueFalseMode } =
-            this.props
+        const { span, hasChildren, areChildrenOpened } = this.props
 
         return (
             <div className="timeline-span__service-name-column">
@@ -215,10 +218,7 @@ class TimelineSpan extends React.Component {
                     className="timeline-span__depth-marker"
                     style={{
                         left: `${span.depth * 14}px`,
-                        background: `${getColorFromSpan(
-                            span,
-                            isTrueFalseMode
-                        )}`,
+                        background: `${getMarkerColor(span)}`,
                     }}
                 />
                 <div
@@ -276,12 +276,7 @@ class TimelineSpan extends React.Component {
 
     renderSpanBar() {
         const measures = this.calculateLeftAndWidthArr()
-        const {
-            spanBackgroundColor,
-            spanCriticalPathColor,
-            showDuration = true,
-            span,
-        } = this.props
+        const { showDuration = true, span } = this.props
 
         return (
             <div className="timeline-span__bar-container">
@@ -301,7 +296,7 @@ class TimelineSpan extends React.Component {
                                 style={{
                                     left: `${left}%`,
                                     width: `${width}%`,
-                                    background: spanCriticalPathColor,
+                                    background: `${getCriticalPathColor(span)}`,
                                 }}
                             />
                             {isBelongToChild && (
@@ -310,7 +305,7 @@ class TimelineSpan extends React.Component {
                                     style={{
                                         left: `${left}%`,
                                         width: `${width}%`,
-                                        background: spanBackgroundColor,
+                                        background: `${getColorFromSpan(span)}`,
                                     }}
                                 />
                             )}

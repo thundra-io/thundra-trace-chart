@@ -19,8 +19,6 @@ export class WorkflowJobStepTraceChart extends Component {
                     showMiniTrace={false}
                     serviceNameColumnTitle="Service Name"
                     spanInfoColumnTitle="Operation Name"
-                    spanCriticalPathColor="#fff"
-                    spanBackgroundColor="#4367FD"
                     onSpanClicked={(spanId) =>
                         console.log('span clicked; spanId: ', spanId)
                     }

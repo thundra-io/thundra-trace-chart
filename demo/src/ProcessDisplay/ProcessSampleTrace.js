@@ -9,8 +9,9 @@ export function getProcessSampleTraceData() {
             timestamp: 1658296525718,
             duration: 104000,
             serviceName: 'test Parent',
+            markerColor: '#238636',
             color: '#4367FD',
-            errorCode: 0,
+            criticalPathColor: '#ffffff',
         },
         {
             traceId: '382d12cc-b846-3837-ba10-7b9f79796929',
@@ -21,7 +22,8 @@ export function getProcessSampleTraceData() {
             duration: 22000,
             serviceName: 'test Child 1',
             color: '#4367FD',
-            errorCode: 1,
+            markerColor: '#F85149',
+            criticalPathColor: '#ffffff',
         },
         {
             traceId: '382d12cc-b846-3837-ba10-7b9f79796929',
@@ -32,7 +34,8 @@ export function getProcessSampleTraceData() {
             duration: 9100,
             serviceName: 'test Child 1.1',
             color: '#4367FD',
-            errorCode: 0,
+            markerColor: '#238636',
+            criticalPathColor: '#ffffff',
         },
         {
             traceId: '382d12cc-b846-3837-ba10-7b9f79796929',
@@ -43,7 +46,8 @@ export function getProcessSampleTraceData() {
             duration: 5100,
             serviceName: 'test Child 1.2',
             color: '#4367FD',
-            errorCode: 1,
+            markerColor: '#F85149',
+            criticalPathColor: '#ffffff',
         },
         {
             traceId: '382d12cc-b846-3837-ba10-7b9f79796929',
@@ -54,7 +58,8 @@ export function getProcessSampleTraceData() {
             duration: 5100,
             serviceName: 'test Child 1.3',
             color: '#4367FD',
-            errorCode: 0,
+            markerColor: '#238636',
+            criticalPathColor: '#ffffff',
         },
         {
             traceId: '382d12cc-b846-3837-ba10-7b9f79796929',
@@ -65,7 +70,8 @@ export function getProcessSampleTraceData() {
             duration: 22000,
             serviceName: 'test Child 2',
             color: '#4367FD',
-            errorCode: 0,
+            markerColor: '#238636',
+            criticalPathColor: '#ffffff',
         },
     ]
 

@@ -1,29 +1,27 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import ServiceNameBadge from './ServiceNameBadge';
-import { getServiceNameColor, getColorFromSpan } from '../util/color';
-import { detailedSpanPropTypes } from '../prop-types';
+import { detailedSpanPropTypes } from '../prop-types'
 
 const propTypes = {
     serviceNameColumnWidth: PropTypes.number.isRequired,
     span: detailedSpanPropTypes.isRequired,
-};
+}
 
 // Parse string values if objects, to display better objects instead of plain strings.
 const parseTagsData = (tags) => {
-    let parsedTags = {};
+    let parsedTags = {}
 
-    Object.keys(tags).forEach( tagKey => {
+    Object.keys(tags).forEach((tagKey) => {
         try {
-            const parsedTagValue = JSON.parse(tags[tagKey]);
-            parsedTags[tagKey] = parsedTagValue;
-        } catch(e) {
-            parsedTags[tagKey] = tags[tagKey];
+            const parsedTagValue = JSON.parse(tags[tagKey])
+            parsedTags[tagKey] = parsedTagValue
+        } catch (e) {
+            parsedTags[tagKey] = tags[tagKey]
         }
-    });
+    })
 
-    return parsedTags;
+    return parsedTags
 }
 
 // Render span details info
@@ -32,7 +30,7 @@ const renderInfo = (span, showSpanDetailTitle, spanDetail) => {
 
     return (
         <div className="timeline-span-data__content">
-            {showSpanDetailTitle &&
+            {showSpanDetailTitle && (
                 <div
                     className="timeline-span-data__title"
                     style={{
@@ -41,15 +39,19 @@ const renderInfo = (span, showSpanDetailTitle, spanDetail) => {
                 >
                     {`${span.serviceName}: ${span.spanName}`}
                 </div>
-            }            
+            )}
 
             {spanDetail}
-
         </div>
-    );
-};
+    )
+}
 
-const SpanInfo = ({ span, serviceNameColumnWidth, showSpanDetailTitle, spanDetail}) => (
+const SpanInfo = ({
+    span,
+    serviceNameColumnWidth,
+    showSpanDetailTitle,
+    spanDetail,
+}) => (
     <div className="timeline-span-data">
         <div
             className="timeline-span-data__left-container"
@@ -59,7 +61,6 @@ const SpanInfo = ({ span, serviceNameColumnWidth, showSpanDetailTitle, spanDetai
                 className="timeline-span-data__depth-marker"
                 style={{
                     left: `${span.depth * 14}px`,
-                    // background: `${getServiceNameColor(span.serviceName)}`,
                     background: `${getColorFromSpan(span)}`,
                 }}
             />
@@ -67,16 +68,15 @@ const SpanInfo = ({ span, serviceNameColumnWidth, showSpanDetailTitle, spanDetai
         <div
             className="timeline-span-data__right-container"
             style={{
-                left: `${(serviceNameColumnWidth) * 100}%`,
+                left: `${serviceNameColumnWidth * 100}%`,
                 width: `${(1 - serviceNameColumnWidth) * 100}%`,
             }}
         >
             {renderInfo(span, showSpanDetailTitle, spanDetail)}
         </div>
     </div>
+)
 
-);
+SpanInfo.propTypes = propTypes
 
-SpanInfo.propTypes = propTypes;
-
-export default SpanInfo;
+export default SpanInfo

@@ -19,9 +19,6 @@ export class JobProcessTraceChart extends Component {
                     serviceNameColumnTitle="Service Name"
                     spanInfoColumnTitle="Operation Name"
                     showDuration={false}
-                    isTrueFalseMode={true}
-                    spanCriticalPathColor="#fff"
-                    spanBackgroundColor="#4367FD"
                     onSpanClicked={(spanId) =>
                         console.log('span clicked; spanId: ', spanId)
                     }

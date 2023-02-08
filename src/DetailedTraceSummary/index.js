@@ -92,9 +92,6 @@ class DetailedTraceSummary extends React.Component {
             showSpanDetailTitle,
             spanHighlights,
             activeSpanIds,
-            spanCriticalPathColor,
-            spanBackgroundColor,
-            isTrueFalseMode,
             showDuration,
         } = this.props
 
@@ -140,11 +137,6 @@ class DetailedTraceSummary extends React.Component {
                                         this.props.spanInfoColumnTitle
                                     }
                                     onSpanClicked={this.props.onSpanClicked}
-                                    spanBackgroundColor={spanBackgroundColor}
-                                    spanCriticalPathColor={
-                                        spanCriticalPathColor
-                                    }
-                                    isTrueFalseMode={isTrueFalseMode}
                                 />
                             </div>
                         </div>
