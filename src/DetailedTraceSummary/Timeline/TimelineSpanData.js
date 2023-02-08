@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import { detailedSpanPropTypes } from '../prop-types'
+import { getColorFromSpan } from '../util/color'
 
 const propTypes = {
     serviceNameColumnWidth: PropTypes.number.isRequired,
