@@ -7,21 +7,21 @@
     background: $white;
 
     &:hover {
-        background: $gray-8;
+        background: $gray-11;
     }
-}
 
-.selected-span {
-    background: $gray-10;
-}
+    &.selected-span {
+        background: $gray-11;
+    }
 
-.insignificant-span {
-    opacity: 0.3;
-}
+    &.insignificant-span {
+        opacity: 0.3;
+    }
 
-.erroneous-span {
-    // background: rgba(255, 0, 0, 0.2);
-    background: transparent;
+    &.erroneous-span {
+        // background: rgba(255, 0, 0, 0.2);
+        background: transparent;
+    }
 }
 
 .timeline-span__service-name-column-wrapper {
