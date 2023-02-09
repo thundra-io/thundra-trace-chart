@@ -4,7 +4,8 @@
     position: relative;
     display: flex;
     cursor: pointer;
-    background: $white;
+    background: #0e1216;
+    color: #dcdfe5;
 
     &:hover {
         background: $gray-11;
@@ -61,17 +62,6 @@
     position: absolute;
     border-radius: 4px;
     height: 70%;
-
-    &--client {
-        background-color: $gray-9;
-    }
-    &--server {
-    }
-
-    &.line {
-        height: 2px;
-        z-index: 9999;
-    }
 }
 
 .timeline-span__duration {

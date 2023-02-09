@@ -11,7 +11,9 @@ export function getWorkflowJobStepData() {
             serviceName: 'Lab Alexa WorkflowKit/TestKit Action',
             markerColor: '#F85149',
             color: '#F85149',
-            criticalPathColor: '#ffffff',
+            criticalPathColor: '#622928',
+            criticalPathHeight: '18px',
+            borderRadius: '0px',
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -23,7 +25,9 @@ export function getWorkflowJobStepData() {
             serviceName: 'build maven demo with|pipe',
             markerColor: '#135CB8',
             color: '#135CB8',
-            criticalPathColor: '#ffffff',
+            criticalPathColor: '#102D50',
+            criticalPathHeight: '18px',
+            borderRadius: '0px',
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -35,7 +39,7 @@ export function getWorkflowJobStepData() {
             serviceName: 'Set up job',
             markerColor: '#A9D7FF',
             color: '#A9D7FF',
-            criticalPathColor: '#ffffff',
+            borderRadius: '0px',
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -48,7 +52,7 @@ export function getWorkflowJobStepData() {
             type: 'step',
             markerColor: '#A9D7FF',
             color: '#A9D7FF',
-            criticalPathColor: '#ffffff',
+            borderRadius: '0px',
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -61,7 +65,7 @@ export function getWorkflowJobStepData() {
             type: 'step',
             markerColor: '#A9D7FF',
             color: '#A9D7FF',
-            criticalPathColor: '#ffffff',
+            borderRadius: '0px',
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -74,7 +78,7 @@ export function getWorkflowJobStepData() {
             type: 'step',
             markerColor: '#A9D7FF',
             color: '#A9D7FF',
-            criticalPathColor: '#ffffff',
+            borderRadius: '0px',
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -87,7 +91,7 @@ export function getWorkflowJobStepData() {
             type: 'step',
             markerColor: '#A9D7FF',
             color: '#A9D7FF',
-            criticalPathColor: '#ffffff',
+            borderRadius: '0px',
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -100,7 +104,7 @@ export function getWorkflowJobStepData() {
             type: 'step',
             markerColor: '#A9D7FF',
             color: '#A9D7FF',
-            criticalPathColor: '#ffffff',
+            borderRadius: '0px',
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -113,7 +117,7 @@ export function getWorkflowJobStepData() {
             type: 'step',
             markerColor: '#A9D7FF',
             color: '#A9D7FF',
-            criticalPathColor: '#ffffff',
+            borderRadius: '0px',
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -126,7 +130,7 @@ export function getWorkflowJobStepData() {
             type: 'step',
             markerColor: '#A9D7FF',
             color: '#A9D7FF',
-            criticalPathColor: '#ffffff',
+            borderRadius: '0px',
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -139,7 +143,7 @@ export function getWorkflowJobStepData() {
             type: 'step',
             markerColor: '#A9D7FF',
             color: '#A9D7FF',
-            criticalPathColor: '#ffffff',
+            borderRadius: '0px',
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -152,7 +156,7 @@ export function getWorkflowJobStepData() {
             type: 'step',
             markerColor: '#A9D7FF',
             color: '#A9D7FF',
-            criticalPathColor: '#ffffff',
+            borderRadius: '0px',
         },
     ]
 

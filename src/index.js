@@ -65,6 +65,8 @@ class ThundraTraceChart extends Component {
                 color,
                 markerColor,
                 criticalPathColor,
+                criticalPathHeight,
+                borderRadius,
                 tags,
                 ...rawTrace
             } = trace
@@ -80,6 +82,8 @@ class ThundraTraceChart extends Component {
                     ttc_color: color,
                     ttc_markerColor: markerColor,
                     ttc_criticalPathColor: criticalPathColor,
+                    ttc_criticalPathHeight: criticalPathHeight,
+                    ttc_borderRadius: borderRadius,
                 },
             }
         })

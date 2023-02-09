@@ -19,10 +19,11 @@ export class WorkflowJobStepTraceChart extends Component {
                     traceSummary={spans}
                     spanDetails={spanDetails}
                     showSpanDetailTitle={false}
+                    showSpanDetail={false}
                     showMiniTrace={false}
                     serviceNameColumnTitle="Service Name"
                     spanInfoColumnTitle="Operation Name"
-                    showDuration={false}
+                    showDuration={true}
                     onSpanClicked={(spanId) =>
                         console.log('span clicked; spanId: ', spanId)
                     }

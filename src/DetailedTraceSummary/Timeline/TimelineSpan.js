@@ -16,6 +16,11 @@ import {
     faPlusSquare,
     faMinusSquare,
 } from '@fortawesome/free-solid-svg-icons'
+import {
+    getCriticalPathHeightFromSpan,
+    getHeightFromSpan,
+    getBorderRadiusFromSpan,
+} from '../util/size'
 
 const propTypes = {
     startTs: PropTypes.number.isRequired,
@@ -289,6 +294,10 @@ class TimelineSpan extends React.Component {
                                     left: `${left}%`,
                                     width: `${width}%`,
                                     background: `${getColorFromSpan(span)}`,
+                                    borderRadius: `${getBorderRadiusFromSpan(
+                                        span
+                                    )}`,
+                                    height: `${getHeightFromSpan(span)}`,
                                 }}
                             />
                             <span
@@ -296,7 +305,14 @@ class TimelineSpan extends React.Component {
                                 style={{
                                     left: `${left}%`,
                                     width: `${width}%`,
+                                    height: `${getCriticalPathHeightFromSpan(
+                                        span
+                                    )}`,
+                                    zIndex: `9999`,
                                     background: `${getCriticalPathColor(span)}`,
+                                    borderRadius: `${getBorderRadiusFromSpan(
+                                        span
+                                    )}`,
                                 }}
                             />
                             {isBelongToChild && (
@@ -305,7 +321,14 @@ class TimelineSpan extends React.Component {
                                     style={{
                                         left: `${left}%`,
                                         width: `${width}%`,
+                                        height: `${getCriticalPathHeightFromSpan(
+                                            span
+                                        )}`,
+                                        zIndex: `9999`,
                                         background: `${getColorFromSpan(span)}`,
+                                        borderRadius: `${getBorderRadiusFromSpan(
+                                            span
+                                        )}`,
                                     }}
                                 />
                             )}
