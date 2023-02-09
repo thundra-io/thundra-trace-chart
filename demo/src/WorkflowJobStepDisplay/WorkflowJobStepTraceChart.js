@@ -9,16 +9,20 @@ import {
 
 export class WorkflowJobStepTraceChart extends Component {
     render() {
+        const spans = getWorkflowJobStepData()
+        const spanDetails = getWorkflowJobStepDataDetails()
+
         return (
             <div className="ttc-wrapper">
                 <ThundraTraceChart
-                    traceId="382d12cc-b846-3837-ba10-7b9f79796929"
-                    traceSummary={getWorkflowJobStepData()}
-                    spanDetails={getWorkflowJobStepDataDetails()}
+                    traceId={spans[0].traceId}
+                    traceSummary={spans}
+                    spanDetails={spanDetails}
                     showSpanDetailTitle={false}
                     showMiniTrace={false}
                     serviceNameColumnTitle="Service Name"
                     spanInfoColumnTitle="Operation Name"
+                    showDuration={false}
                     onSpanClicked={(spanId) =>
                         console.log('span clicked; spanId: ', spanId)
                     }
