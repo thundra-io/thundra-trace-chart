@@ -1,4 +1,28 @@
 import React from 'react'
+
+const SPAN = {
+    criticalPathHeight: '18px',
+    borderRadius: '0px',
+    height: '18px',
+}
+
+const WORKFLOW = {
+    markerColor: '#F85149',
+    color: '#F85149',
+    criticalPathColor: '#622928',
+}
+
+const JOB = {
+    markerColor: '#135CB8',
+    color: '#135CB8',
+    criticalPathColor: '#102D50',
+}
+
+const STEP = {
+    markerColor: '#A9D7FF',
+    color: '#A9D7FF',
+}
+
 export function getWorkflowJobStepData() {
     let trace = [
         {
@@ -9,11 +33,12 @@ export function getWorkflowJobStepData() {
             timestamp: 1675923491000,
             duration: 62000,
             serviceName: 'Lab Alexa WorkflowKit/TestKit Action',
-            markerColor: '#F85149',
-            color: '#F85149',
-            criticalPathColor: '#622928',
-            criticalPathHeight: '18px',
-            borderRadius: '0px',
+            markerColor: WORKFLOW.markerColor,
+            color: WORKFLOW.color,
+            criticalPathColor: WORKFLOW.criticalPathColor,
+            criticalPathHeight: SPAN.criticalPathHeight,
+            borderRadius: SPAN.borderRadius,
+            height: SPAN.height,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -23,11 +48,12 @@ export function getWorkflowJobStepData() {
             timestamp: 1675923497000,
             duration: 54000,
             serviceName: 'build maven demo with|pipe',
-            markerColor: '#135CB8',
-            color: '#135CB8',
-            criticalPathColor: '#102D50',
-            criticalPathHeight: '18px',
-            borderRadius: '0px',
+            markerColor: JOB.markerColor,
+            color: JOB.color,
+            criticalPathColor: JOB.criticalPathColor,
+            criticalPathHeight: SPAN.criticalPathHeight,
+            borderRadius: SPAN.borderRadius,
+            height: SPAN.height,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -37,9 +63,10 @@ export function getWorkflowJobStepData() {
             timestamp: 1675923497000,
             duration: 2000,
             serviceName: 'Set up job',
-            markerColor: '#A9D7FF',
-            color: '#A9D7FF',
-            borderRadius: '0px',
+            markerColor: STEP.markerColor,
+            color: STEP.color,
+            borderRadius: SPAN.borderRadius,
+            height: SPAN.height,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -50,9 +77,10 @@ export function getWorkflowJobStepData() {
             duration: 1000,
             serviceName: 'Collect Workflow Telemetry',
             type: 'step',
-            markerColor: '#A9D7FF',
-            color: '#A9D7FF',
-            borderRadius: '0px',
+            markerColor: STEP.markerColor,
+            color: STEP.color,
+            borderRadius: SPAN.borderRadius,
+            height: SPAN.height,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -63,9 +91,10 @@ export function getWorkflowJobStepData() {
             duration: 0,
             serviceName: 'Run actions/checkout@v3',
             type: 'step',
-            markerColor: '#A9D7FF',
-            color: '#A9D7FF',
-            borderRadius: '0px',
+            markerColor: STEP.markerColor,
+            color: STEP.color,
+            borderRadius: SPAN.borderRadius,
+            height: SPAN.height,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -76,9 +105,10 @@ export function getWorkflowJobStepData() {
             duration: 1000,
             serviceName: 'Set up JDK 11',
             type: 'step',
-            markerColor: '#A9D7FF',
-            color: '#A9D7FF',
-            borderRadius: '0px',
+            markerColor: STEP.markerColor,
+            color: STEP.color,
+            borderRadius: SPAN.borderRadius,
+            height: SPAN.height,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -89,9 +119,10 @@ export function getWorkflowJobStepData() {
             duration: 34000,
             serviceName: 'Build with Maven',
             type: 'step',
-            markerColor: '#A9D7FF',
-            color: '#A9D7FF',
-            borderRadius: '0px',
+            markerColor: STEP.markerColor,
+            color: STEP.color,
+            borderRadius: SPAN.borderRadius,
+            height: SPAN.height,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -102,9 +133,10 @@ export function getWorkflowJobStepData() {
             duration: 11000,
             serviceName: 'Analyze Test and/or Coverage Results',
             type: 'step',
-            markerColor: '#A9D7FF',
-            color: '#A9D7FF',
-            borderRadius: '0px',
+            markerColor: STEP.markerColor,
+            color: STEP.color,
+            borderRadius: SPAN.borderRadius,
+            height: SPAN.height,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -115,9 +147,10 @@ export function getWorkflowJobStepData() {
             duration: 1000,
             serviceName: 'Post Set up JDK 11',
             type: 'step',
-            markerColor: '#A9D7FF',
-            color: '#A9D7FF',
-            borderRadius: '0px',
+            markerColor: STEP.markerColor,
+            color: STEP.color,
+            borderRadius: SPAN.borderRadius,
+            height: SPAN.height,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -128,9 +161,10 @@ export function getWorkflowJobStepData() {
             duration: 0,
             serviceName: 'Post Run actions/checkout@v3',
             type: 'step',
-            markerColor: '#A9D7FF',
-            color: '#A9D7FF',
-            borderRadius: '0px',
+            markerColor: STEP.markerColor,
+            color: STEP.color,
+            borderRadius: SPAN.borderRadius,
+            height: SPAN.height,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -141,9 +175,10 @@ export function getWorkflowJobStepData() {
             duration: 1000,
             serviceName: 'Post Collect Workflow Telemetry',
             type: 'step',
-            markerColor: '#A9D7FF',
-            color: '#A9D7FF',
-            borderRadius: '0px',
+            markerColor: STEP.markerColor,
+            color: STEP.color,
+            borderRadius: SPAN.borderRadius,
+            height: SPAN.height,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -154,9 +189,10 @@ export function getWorkflowJobStepData() {
             duration: 0,
             serviceName: 'Complete job',
             type: 'step',
-            markerColor: '#A9D7FF',
-            color: '#A9D7FF',
-            borderRadius: '0px',
+            markerColor: STEP.markerColor,
+            color: STEP.color,
+            borderRadius: SPAN.borderRadius,
+            height: SPAN.height,
         },
     ]
 
