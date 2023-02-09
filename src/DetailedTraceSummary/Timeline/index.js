@@ -247,6 +247,8 @@ class Timeline extends React.Component {
             traceSummary,
             showTraceChartHeader,
             showDuration,
+            spanInfoColumnTitle,
+            serviceNameColumnTitle,
         } = this.props
 
         const {
@@ -281,10 +283,8 @@ class Timeline extends React.Component {
                         onSpanNameColumnWidthChange={
                             this.handleSpanNameColumnWidthChange
                         }
-                        serviceNameColumnTitle={
-                            this.props.serviceNameColumnTitle
-                        }
-                        spanInfoColumnTitle={this.props.spanInfoColumnTitle}
+                        serviceNameColumnTitle={serviceNameColumnTitle}
+                        spanInfoColumnTitle={spanInfoColumnTitle}
                     />
                 )}
 

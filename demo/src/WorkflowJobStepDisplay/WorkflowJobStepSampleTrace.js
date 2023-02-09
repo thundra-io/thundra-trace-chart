@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatDuration } from '../../../src/DetailedTraceSummary/util/timestamp'
 
 const SPAN = {
     criticalPathHeight: '18px',
@@ -196,6 +197,7 @@ export function getWorkflowJobStepData() {
         },
     ]
 
+    trace.forEach((el) => (el.name = formatDuration(el.duration)))
     return trace
 }
 

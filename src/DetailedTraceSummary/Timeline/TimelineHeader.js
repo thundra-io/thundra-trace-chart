@@ -74,18 +74,14 @@ class TimelineHeader extends React.Component {
     }
 
     renderResizableColumn(columnName) {
-        const {
-            serviceNameColumnWidth,
-            spanNameColumnWidth,
-            showSpanDetailTitle,
-        } = this.props
+        const { serviceNameColumnWidth, spanNameColumnWidth } = this.props
         let label = ''
         let columnWidth = 0
         if (columnName === serviceNameColumn) {
             // Service Name;
             label = this.props.serviceNameColumnTitle
             columnWidth = serviceNameColumnWidth
-        } else if (columnName === spanNameColumn && showSpanDetailTitle) {
+        } else if (columnName === spanNameColumn) {
             // Span Info;
             label = this.props.spanInfoColumnTitle
             columnWidth = spanNameColumnWidth
@@ -167,7 +163,7 @@ class TimelineHeader extends React.Component {
     }
 
     render() {
-        const { showSpanDetailTitle } = this.props
+        const { showSpanDetailTitle: flagShow } = this.props
         return (
             <div
                 className="timeline-header"
@@ -176,8 +172,7 @@ class TimelineHeader extends React.Component {
                 }}
             >
                 {this.renderResizableColumn(serviceNameColumn)}
-                {showSpanDetailTitle &&
-                    this.renderResizableColumn(spanNameColumn)}
+                {flagShow && this.renderResizableColumn(spanNameColumn)}
                 {this.renderTimeMarkers()}
             </div>
         )

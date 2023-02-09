@@ -93,6 +93,8 @@ class DetailedTraceSummary extends React.Component {
             spanHighlights,
             activeSpanIds,
             showDuration,
+            serviceNameColumnTitle,
+            spanInfoColumnTitle,
         } = this.props
 
         // console.log("DTS; props: ", this.props);
@@ -131,11 +133,9 @@ class DetailedTraceSummary extends React.Component {
                                     showSpanDetail={showSpanDetail}
                                     showSpanDetailTitle={showSpanDetailTitle}
                                     serviceNameColumnTitle={
-                                        this.props.serviceNameColumnTitle
+                                        serviceNameColumnTitle
                                     }
-                                    spanInfoColumnTitle={
-                                        this.props.spanInfoColumnTitle
-                                    }
+                                    spanInfoColumnTitle={spanInfoColumnTitle}
                                     onSpanClicked={this.props.onSpanClicked}
                                 />
                             </div>
