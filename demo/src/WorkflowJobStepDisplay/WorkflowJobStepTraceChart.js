@@ -15,6 +15,7 @@ export class WorkflowJobStepTraceChart extends Component {
         return (
             <div className="ttc-wrapper">
                 <ThundraTraceChart
+                    activeSpanIds={[spans[0].id]}
                     traceId={spans[0].traceId}
                     traceSummary={spans}
                     spanDetails={spanDetails}
