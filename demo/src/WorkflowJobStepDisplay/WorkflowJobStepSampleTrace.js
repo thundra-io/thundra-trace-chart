@@ -1,5 +1,7 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { formatDuration } from '../../../src/DetailedTraceSummary/util/timestamp'
+import { faTimesCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 const SPAN = {
     criticalPathHeight: '18px',
@@ -24,6 +26,41 @@ const STEP = {
     color: '#A9D7FF',
 }
 
+const ICON = {
+    errorIcon: (
+        <span
+            style={{
+                marginLeft: 12,
+                marginRight: 4,
+                marginTop: 2,
+                width: 18,
+                display: 'inline-block',
+            }}
+        >
+            <FontAwesomeIcon
+                icon={faTimesCircle}
+                style={{ color: '#F85149', fontSize: 16 }}
+            />
+        </span>
+    ),
+    successIcon: (
+        <span
+            style={{
+                marginLeft: 12,
+                marginRight: 4,
+                marginTop: 2,
+                width: 18,
+                display: 'inline-block',
+            }}
+        >
+            <FontAwesomeIcon
+                icon={faCheckCircle}
+                style={{ color: '#238636', fontSize: 16 }}
+            />
+        </span>
+    ),
+}
+
 export function getWorkflowJobStepData() {
     let trace = [
         {
@@ -40,6 +77,7 @@ export function getWorkflowJobStepData() {
             criticalPathHeight: SPAN.criticalPathHeight,
             borderRadius: SPAN.borderRadius,
             height: SPAN.height,
+            icon: ICON.errorIcon,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -55,6 +93,7 @@ export function getWorkflowJobStepData() {
             criticalPathHeight: SPAN.criticalPathHeight,
             borderRadius: SPAN.borderRadius,
             height: SPAN.height,
+            icon: ICON.successIcon,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -68,6 +107,7 @@ export function getWorkflowJobStepData() {
             color: STEP.color,
             borderRadius: SPAN.borderRadius,
             height: SPAN.height,
+            icon: ICON.successIcon,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -82,6 +122,7 @@ export function getWorkflowJobStepData() {
             color: STEP.color,
             borderRadius: SPAN.borderRadius,
             height: SPAN.height,
+            icon: ICON.errorIcon,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -96,6 +137,7 @@ export function getWorkflowJobStepData() {
             color: STEP.color,
             borderRadius: SPAN.borderRadius,
             height: SPAN.height,
+            icon: ICON.successIcon,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -110,6 +152,7 @@ export function getWorkflowJobStepData() {
             color: STEP.color,
             borderRadius: SPAN.borderRadius,
             height: SPAN.height,
+            icon: ICON.successIcon,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -124,6 +167,7 @@ export function getWorkflowJobStepData() {
             color: STEP.color,
             borderRadius: SPAN.borderRadius,
             height: SPAN.height,
+            icon: ICON.successIcon,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -138,6 +182,7 @@ export function getWorkflowJobStepData() {
             color: STEP.color,
             borderRadius: SPAN.borderRadius,
             height: SPAN.height,
+            icon: ICON.successIcon,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -152,6 +197,7 @@ export function getWorkflowJobStepData() {
             color: STEP.color,
             borderRadius: SPAN.borderRadius,
             height: SPAN.height,
+            icon: ICON.successIcon,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -166,6 +212,7 @@ export function getWorkflowJobStepData() {
             color: STEP.color,
             borderRadius: SPAN.borderRadius,
             height: SPAN.height,
+            icon: ICON.successIcon,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -180,6 +227,7 @@ export function getWorkflowJobStepData() {
             color: STEP.color,
             borderRadius: SPAN.borderRadius,
             height: SPAN.height,
+            icon: ICON.successIcon,
         },
         {
             traceId: '6783054d-7e21-39c8-ad49-0e0c814e1c03_traceId',
@@ -194,6 +242,7 @@ export function getWorkflowJobStepData() {
             color: STEP.color,
             borderRadius: SPAN.borderRadius,
             height: SPAN.height,
+            icon: ICON.successIcon,
         },
     ]
 

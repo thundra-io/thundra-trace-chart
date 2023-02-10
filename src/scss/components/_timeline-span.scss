@@ -4,8 +4,7 @@
     position: relative;
     display: flex;
     cursor: pointer;
-    background: #0e1216;
-    color: #dcdfe5;
+    background: transparent;
 
     &:hover {
         background: $gray-11;
@@ -20,8 +19,7 @@
     }
 
     &.erroneous-span {
-        // background: rgba(255, 0, 0, 0.2);
-        background: transparent;
+        background: rgba(255, 0, 0, 0.2);
     }
 }
 

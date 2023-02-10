@@ -9,18 +9,14 @@ import {
 } from '../util/color'
 import { detailedSpanPropTypes } from '../prop-types'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-    faBan,
-    faBug,
-    faPlusSquare,
-    faMinusSquare,
-} from '@fortawesome/free-solid-svg-icons'
 import {
     getCriticalPathHeightFromSpan,
     getHeightFromSpan,
     getBorderRadiusFromSpan,
 } from '../util/size'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlusSquare, faMinusSquare } from '@fortawesome/free-solid-svg-icons'
 
 const propTypes = {
     startTs: PropTypes.number.isRequired,
@@ -144,55 +140,14 @@ class TimelineSpan extends React.Component {
 
     renderServiceName = () => {
         const { span } = this.props
-
-        //Order Of Importance for Icons Blocked, Violated, Error, None
-        if (span && span.tagsObj && span.tagsObj['security.blocked']) {
-            //Blocked
+        if (span) {
+            const icon = span?.tagsObj['ttc_icon']
             return (
                 <span>
-                    <span style={{ marginRight: '6px' }}>
-                        <FontAwesomeIcon
-                            icon={faBan}
-                            style={{ color: 'red' }}
-                        />
-                    </span>
+                    {icon && icon}
                     {span.serviceName}
                 </span>
             )
-        } else if (span && span.tagsObj && span.tagsObj['security.violated']) {
-            //Violated
-            return (
-                <span>
-                    <span style={{ marginRight: '6px' }}>
-                        <FontAwesomeIcon
-                            icon={faBan}
-                            style={{ color: '#FFCC00' }}
-                        />
-                    </span>
-                    {span.serviceName}
-                </span>
-            )
-        } else if (
-            span &&
-            span.tagsObj &&
-            span.tagsObj['method.lines'] &&
-            span.tagsObj['method.startLine'] &&
-            span.tagsObj['method.source']
-        ) {
-            return (
-                <span>
-                    <span style={{ marginRight: '6px' }}>
-                        <FontAwesomeIcon
-                            icon={faBug}
-                            style={{ color: '#172B4D' }}
-                        />
-                    </span>
-                    {span.serviceName}
-                </span>
-            )
-        } else {
-            //None
-            return <span>{span.serviceName}</span>
         }
     }
 
