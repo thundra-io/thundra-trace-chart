@@ -95,6 +95,7 @@ class DetailedTraceSummary extends React.Component {
             showDuration,
             serviceNameColumnTitle,
             spanInfoColumnTitle,
+            closeAllSpansAtFirst,
         } = this.props
 
         // console.log("DTS; props: ", this.props);
@@ -122,6 +123,7 @@ class DetailedTraceSummary extends React.Component {
 
                             <div className="detailed-trace-summary__timeline-wrapper">
                                 <Timeline
+                                    closeAllSpansAtFirst={closeAllSpansAtFirst}
                                     showDuration={showDuration}
                                     startTs={startTs || 0}
                                     endTs={endTs || traceSummary.duration}

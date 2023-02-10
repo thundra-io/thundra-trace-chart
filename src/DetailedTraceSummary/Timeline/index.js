@@ -45,14 +45,17 @@ class Timeline extends React.Component {
 
     componentDidMount() {
         // Close all spans at fist
-        const spanIds = {}
-        this.props.traceSummary.spans.forEach((span) => {
-            spanIds[span.spanId] = true
-        })
 
-        this.setState({
-            childrenClosedSpans: spanIds,
-        })
+        if (this.props.closeAllSpansAtFirst) {
+            const spanIds = {}
+            this.props.traceSummary.spans.forEach((span) => {
+                spanIds[span.spanId] = true
+            })
+
+            this.setState({
+                childrenClosedSpans: spanIds,
+            })
+        }
 
         // This is to autoselect first highlighted span if any highlights are provided.
         if (

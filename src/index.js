@@ -108,6 +108,7 @@ class ThundraTraceChart extends Component {
         return (
             <div>
                 <DetailedTraceSummary
+                    closeAllSpansAtFirst={this.props.closeAllSpansAtFirst}
                     showDuration={this.props.showDuration}
                     traceId={this.props.traceId}
                     traceSummary={mockTraceSummary}

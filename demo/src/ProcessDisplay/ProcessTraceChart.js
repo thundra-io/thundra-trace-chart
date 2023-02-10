@@ -11,6 +11,7 @@ export class JobProcessTraceChart extends Component {
         return (
             <div className="ttc-wrapper">
                 <ThundraTraceChart
+                    closeAllSpansAtFirst={true}
                     traceId="382d12cc-b846-3837-ba10-7b9f79796929"
                     traceSummary={getProcessSampleTraceData()}
                     spanDetails={getProcessSampleTraceDataDetails()}
