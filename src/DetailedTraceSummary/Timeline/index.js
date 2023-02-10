@@ -252,6 +252,7 @@ class Timeline extends React.Component {
             showDuration,
             spanInfoColumnTitle,
             serviceNameColumnTitle,
+            showSpanDetailTitle,
         } = this.props
 
         const {
@@ -288,6 +289,7 @@ class Timeline extends React.Component {
                         }
                         serviceNameColumnTitle={serviceNameColumnTitle}
                         spanInfoColumnTitle={spanInfoColumnTitle}
+                        showSpanDetailTitle={showSpanDetailTitle}
                     />
                 )}
 
