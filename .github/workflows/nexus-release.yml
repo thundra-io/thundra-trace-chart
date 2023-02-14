@@ -29,7 +29,7 @@ jobs:
       - name: Thundra Registry
         run: |
           npm config set registry ${{ secrets.THUNDRA_NPM_HOSTED_REGISTRY }}
-          npm config set _auth ${{ secrets.THUNDRA_NPM_REGISTRY_AUTH }}
+          npm config set _auth ${{ secrets.THUNDRA_INTERNAL_RELEASE_USER_TOKEN }}
       - name: NPM Lint
         run: npm run lint
       - name: NPM Build
