@@ -1,3 +1,4 @@
+import React from 'react'
 const trace = [
     {
         id: '19af2fac-9cd6-4be2-babd-f7a8e82a52ed',
@@ -9,7 +10,7 @@ const trace = [
         domainName: 'API',
         className: 'AWS-Lambda',
         operationName: 'team-list-lambda-java-prod',
-        startTimestamp: 1676065030689,
+        timestamp: 1676065030689,
         finishTimestamp: 1676065030699,
         duration: 10,
         tags: {
@@ -90,7 +91,7 @@ const trace = [
         parentSpanId: '19af2fac-9cd6-4be2-babd-f7a8e82a52ed',
         operationName:
             'io.thundra.lambda.demo.handler.team.TeamListHandler.handleRequest',
-        startTimestamp: 1676065030689,
+        timestamp: 1676065030689,
         finishTimestamp: 1676065030699,
         duration: 10,
         tags: {
@@ -113,7 +114,7 @@ const trace = [
                         request: {
                             callerId: '28fa392d-ddca-4ccd-a6e5-dcca3e0edf1b',
                         },
-                        requestStartTimestamp: 1676065030689,
+                        requesttimestamp: 1676065030689,
                         requestFinishTimestamp: 0,
                         threadLocalTempProps: {
                             threadLocalHashCode: -78085091,
@@ -158,7 +159,7 @@ const trace = [
         parentSpanId: '2310e344-ceb0-47e5-b6fd-d7d8559c97b2',
         operationName:
             'io.thundra.lambda.demo.handler.team.TeamListHandler$TeamListRequest.toString',
-        startTimestamp: 1676065030689,
+        timestamp: 1676065030689,
         finishTimestamp: 1676065030689,
         duration: 0,
         tags: {
@@ -181,7 +182,7 @@ const trace = [
         parentSpanId: '2310e344-ceb0-47e5-b6fd-d7d8559c97b2',
         operationName:
             'io.thundra.lambda.demo.handler.team.TeamListHandler$TeamListRequest.getCallerId',
-        startTimestamp: 1676065030690,
+        timestamp: 1676065030690,
         finishTimestamp: 1676065030690,
         duration: 0,
         tags: {
@@ -203,7 +204,7 @@ const trace = [
         className: 'Method',
         parentSpanId: '2310e344-ceb0-47e5-b6fd-d7d8559c97b2',
         operationName: 'io.thundra.lambda.demo.service.TeamService.list',
-        startTimestamp: 1676065030690,
+        timestamp: 1676065030690,
         finishTimestamp: 1676065030699,
         duration: 9,
         tags: {
@@ -477,7 +478,7 @@ const trace = [
         className: 'Method',
         parentSpanId: 'c9f9c4ff-3f5b-4f22-85da-4ec99f711ea6',
         operationName: 'io.thundra.lambda.demo.repository.TeamRepository.list',
-        startTimestamp: 1676065030690,
+        timestamp: 1676065030690,
         finishTimestamp: 1676065030698,
         duration: 8,
         tags: {
@@ -2014,7 +2015,7 @@ const trace = [
         className: 'AWS-DynamoDB',
         parentSpanId: '805b6ff3-4e54-49d5-9049-69cbfb00a9ed',
         operationName: 'team-lambda-java-prod',
-        startTimestamp: 1676065030690,
+        timestamp: 1676065030690,
         finishTimestamp: 1676065030698,
         duration: 8,
         tags: {
@@ -2042,7 +2043,7 @@ const trace = [
         parentSpanId: '19af2fac-9cd6-4be2-babd-f7a8e82a52ed',
         operationName:
             'io.thundra.lambda.demo.handler.team.TeamListHandler$TeamListResponse.getTeams',
-        startTimestamp: 1676065030699,
+        timestamp: 1676065030699,
         finishTimestamp: 1676065030699,
         duration: 0,
         tags: {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
+import { InvocationTraceChart } from './InvocationDisplay/InvocationTraceChart'
 import './main.scss'
 import { JobProcessTraceChart } from './ProcessDisplay/ProcessTraceChart'
 import { WorkflowJobStepTraceChart } from './WorkflowJobStepDisplay/WorkflowJobStepTraceChart'
@@ -7,6 +8,7 @@ import { WorkflowJobStepTraceChart } from './WorkflowJobStepDisplay/WorkflowJobS
 const DEMO_TYPE = {
     JOB_PROCESS: 'JobProcess',
     WORKFLOW_TIMELINE: 'WorkflowTimeline',
+    INVOCATION: 'Invocation',
 }
 
 class Demo extends Component {
@@ -17,6 +19,21 @@ class Demo extends Component {
         }
     }
 
+    renderButton = (activeDemo, buttonType, buttonTitle) => {
+        return (
+            <button
+                className={activeDemo === buttonType ? 'selected' : ''}
+                onClick={() =>
+                    this.setState({
+                        activeDemo: buttonType,
+                    })
+                }
+            >
+                {buttonTitle}
+            </button>
+        )
+    }
+
     render() {
         const { activeDemo } = this.state
 
@@ -25,6 +42,8 @@ class Demo extends Component {
             activeDemoJSX = <JobProcessTraceChart />
         } else if (activeDemo === DEMO_TYPE.WORKFLOW_TIMELINE) {
             activeDemoJSX = <WorkflowJobStepTraceChart />
+        } else if (activeDemo === DEMO_TYPE.INVOCATION) {
+            activeDemoJSX = <InvocationTraceChart />
         }
 
         return (
@@ -33,34 +52,21 @@ class Demo extends Component {
                     <h1>Thundra TraceChart Demos</h1>
 
                     <div className="demo-selection">
-                        <button
-                            className={
-                                activeDemo === DEMO_TYPE.JOB_PROCESS
-                                    ? 'selected'
-                                    : ''
-                            }
-                            onClick={() =>
-                                this.setState({
-                                    activeDemo: DEMO_TYPE.JOB_PROCESS,
-                                })
-                            }
-                        >
-                            Process Display
-                        </button>
-                        <button
-                            className={
-                                activeDemo === DEMO_TYPE.WORKFLOW_TIMELINE
-                                    ? 'selected'
-                                    : ''
-                            }
-                            onClick={() =>
-                                this.setState({
-                                    activeDemo: DEMO_TYPE.WORKFLOW_TIMELINE,
-                                })
-                            }
-                        >
-                            Timeline Display
-                        </button>
+                        {this.renderButton(
+                            activeDemo,
+                            DEMO_TYPE.JOB_PROCESS,
+                            'Job Process Display'
+                        )}
+                        {this.renderButton(
+                            activeDemo,
+                            DEMO_TYPE.WORKFLOW_TIMELINE,
+                            'Workflow Timeline'
+                        )}
+                        {this.renderButton(
+                            activeDemo,
+                            DEMO_TYPE.INVOCATION,
+                            'Invocation'
+                        )}
                     </div>
                 </div>
 
