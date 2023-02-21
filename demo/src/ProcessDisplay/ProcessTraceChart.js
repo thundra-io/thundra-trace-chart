@@ -8,13 +8,16 @@ import {
 
 export class JobProcessTraceChart extends Component {
     render() {
+        const traceSummary = getProcessSampleTraceData()
+        const spanDetails = getProcessSampleTraceDataDetails()
+
         return (
             <div className="ttc-wrapper">
                 <ThundraTraceChart
-                    closeAllSpansAtFirst={true}
                     traceId="382d12cc-b846-3837-ba10-7b9f79796929"
-                    traceSummary={getProcessSampleTraceData()}
-                    spanDetails={getProcessSampleTraceDataDetails()}
+                    traceSummary={traceSummary}
+                    spanDetails={spanDetails}
+                    closeAllSpansAtFirst={true}
                     showSpanDetailTitle={false}
                     showMiniTrace={false}
                     serviceNameColumnTitle="Service Name"
