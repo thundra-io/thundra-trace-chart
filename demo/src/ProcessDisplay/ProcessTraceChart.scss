@@ -1,0 +1,23 @@
+.ttc-wrapper {
+    overflow: auto;
+    font-family: 'Inter';
+    background-color: #0e1216;
+    color: #dcdfe5;
+    .timeline-span {
+        &:hover {
+            background: #161b22;
+        }
+
+        &.selected-span {
+            background: #161b22;
+        }
+
+        &.insignificant-span {
+            opacity: 0.3;
+        }
+
+        &.erroneous-span {
+            background: rgba(255, 0, 0, 0.2);
+        }
+    }
+}

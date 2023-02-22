@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
-import { getServiceNameColor } from '../util/color';
+import { getColorFromSpan } from '../util/color';
 
 const propTypes = {
   serviceName: PropTypes.string.isRequired,
@@ -14,20 +13,13 @@ const defaultProps = {
   className: '',
 };
 
-const ServiceNameBadge = ({
-  serviceName,
-  count,
-  className,
-}) => {
+const ServiceNameBadge = ({ span }) => {
   const style = {
-    backgroundColor: getServiceNameColor(serviceName),
+    backgroundColor: getColorFromSpan(span),
   };
   const text = count ? `${serviceName} x ${count}` : serviceName;
   return (
-    <span
-      style={style}
-      className={`service-name-badge ${className}`}
-    >
+    <span style={style} className={`service-name-badge ${className}`}>
       {text}
     </span>
   );

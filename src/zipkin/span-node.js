@@ -50,7 +50,8 @@ export class SpanNode {
   queueRootMostSpans() {
     const queue = [];
     // since the input data could be headless, we first push onto the queue the root-most spans
-    if (typeof this.span === 'undefined') { // synthetic root
+    if (typeof this.span === 'undefined') {
+      // synthetic root
       this.children.forEach(child => queue.push(child));
     } else {
       queue.push(this);
@@ -185,13 +186,12 @@ export class SpanNodeBuilder {
         // If there's no shared parent, fall back to normal case which is unqualified beyond ID.
         parent = span.parentId;
       }
-    } else if (this._rootSpan) { // we are root or don't know our parent
+    } else if (this._rootSpan) {
+      // we are root or don't know our parent
       if (this._debug) {
         const prefix = 'attributing span missing parent to root';
         /* eslint-disable no-console */
-        console.log(
-          `${prefix}: traceId=${span.traceId}, rootId=${this._rootSpan.span.id}, id=${span.id}`,
-        );
+        console.log(`${prefix}: traceId=${span.traceId}, rootId=${this._rootSpan.span.id}, id=${span.id}`);
       }
     }
 
@@ -252,11 +252,12 @@ export class SpanNodeBuilder {
 
     // At this point, we have the most reliable parent-child relationships and can allocate spans
     // corresponding the the best place in the trace tree.
-    Object.keys(this._spanToParent).forEach((key) => {
+    Object.keys(this._spanToParent).forEach(key => {
       const child = this._keyToNode[key];
       const parent = this._keyToNode[this._spanToParent[key]];
 
-      if (!parent) { // Handle headless by attaching spans missing parents to root
+      if (!parent) {
+        // Handle headless by attaching spans missing parents to root
         this._rootSpan.addChild(child);
       } else {
         parent.addChild(child);

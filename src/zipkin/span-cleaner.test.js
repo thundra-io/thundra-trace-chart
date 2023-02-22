@@ -1,9 +1,4 @@
-import {
-  clean,
-  cleanupComparator,
-  merge,
-  mergeV2ById,
-} from './span-cleaner';
+import { clean, cleanupComparator, merge, mergeV2ById } from './span-cleaner';
 
 // endpoints from zipkin2.TestObjects
 const frontend = {
@@ -50,7 +45,8 @@ const serverSpan = {
   shared: true,
 };
 
-const oneOfEach = { // has every field set
+const oneOfEach = {
+  // has every field set
   traceId: '7180c278b62e8f6a216a2aea45d08fc9',
   parentId: '0000000000000001',
   id: '0000000000000002',
@@ -363,7 +359,7 @@ describe('mergeV2ById', () => {
     const leftFirst = mergeV2ById([left, right]);
     const rightFirst = mergeV2ById([right, left]);
 
-    [leftFirst, rightFirst].forEach((spans) => {
+    [leftFirst, rightFirst].forEach(spans => {
       spans.forEach(span => expect(span.traceId).toEqual(left.traceId));
     });
   });
@@ -824,9 +820,7 @@ describe('mergeV2ById', () => {
         id: '0000000000000002',
         duration: 207000,
         remoteEndpoint: backend,
-        annotations: [
-          { timestamp: 1472470996403000, value: 'wr' },
-        ],
+        annotations: [{ timestamp: 1472470996403000, value: 'wr' }],
       },
       {
         traceId: '0000000000000001',
@@ -835,9 +829,7 @@ describe('mergeV2ById', () => {
         kind: 'CLIENT',
         timestamp: 1472470996199000,
         localEndpoint: frontend,
-        annotations: [
-          { timestamp: 1472470996238000, value: 'ws' },
-        ],
+        annotations: [{ timestamp: 1472470996238000, value: 'ws' }],
         tags: {
           'http.path': '/api',
           'clnt/finagle.version': '6.45.0',
@@ -951,11 +943,7 @@ describe('mergeV2ById', () => {
       },
     ]);
 
-    expect(spans.map(s => s.id)).toEqual([
-      '0000000000000001',
-      '0000000000000002',
-      '0000000000000003',
-    ]);
+    expect(spans.map(s => s.id)).toEqual(['0000000000000001', '0000000000000002', '0000000000000003']);
   });
 
   // in the case of shared spans, root could be a client
@@ -976,10 +964,7 @@ describe('mergeV2ById', () => {
       },
     ]);
 
-    expect(spans.map(s => s.name)).toEqual([
-      'client',
-      'server',
-    ]);
+    expect(spans.map(s => s.name)).toEqual(['client', 'server']);
   });
 });
 
@@ -1004,7 +989,8 @@ describe('cleanupComparator', () => {
     ];
 
     expect(spans.sort(cleanupComparator).map(s => `${s.id}-${s.kind}`)).toEqual([
-      '0000000000000004-CLIENT', '0000000000000004-SERVER',
+      '0000000000000004-CLIENT',
+      '0000000000000004-SERVER',
     ]);
   });
 });

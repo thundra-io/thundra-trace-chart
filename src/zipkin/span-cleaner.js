@@ -39,8 +39,7 @@ export function clean(span) {
 
   res.annotations = span.annotations ? span.annotations.slice(0) : [];
   if (res.annotations.length > 1) {
-    res.annotations = _(_.unionWith(res.annotations, _.isEqual))
-      .sortBy('timestamp', 'value').value();
+    res.annotations = _(_.unionWith(res.annotations, _.isEqual)).sortBy('timestamp', 'value').value();
   }
 
   res.tags = span.tags || {};
@@ -85,7 +84,8 @@ export function merge(left, right) {
     res.annotations = left.annotations;
   } else {
     res.annotations = _(_.unionWith(left.annotations, right.annotations, _.isEqual))
-      .sortBy('timestamp', 'value').value();
+      .sortBy('timestamp', 'value')
+      .value();
   }
 
   res.tags = Object.assign({}, left.tags, right.tags);
@@ -138,7 +138,8 @@ function compareShared(left, right) {
   return 0;
 }
 
-export function cleanupComparator(left, right) { // exported for testing
+export function cleanupComparator(left, right) {
+  // exported for testing
   const bySpanId = compare(left.id, right.id);
   if (bySpanId !== 0) return bySpanId;
   const byShared = compareShared(left, right);
@@ -170,11 +171,14 @@ function tryMerge(current, endpoint) {
 }
 
 // sort by timestamp, then name, root/shared first in case of skew
-export function spanComparator(a, b) { // exported for testing
-  if (!a.parentId && b.parentId) { // a is root
+export function spanComparator(a, b) {
+  // exported for testing
+  if (!a.parentId && b.parentId) {
+    // a is root
     return -1;
   }
-  if (a.parentId && !b.parentId) { // b is root
+  if (a.parentId && !b.parentId) {
+    // b is root
     return 1;
   }
 
@@ -198,7 +202,7 @@ export function mergeV2ById(spans) {
   // Let's cleanup any spans and pick the longest ID
   let traceId;
   // console.log("mergeV2ById; spans, traceId; ", spans, traceId);
-  spans.forEach((span) => {
+  spans.forEach(span => {
     const cleaned = clean(span);
     if (!traceId || traceId.length !== 32) traceId = cleaned.traceId;
     result.push(cleaned);

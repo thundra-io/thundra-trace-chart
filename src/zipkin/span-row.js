@@ -5,7 +5,8 @@ import { ConstantNames } from './trace-constants';
 // returns currentErrorType
 export function getErrorType(span, currentErrorType) {
   if (currentErrorType === 'critical') return currentErrorType;
-  if (span.tags.error !== undefined) { // empty error tag is ok
+  if (span.tags.error !== undefined) {
+    // empty error tag is ok
     return 'critical';
   }
   if (span.annotations.findIndex(ann => ann.value === 'error') !== -1) {
@@ -16,9 +17,7 @@ export function getErrorType(span, currentErrorType) {
 
 export function formatEndpoint(endpoint) {
   if (!endpoint) return undefined;
-  const {
-    ipv4, ipv6, port, serviceName,
-  } = endpoint;
+  const { ipv4, ipv6, port, serviceName } = endpoint;
   if (ipv4 || ipv6) {
     const ip = ipv6 ? `[${ipv6}]` : ipv4; // arbitrarily prefer ipv6
     const portString = port ? `:${port}` : '';
@@ -59,7 +58,7 @@ function parseAnnotationRows(span) {
 
   // scan annotations in case there are better timestamps, or inferred kind
   const annotationsToAdd = [];
-  span.annotations.forEach((a) => {
+  span.annotations.forEach(a => {
     switch (a.value) {
       case 'cs':
         kind = 'CLIENT';
@@ -164,23 +163,35 @@ function parseAnnotationRows(span) {
   const annotations = []; // prefer empty to undefined for arrays
 
   if (beginAnnotation) {
-    annotations.push(toAnnotationRow({
-      value: begin,
-      timestamp: startTs,
-    }, localFormatted, true));
+    annotations.push(
+      toAnnotationRow(
+        {
+          value: begin,
+          timestamp: startTs,
+        },
+        localFormatted,
+        true,
+      ),
+    );
   }
 
-  annotationsToAdd.forEach((a) => {
+  annotationsToAdd.forEach(a => {
     if (beginAnnotation && a.value === begin) return;
     if (endAnnotation && a.value === end) return;
     annotations.push(toAnnotationRow(a, localFormatted));
   });
 
   if (endAnnotation) {
-    annotations.push(toAnnotationRow({
-      value: end,
-      timestamp: endTs,
-    }, localFormatted, true));
+    annotations.push(
+      toAnnotationRow(
+        {
+          value: end,
+          timestamp: endTs,
+        },
+        localFormatted,
+        true,
+      ),
+    );
   }
   return annotations;
 }
@@ -191,7 +202,7 @@ function parseTagRows(span) {
   const tagRows = []; // prefer empty to undefined for arrays
   const keys = Object.keys(span.tags);
   if (keys.length > 0) {
-    keys.forEach((key) => {
+    keys.forEach(key => {
       const tagRow = {
         key: ConstantNames[key] || key,
         value: span.tags[key],
@@ -253,9 +264,9 @@ function maybePushTag(tags, a) {
     return; // no endpoints to merge
   }
   // Handle when tags are reported by different endpoints
-  sameKeyAndValue.forEach((t) => {
+  sameKeyAndValue.forEach(t => {
     if (!t.endpoints) t.endpoints = []; // eslint-disable-line no-param-reassign
-    a.endpoints.forEach((endpoint) => {
+    a.endpoints.forEach(endpoint => {
       if (t.endpoints.indexOf(endpoint) === -1) {
         t.endpoints.push(endpoint);
       }
@@ -283,18 +294,19 @@ export function newSpanRow(spansToMerge, isLeafSpan) {
     serviceNames: [],
     annotations: [],
     tags: [],
-    errorType: 'none'
+    errorType: 'none',
   };
 
   let sharedTimestamp;
   let sharedDuration;
-  spansToMerge.forEach((next) => {
+  spansToMerge.forEach(next => {
     if (next.parentId) res.parentId = next.parentId;
     if (next.name && (!res.spanName || next.kind === 'SERVER')) {
       res.spanName = next.name; // prefer the server's span name
     }
 
-    if (next.shared) { // save off any shared timestamp, it is our second choice
+    if (next.shared) {
+      // save off any shared timestamp, it is our second choice
       if (!sharedTimestamp) sharedTimestamp = next.timestamp;
       if (!sharedDuration) sharedDuration = next.duration;
     } else {

@@ -4,24 +4,23 @@
     position: relative;
     display: flex;
     cursor: pointer;
-    background: $white;
+    background: transparent;
 
     &:hover {
-        background: $gray-8;
+        background: $gray-11;
     }
-}
 
-.selected-span {
-    background: $gray-10;
-}
+    &.selected-span {
+        background: $gray-11;
+    }
 
-.insignificant-span {
-    opacity: 0.3;
-}
+    &.insignificant-span {
+        opacity: 0.3;
+    }
 
-.erroneous-span {
-    // background: rgba(255, 0, 0, 0.2);
-    background: transparent;
+    &.erroneous-span {
+        background: rgba(255, 0, 0, 0.2);
+    }
 }
 
 .timeline-span__service-name-column-wrapper {
@@ -61,17 +60,6 @@
     position: absolute;
     border-radius: 4px;
     height: 70%;
-
-    &--client {
-        background-color: $gray-9;
-    }
-    &--server {
-    }
-
-    &.line {
-        height: 2px;
-        z-index: 9999;
-    }
 }
 
 .timeline-span__duration {

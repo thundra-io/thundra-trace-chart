@@ -1,4 +1,4 @@
-name: Nexus Publish
+name: publish-to-npm
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
+        with: 
           token: ${{ secrets.THUNDRA_GITHUB_ACCESS_TOKEN }}
       - name: Configure Git User
         run: |
@@ -26,13 +26,12 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: NPM Install
         run: npm install
-      - name: Thundra Registry
-        run: |
-          npm config set registry ${{ secrets.THUNDRA_NPM_HOSTED_REGISTRY }}
-          npm config set _auth ${{ secrets.THUNDRA_NPM_REGISTRY_AUTH }}
       - name: NPM Lint
         run: npm run lint
       - name: NPM Build
         run: npm run build
       - name: NPM Publish
-        run: npm run release-${{ github.event.inputs.version_scale }}-without-tag
+        run: npm run release-${{ github.event.inputs.version_scale }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.THUNDRA_NPM_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.THUNDRA_GITHUB_ACCESS_TOKEN }}
