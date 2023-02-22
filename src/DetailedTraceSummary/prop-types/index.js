@@ -3,15 +3,10 @@ import PropTypes from 'prop-types';
 export const spanTagPropTypes = PropTypes.shape({
   key: PropTypes.string.isRequired,
   // value: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.boolean
-  ]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.boolean]).isRequired,
 });
 
-export const spanTagsPropTypes = PropTypes.arrayOf(
-  spanTagPropTypes,
-);
+export const spanTagsPropTypes = PropTypes.arrayOf(spanTagPropTypes);
 
 export const spanAnnotationPropTypes = PropTypes.shape({
   value: PropTypes.string.isRequired,
@@ -20,9 +15,7 @@ export const spanAnnotationPropTypes = PropTypes.shape({
   relativeTime: PropTypes.string.isRequired,
 });
 
-export const spanAnnotationsPropTypes = PropTypes.arrayOf(
-  spanAnnotationPropTypes,
-);
+export const spanAnnotationsPropTypes = PropTypes.arrayOf(spanAnnotationPropTypes);
 
 // TODO: Verify which fields we should enforce here, as some are optional per
 // https://github.com/openzipkin/zipkin-api/blob/master/zipkin2-api.yaml
@@ -45,18 +38,14 @@ export const detailedSpanPropTypes = PropTypes.shape({
   left: PropTypes.number.isRequired,
 });
 
-export const detailedSpansPropTypes = PropTypes.arrayOf(
-  detailedSpanPropTypes,
-);
+export const detailedSpansPropTypes = PropTypes.arrayOf(detailedSpanPropTypes);
 
 export const spanServiceNameSummary = PropTypes.shape({
   serviceName: PropTypes.string.isRequired,
   spanCount: PropTypes.number.isRequired,
 });
 
-export const spanServiceNameSummaries = PropTypes.arrayOf(
-  spanServiceNameSummary,
-);
+export const spanServiceNameSummaries = PropTypes.arrayOf(spanServiceNameSummary);
 
 export const traceSummaryPropTypes = PropTypes.shape({
   traceId: PropTypes.string.isRequired,
@@ -70,9 +59,7 @@ export const traceSummaryPropTypes = PropTypes.shape({
   width: PropTypes.number.isRequired,
 });
 
-export const traceSummariesPropTypes = PropTypes.arrayOf(
-  traceSummaryPropTypes,
-);
+export const traceSummariesPropTypes = PropTypes.arrayOf(traceSummaryPropTypes);
 
 export const detailedTraceSummaryPropTypes = PropTypes.shape({
   traceId: PropTypes.string.isRequired,
