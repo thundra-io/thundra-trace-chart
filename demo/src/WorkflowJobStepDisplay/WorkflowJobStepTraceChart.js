@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import './WorkflowJobStepTraceChart.scss';
 import ThundraTraceChart from '../../../src';
 import {} from './WorkflowJobStepTraceChart';
-import { getWorkflowJobStepData, getWorkflowJobStepDataDetails } from './WorkflowJobStepSampleTrace';
+import { getWorkflowJobStepData2, getWorkflowJobStepDataDetails2 } from './WorkflowJobStepSampleTrace2';
 
 export class WorkflowJobStepTraceChart extends Component {
   render() {
-    const spans = getWorkflowJobStepData();
-    const spanDetails = getWorkflowJobStepDataDetails();
+    const spans = getWorkflowJobStepData2();
+    const spanDetails = getWorkflowJobStepDataDetails2();
 
     return (
       <div className="ttc-wrapper">
