@@ -75,7 +75,7 @@ export function getWorkflowJobStepData3() {
       parentId: 'workflowId_9ade4462-89db-3a64-a692-6f031dba848f',
       id: 'jobId_11576959935',
       name: '00:16',
-      timestamp: 1677244877000,
+      timestamp: 1677244876000,
       duration: 16000,
       serviceName: 'build maven demo with|pipe',
       type: 'job',
