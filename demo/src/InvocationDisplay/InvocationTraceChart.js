@@ -15,12 +15,12 @@ export class InvocationTraceChart extends Component {
           traceId={spans[0].traceId}
           traceSummary={spans}
           spanDetails={spanDetails}
-          showSpanDetail={false}
+          showSpanDetail={true}
           showMiniTrace={false}
           serviceNameColumnTitle="Service Name"
-          spanInfoColumnTitle="Duration"
+          spanInfoColumnTitle="Operation Name"
           showSpanDetailTitle={true}
-          showDuration={false}
+          showDuration={true}
           onSpanClicked={spanId => console.log('span clicked; spanId: ', spanId)}
         />
       </div>

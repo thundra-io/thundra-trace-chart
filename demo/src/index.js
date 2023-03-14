@@ -15,7 +15,7 @@ class Demo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeDemo: DEMO_TYPE.JOB_PROCESS,
+      activeDemo: DEMO_TYPE.INVOCATION,
     };
   }
 
