@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import TimelineSpanData from './TimelineSpanData';
-import { getColorFromSpan, getCriticalPathColor, getMarkerColor } from '../util/color';
+import { getColorFromSpan, getCriticalPathColor, getMarkerColor, getSpanBackgroundClass } from '../util/color';
 import { detailedSpanPropTypes } from '../prop-types';
 
 import { getCriticalPathHeightFromSpan, getHeightFromSpan, getBorderRadiusFromSpan } from '../util/size';
@@ -24,6 +24,7 @@ const propTypes = {
   areDataOpened: PropTypes.bool.isRequired,
   onChildrenOpenToggle: PropTypes.func.isRequired,
   onDataOpenToggle: PropTypes.func.isRequired,
+  disabledCriticalPath: PropTypes.bool.isRequired,
 };
 
 class TimelineSpan extends React.Component {
@@ -199,7 +200,7 @@ class TimelineSpan extends React.Component {
 
   renderSpanBar() {
     const measures = this.calculateLeftAndWidthArr();
-    const { showDuration = true, span } = this.props;
+    const { showDuration = true, span, disabledCriticalPath } = this.props;
 
     return (
       <div className="timeline-span__bar-container">
@@ -216,18 +217,20 @@ class TimelineSpan extends React.Component {
                   height: `${getHeightFromSpan(span)}`,
                 }}
               />
-              <span
-                className="timeline-span__bar line"
-                style={{
-                  left: `${left}%`,
-                  width: `${width}%`,
-                  height: `${getCriticalPathHeightFromSpan(span)}`,
-                  zIndex: `9999`,
-                  background: `${getCriticalPathColor(span)}`,
-                  borderRadius: `${getBorderRadiusFromSpan(span)}`,
-                }}
-              />
-              {isBelongToChild && (
+              {!disabledCriticalPath && (
+                <span
+                  className="timeline-span__bar line"
+                  style={{
+                    left: `${left}%`,
+                    width: `${width}%`,
+                    height: `${getCriticalPathHeightFromSpan(span)}`,
+                    zIndex: `9999`,
+                    background: `${getCriticalPathColor(span)}`,
+                    borderRadius: `${getBorderRadiusFromSpan(span)}`,
+                  }}
+                />
+              )}
+              {!disabledCriticalPath && isBelongToChild && (
                 <span
                   className="timeline-span__bar line"
                   style={{
@@ -274,8 +277,9 @@ class TimelineSpan extends React.Component {
     }
 
     // Add reddish background color to erroneous span.
-    if (span.errorType !== 'none') {
-      timelineSpanClass = `${timelineSpanClass} erroneous-span`;
+    const bgClass = getSpanBackgroundClass(span);
+    if (bgClass) {
+      timelineSpanClass = `${timelineSpanClass} ${bgClass}`;
     }
 
     return (

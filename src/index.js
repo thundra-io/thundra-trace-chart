@@ -64,9 +64,11 @@ class ThundraTraceChart extends Component {
         bgColor,
         color,
         markerColor,
+        disabledCriticalPath,
         criticalPathColor,
         criticalPathHeight,
         borderRadius,
+        backgroundClass,
         tags,
         icon,
         ...rawTrace
@@ -86,6 +88,7 @@ class ThundraTraceChart extends Component {
           ttc_criticalPathHeight: criticalPathHeight,
           ttc_borderRadius: borderRadius,
           ttc_icon: icon,
+          ttc_backgroundClass: backgroundClass,
         },
       };
     });
@@ -122,6 +125,7 @@ class ThundraTraceChart extends Component {
           serviceNameColumnTitle={this.props.serviceNameColumnTitle}
           spanInfoColumnTitle={this.props.spanInfoColumnTitle}
           onSpanClicked={this.props.onSpanClicked}
+          disabledCriticalPath={this.props.disabledCriticalPath}
         />
       </div>
     );

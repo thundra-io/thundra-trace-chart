@@ -491,8 +491,11 @@ const invocationTrace0 = [
 const TRACECHART_CONFIG = {
   LAMBDA: {
     color: '#DC822F',
-    iconCls: 'services-icon-aws-lambda',
     text: 'Lambda',
+  },
+  SNS: {
+    color: '#9E8739',
+    text: 'SNS',
   },
 };
 
@@ -507,7 +510,20 @@ const trace = [
     serviceName: TRACECHART_CONFIG.LAMBDA.text,
     markerColor: TRACECHART_CONFIG.LAMBDA.color,
     color: TRACECHART_CONFIG.LAMBDA.color,
-    criticalPathColor: TRACECHART_CONFIG.LAMBDA.color,
+    criticalPathColor: 'transparent',
+    backgroundClass: 'erroneous-span',
+  },
+  {
+    traceId: '382d12cc-b846-3837-ba10-7b9f79796929',
+    parentId: '164ed884-fd81-36cf-9d1b-36e76883b730',
+    id: '264ed884-fd81-36cf-9d1b-36e76883b730',
+    name: 'WRITE/foresight-workflow-run-notification-topic-lab',
+    timestamp: 1658296527718,
+    duration: 22000,
+    serviceName: TRACECHART_CONFIG.SNS.text,
+    markerColor: TRACECHART_CONFIG.SNS.color,
+    color: TRACECHART_CONFIG.SNS.color,
+    criticalPathColor: 'transparent',
   },
 ];
 
