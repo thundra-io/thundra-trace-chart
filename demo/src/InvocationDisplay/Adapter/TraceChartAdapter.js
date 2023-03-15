@@ -1,4 +1,41 @@
+import React from 'react';
 import { SpanConstants } from './Contants/ServiceNames';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimesCircle, faBan, faBug } from '@fortawesome/free-solid-svg-icons';
+
+const ICON = {
+  errorIcon: (
+    <span
+      style={{
+        marginRight: 6,
+        display: 'inline-block',
+      }}
+    >
+      <FontAwesomeIcon icon={faTimesCircle} style={{ color: '#F85149', fontSize: 12 }} />
+    </span>
+  ),
+  violatedIcon: (
+    <span
+      style={{
+        marginRight: 6,
+        display: 'inline-block',
+      }}
+    >
+      <FontAwesomeIcon icon={faBan} style={{ color: '#FFCC00', fontSize: 12 }} />
+    </span>
+  ),
+
+  debugIcon: (
+    <span
+      style={{
+        marginRight: 6,
+        display: 'inline-block',
+      }}
+    >
+      <FontAwesomeIcon icon={faBug} style={{ color: 'green', fontSize: 12 }} />
+    </span>
+  ),
+};
 
 const runClipCmd = (cmdObj, span) => {
   switch (cmdObj.cmd) {
@@ -29,6 +66,27 @@ const runClipCmd = (cmdObj, span) => {
 
     default:
       return '';
+  }
+};
+
+const runDefineIcon = span => {
+  //Order Of Importance for Icons Blocked, Violated, Error, None
+  if (span && span.tagsObj && span.tags['security.blocked']) {
+    //Blocked
+    return ICON.errorIcon;
+  } else if (span && span.tags && span.tags['security.violated']) {
+    //Violated
+    return ICON.violatedIcon;
+  } else if (
+    span &&
+    span.tags &&
+    span.tags['method.lines'] &&
+    span.tags['method.startLine'] &&
+    span.tags['method.source']
+  ) {
+    return ICON.debugIcon;
+  } else {
+    return '';
   }
 };
 
@@ -65,13 +123,14 @@ export const convertAPMSpansToThundraTraceChartSpans = spans => {
       traceId: span.traceId,
       parentId: span.parentSpanId,
       name: span.operationName,
-      timestamp: span.startTimestamp,
+      timestamp: span.startTimestamp * 1000,
       duration: span.duration * 1000,
       serviceName: bigTitle,
       name: smallTitle,
       markerColor: spanConst?.backgroundColor,
       color: spanConst?.backgroundColor,
       backgroundClass: span?.tags?.error ? 'erroneous-span' : undefined,
+      icon: runDefineIcon(span),
     });
   });
 
