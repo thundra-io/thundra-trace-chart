@@ -23,6 +23,7 @@ export class InvocationTraceChart extends Component {
           showDuration={true}
           onSpanClicked={spanId => console.log('span clicked; spanId: ', spanId)}
           disabledCriticalPath={true}
+          showHeader={false}
         />
       </div>
     );
