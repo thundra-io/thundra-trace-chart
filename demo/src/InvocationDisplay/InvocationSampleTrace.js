@@ -1,9 +1,10 @@
 import React from 'react';
 import { convertAPMSpansToThundraTraceChartSpans } from './Adapter/TraceChartAdapter';
-import { invocationSample0 } from './APMData/InvocationSample0';
+import { invocationSample1 } from './APMData/InvocationSample1';
+//import { invocationSample1 } from './APMData/InvocationSample1';
 
 export function getInvocationData() {
-  return convertAPMSpansToThundraTraceChartSpans(invocationSample0);
+  return convertAPMSpansToThundraTraceChartSpans(invocationSample1);
 }
 
 export function getInvocationDataDetails() {
