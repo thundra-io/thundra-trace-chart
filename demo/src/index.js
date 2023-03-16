@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { InvocationTraceChart } from './InvocationDisplay/InvocationTraceChart';
+import { InvocationTraceChartFocus } from './InvocationDisplay/InvocationTraceChart2';
 import './main.scss';
 import { JobProcessTraceChart } from './ProcessDisplay/ProcessTraceChart';
 import { WorkflowJobStepTraceChart } from './WorkflowJobStepDisplay/WorkflowJobStepTraceChart';
@@ -9,13 +10,14 @@ const DEMO_TYPE = {
   JOB_PROCESS: 'JobProcess',
   WORKFLOW_TIMELINE: 'WorkflowTimeline',
   INVOCATION: 'Invocation',
+  INVOCATION_FOCUS: 'InvocationFocus',
 };
 
 class Demo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeDemo: DEMO_TYPE.INVOCATION,
+      activeDemo: DEMO_TYPE.INVOCATION_FOCUS,
     };
   }
 
@@ -44,6 +46,8 @@ class Demo extends Component {
       activeDemoJSX = <WorkflowJobStepTraceChart />;
     } else if (activeDemo === DEMO_TYPE.INVOCATION) {
       activeDemoJSX = <InvocationTraceChart />;
+    } else if (activeDemo === DEMO_TYPE.INVOCATION_FOCUS) {
+      activeDemoJSX = <InvocationTraceChartFocus />;
     }
 
     return (
@@ -55,6 +59,7 @@ class Demo extends Component {
             {this.renderButton(activeDemo, DEMO_TYPE.JOB_PROCESS, 'Job Process Display')}
             {this.renderButton(activeDemo, DEMO_TYPE.WORKFLOW_TIMELINE, 'Workflow Timeline')}
             {this.renderButton(activeDemo, DEMO_TYPE.INVOCATION, 'Invocation')}
+            {this.renderButton(activeDemo, DEMO_TYPE.INVOCATION_FOCUS, 'InvocationFocus')}
           </div>
         </div>
 
