@@ -4,15 +4,19 @@ on:
   workflow_dispatch:
     inputs:
       version_scale:
-        description: "Version scale"
-        required: true
-        default: "patch"
+        type: choice
+        description: Version Scale
+        default: patch
+        options:
+          - patch
+          - minor
+          - major
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           token: ${{ secrets.THUNDRA_GITHUB_ACCESS_TOKEN }}
       - name: Configure Git User
@@ -20,7 +24,7 @@ jobs:
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
       - name: Use Node.js 10.x
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: "10.x"
           registry-url: https://registry.npmjs.org
