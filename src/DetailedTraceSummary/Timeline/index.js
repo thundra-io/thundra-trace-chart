@@ -306,6 +306,7 @@ class Timeline extends React.Component {
                 spanHighlights={this.props.spanHighlights}
                 showSpanDetail={this.props.showSpanDetail}
                 showSpanDetailTitle={this.props.showSpanDetailTitle}
+                disabledCriticalPath={this.props.disabledCriticalPath}
               />
             </div>
           );

@@ -85,6 +85,7 @@ class DetailedTraceSummary extends React.Component {
       serviceNameColumnTitle,
       spanInfoColumnTitle,
       closeAllSpansAtFirst,
+      disabledCriticalPath,
     } = this.props;
 
     // console.log("DTS; props: ", this.props);
@@ -123,6 +124,7 @@ class DetailedTraceSummary extends React.Component {
                   serviceNameColumnTitle={serviceNameColumnTitle}
                   spanInfoColumnTitle={spanInfoColumnTitle}
                   onSpanClicked={this.props.onSpanClicked}
+                  disabledCriticalPath={disabledCriticalPath}
                 />
               </div>
             </div>

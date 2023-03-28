@@ -3,15 +3,40 @@ import './InvocationTraceChart.scss';
 import ThundraTraceChart from '../../../src';
 import { getInvocationData, getInvocationDataDetails } from './InvocationSampleTrace';
 
-export class InvocationTraceChart extends Component {
+export class InvocationTraceChartFocus extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeSpanId: 0,
+    };
+  }
+
+  nextActivate = () => {
+    const { activeSpanId } = this.state;
+    const spans = getInvocationData();
+    const nextActiveSpanId = (activeSpanId + 1) % spans.length;
+    this.setState({
+      activeSpanId: nextActiveSpanId,
+    });
+  };
+
   render() {
+    const { activeSpanId, activeHighlightId } = this.state;
     const spans = getInvocationData();
     const spanDetails = getInvocationDataDetails();
 
     return (
       <div className="ttc-wrapper">
+        <button
+          onClick={() => {
+            this.nextActivate();
+          }}
+        >
+          Next Activate (activeSpanId: {activeSpanId})
+        </button>
+
         <ThundraTraceChart
-          activeSpanIds={[spans[0].id]}
+          activeSpanIds={[spans[activeSpanId].id]}
           traceId={spans[0].traceId}
           traceSummary={spans}
           spanDetails={spanDetails}

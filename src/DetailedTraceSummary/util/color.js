@@ -16,3 +16,8 @@ export const getCriticalPathColor = span => {
   const cpColor = span?.tagsObj.ttc_criticalPathColor;
   return cpColor ? cpColor : getColorFromSpan(span);
 };
+
+export const getSpanBackgroundClass = span => {
+  const cpClass = span?.tagsObj.ttc_backgroundClass;
+  return cpClass ? cpClass : '';
+};
